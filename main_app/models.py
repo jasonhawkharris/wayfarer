@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import date
+from datetime import datetime
 
 
 class Profile(models.Model):
@@ -21,14 +21,14 @@ class City(models.Model):
 
 class Post(models.Model):
     content = models.TextField(max_length=500)
-    publish_date = date.today()
+    publish_date = datetime.now()
     city = models.ForeignKey(City,
                              on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Comment(models.Model):
-    publish_date = date.today()
+    publish_date = datetime.now()
     content = models.TextField(max_length=500)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

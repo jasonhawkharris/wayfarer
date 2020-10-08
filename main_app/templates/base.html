@@ -7,11 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'css/semantic/semantic.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
     <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     <script src="{% static 'css/semantic/semantic.min.js' %}""></script>
+
     <title>Document</title>
 </head>
 <body>
@@ -33,39 +36,44 @@
             {% endif %}
         </div>
     </div>
-    <div class="ui secondary vertical pointing menu">
-        <a href="{% url 'home' %}" class=
-            {% if request.path == '/' %}
-                "active item"
-            {% else %}
-                "item"
-            {% endif %}>
-            Home
-        </a>
-        <a href="{% url 'cities' %}" class=
-            {% if request.path == '/cities/' %}
-                "active item"
-            {% else %}
-                "item"
-            {% endif %}>
-            Cities
-        </a>
-        <a href="{% url 'profile' %}" class=
-            {% if request.path == '/profile/' %}
-                "active item"
-            {% else %}
-                "item"
-            {% endif %}>
-            Profile
-        </a>
+
+
+
+    <div class="custom-container">
+        <!-- Side Navigation -->
+        <div class="ui secondary vertical pointing menu">
+            <a href="{% url 'home' %}" class=
+                {% if request.path == '/' %}
+                    "active item"
+                {% else %}
+                    "item"
+                {% endif %}>
+                Home
+            </a>
+            <a href="{% url 'cities' %}" class=
+                {% if request.path == '/cities/' %}
+                    "active item"
+                {% else %}
+                    "item"
+                {% endif %}>
+                Cities
+            </a>
+            <a href="{% url 'profile' %}" class=
+                {% if request.path == '/profile/' %}
+                    "active item"
+                {% else %}
+                    "item"
+                {% endif %}>
+                Profile
+            </a>
+        </div>
+
+
+        {% block content %}    
+        {% endblock %}
     </div>
 
-
-    {% block content %}    
-    {% endblock %}
-
-
-        <!--LOGIN MODAL-->
+    <!--LOGIN MODAL-->
     <div class="ui tiny modal" id="login-modal">
         <div class="header">Login</div>
         <div class="content">

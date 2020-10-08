@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/semantic/semantic.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script
         src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -25,7 +25,7 @@
                 <a href="">{{ user.username }}</a>
             </div>
             <a class="item">About</a>
-            <a class="item">Profile</a>
+            <a href="{% url 'profile' %}" class="item">Profile</a>
             <a class="item" href="{% url 'logout' %}">Logout</a>
         {% else %}
             <a class="item">About</a>
@@ -46,7 +46,13 @@
         </a>
     </div>
 
-    <!--LOGIN MODAL-->
+
+
+    {% block content %}
+    {% endblock %}
+
+
+        <!--LOGIN MODAL-->
     <div class="ui tiny modal" id="login-modal">
         <div class="header">Login</div>
         <div class="content">
@@ -82,9 +88,6 @@
             <div class="ui cancel button">Cancel</div>
         </div>
     </div>
-
-    {% block content %}
-    {% endblock %}
     <script>
         $('#login-link').on('click', function() {
             $('#login-modal').modal('show');

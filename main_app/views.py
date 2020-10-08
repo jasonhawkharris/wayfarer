@@ -6,10 +6,20 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import Login_Form, User_Form, Profile_Form
 # Create your views here.
 
+
 def cities(request):
     my_cities = City.objects.all()
-    context = {'cities': my_cities}
+    login_modal = Login_Form()
+    user_modal = User_Form()
+    profile_modal = Profile_Form()
+    context = {
+        'cities': my_cities,
+        'login_form': login_modal,
+        'user_form': user_modal,
+        'profile_form': profile_modal
+    }
     return render(request, 'cities.html', context)
+
 
 def home(request):
     login_modal = Login_Form()
@@ -42,3 +52,7 @@ def register(request):
         'profile_form': profile_form
     }
     return render(request, 'home', context)
+
+
+def profile(request):
+    return render(request, 'profile/profile_home.html')

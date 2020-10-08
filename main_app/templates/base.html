@@ -15,7 +15,80 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Hi does this work?</h1>
-    
+    <div class="ui menu">
+        <a class="item" style="font-size: 1.8rem;">The Wayfarer</a>
+        <div class="right menu">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <div class="item">
+                Welcome, 
+                <a href="">{{ user.username }}</a>
+            </div>
+            <a class="item">About</a>
+            <a class="item">Profile</a>
+            <a class="item" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a class="item">About</a>
+            <a class="item" id="login-link">Login</a>
+            <a class="item" id="register-link">Register</a>
+        {% endif %}
+    </div>
+    </div>
+    <div class="ui secondary vertical pointing menu">
+        <a class="active item">
+            Home
+        </a>
+        <a class="item">
+            Messages
+        </a>
+        <a class="item">
+            Friends
+        </a>
+    </div>
+
+    <!--LOGIN MODAL-->
+    <div class="ui tiny modal" id="login-modal">
+        <div class="header">Login</div>
+        <div class="content">
+            <form class="ui form" action="/accounts/login/" method="POST">
+                {% csrf_token %}
+                {{ login_form.as_p }}
+                <input type="submit" class="ui primary button" value="Login">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui approve button">Approve</div>
+            <div class="ui button">Neutral</div>
+            <div class="ui cancel button">Cancel</div>
+        </div>
+    </div>
+
+
+    <!--REGISTER MODAL-->
+    <div class="ui tiny modal" id="register-modal">
+        <div class="header">Register</div>
+        <div class="content">
+            <form class="ui form" action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <input type="submit" class="ui primary button" value="Register">
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui approve button">Approve</div>
+            <div class="ui button">Neutral</div>
+            <div class="ui cancel button">Cancel</div>
+        </div>
+    </div>
+    <script>
+        $('#login-link').on('click', function() {
+            $('#login-modal').modal('show');
+        });
+        $('#register-link').on('click', function() {
+            $('#register-modal').modal('show');
+        })
+    </script>
 </body>
 </html>

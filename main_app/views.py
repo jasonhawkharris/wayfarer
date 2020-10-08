@@ -9,5 +9,6 @@ def home(request):
 
 def cities(request):
     cities = City.objects.all()
-    context = {'cities', cities}
+    context = {'cities': cities}
+    print(context['cities'])
     return render(request, 'cities.html', context)

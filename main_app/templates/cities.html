@@ -5,16 +5,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List</title>
+    <title>City List</title>
 </head>
 <body>
-    {% block content %}
-    {% for city in cities %}
-    <img src={{city.photo}}>
-    <p>name: {{city.name}} </p>
-    <p>state: {{city.state}} </p>
-    <p>country: {{city.country}}</p>
-    {% endfor %}
-    {% endblock %}
+    <div class="ui card">
+        <div class="ui slide masked reveal image">
+          <img src={{city.photo}} class="visible content">
+          <img src="/images/avatar/large/elliot.jpg" class="hidden content">
+        </div>
+        <div class="content">
+          <a class="header">{{city.name}}</a>
+          <div class="meta">
+            <span class="date">{{city.state}}</span>
+          </div>
+        </div>
+        <div class="extra content">
+          <a>
+            <i class="building outline icon"></i>
+            {{}}
+          </a>
+        </div>
+      </div>
 </body>
 </html>
+<!-- {% block content %}
+{% for city in cities %}
+<img src= {{city.photo}}>
+<h1>name: {{city.name}}</h1>
+<p>state: {{city.state}} </p>
+<p>country: {{city.country}}</p>
+{% endfor %}
+{% endblock %} -->

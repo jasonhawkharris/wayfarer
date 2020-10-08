@@ -21,7 +21,7 @@
         {% csrf_token %}
         {% if user.is_authenticated %}
             <div class="item">
-                Welcome, 
+                Welcome,&nbsp
                 <a href="">{{ user.username }}</a>
             </div>
             <a class="item">About</a>
@@ -82,6 +82,8 @@
             <div class="ui cancel button">Cancel</div>
         </div>
     </div>
+    {% block content %}
+    {% endblock %}
     <script>
         $('#login-link').on('click', function() {
             $('#login-modal').modal('show');

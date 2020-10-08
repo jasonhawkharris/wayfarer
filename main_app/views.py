@@ -7,9 +7,8 @@ from .forms import Login_Form, User_Form, Profile_Form
 # Create your views here.
 
 def cities(request):
-    cities = City.objects.all()
-    context = {'cities': cities}
-    print(context['cities'])
+    my_cities = City.objects.all()
+    context = {'cities': my_cities}
     return render(request, 'cities.html', context)
 
 def home(request):

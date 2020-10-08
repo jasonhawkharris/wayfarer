@@ -25,7 +25,6 @@
                 <a href="">{{ user.username }}</a>
             </div>
             <a class="item">About</a>
-            <a href="{% url 'profile' %}" class="item">Profile</a>
             <a class="item" href="{% url 'logout' %}">Logout</a>
         {% else %}
             <a class="item">About</a>
@@ -35,14 +34,14 @@
     </div>
     </div>
     <div class="ui secondary vertical pointing menu">
-        <a class="active item">
+        <a href="{% url 'home' %}" class="active item">
             Home
         </a>
-        <a class="item">
-            Messages
+        <a href="{% url 'cities' %}"class="item">
+            Cities
         </a>
-        <a class="item">
-            Friends
+        <a href="{% url 'profile' %}" class="item">
+            Profile
         </a>
     </div>
 

@@ -15,7 +15,53 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Hi does this work?</h1>
+    <div class="ui menu">
     
+    <a class="item" style="font-size: 1.8rem;">The Wayfarer</a>
+    <div class="right menu">
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+        <div class="item">
+            Welcome, 
+            <a href="">{{ user.username }}</a>
+        </div>
+        <a class="item">About</a>
+        <a class="item">Profile</a>
+        <a class="item" href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a class="item">About</a>
+        <a class="item" id="login-modal">Login</a>
+        <a class="item">Register</a>
+    {% endif %}
+
+    </div>
+    </div>
+    <div class="ui secondary vertical pointing menu">
+        <a class="active item">
+            Home
+        </a>
+        <a class="item">
+            Messages
+        </a>
+        <a class="item">
+            Friends
+        </a>
+    </div>
+
+    <!--LOGIN MODAL-->
+    <div class="ui modal">
+        <div class="header">Header</div>
+        <div class="content">
+            <p></p>
+        </div>
+        <div class="actions">
+            <div class="ui approve button">Approve</div>
+            <div class="ui button">Neutral</div>
+            <div class="ui cancel button">Cancel</div>
+        </div>
+    </div>
+    <script>
+        $('.ui.modal').modal('show');
+    </script>
 </body>
 </html>

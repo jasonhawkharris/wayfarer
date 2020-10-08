@@ -69,8 +69,12 @@
     <div class="ui tiny modal" id="register-modal">
         <div class="header">Register</div>
         <div class="content">
-        
-            
+            <form class="ui form" action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+                <input type="submit" class="ui primary button" value="Register">
+            </form>
         </div>
         <div class="actions">
             <div class="ui approve button">Approve</div>

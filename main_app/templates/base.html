@@ -34,13 +34,28 @@
     </div>
     </div>
     <div class="ui secondary vertical pointing menu">
-        <a href="{% url 'home' %}" class="active item">
+        <a href="{% url 'home' %}" class=
+            {% if request.path == '/' %}
+                "active item"
+            {% else %}
+                "item"
+            {% endif %}>
             Home
         </a>
-        <a href="{% url 'cities' %}"class="item">
+        <a href="{% url 'cities' %}" class=
+            {% if request.path == '/cities/' %}
+                "active item"
+            {% else %}
+                "item"
+            {% endif %}>
             Cities
         </a>
-        <a href="{% url 'profile' %}" class="item">
+        <a href="{% url 'profile' %}" class=
+            {% if request.path == '/profile/' %}
+                "active item"
+            {% else %}
+                "item"
+            {% endif %}>
             Profile
         </a>
     </div>

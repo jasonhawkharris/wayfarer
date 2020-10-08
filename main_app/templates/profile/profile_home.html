@@ -28,7 +28,7 @@
                         <li>First Name: {{ user.first_name }}</li>
                         <li>Last Name: {{ user.last_name }}</li>
                         <li>Username: {{ user.username }}</li>
-                        <li>Profile Photo: {{ user.photo }} </li>
+                        <li>Profile Photo: <img src="{{ user.profile.photo }}"></li>
                         <li>Email: {{ user.email }}</li>
                         <li>Hometown: {{ user.profile.hometown }}</li>
                         <li>Password: <a href="">Change Password</a></li>

@@ -82,6 +82,9 @@
             <div class="ui cancel button">Cancel</div>
         </div>
     </div>
+
+    {% block content %}
+    {% endblock %}
     <script>
         $('#login-link').on('click', function() {
             $('#login-modal').modal('show');

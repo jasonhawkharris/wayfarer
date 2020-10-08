@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    {%for city in cities%}
+    <div class="ui card">
+        <div class="ui slide masked reveal image">
+            <img src={{city.photo_day}} class="visible content">
+            <img src={{city.photo_night}} class="hidden content">
+        </div>
+        <div class="content">
+            <a class="header">{{city.name}}</a>
+            <div class="meta">
+                <span class="date">{{city.state}}</span>
+            </div>
+        </div>
+        <div class="extra content">
+            <a>
+                <i class="building outline icon"></i>
+                {{city.population}}
+            </a>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+{% endblock %}
+
+

@@ -1,4 +1,37 @@
 {% extends './profile_base.html' %}
 {% block content %}
-does this shit work?
+<div class="ui container">
+        <div class="ui grid">
+            <div class="four wide column">
+                <div class="ui vertical fluid tabular menu">
+                    <a class="active item">
+                        My Profile
+                    </a>
+                    <a class="item">
+                        Create Post
+                    </a>
+                    <a class="item">
+                        My Posts
+                    </a>
+                    <a class="item">
+                        My Activity
+                    </a>
+                    <a class="item">
+                        My Settings
+                    </a>
+                </div>
+            </div>
+            <div class="twelve wide stretched column">
+                <h2>My Profile</h2>
+                <ul>
+                    <li>First Name: Jason</li>
+                    <li>Last Name: Harris</li>
+                    <li>Username: lakeytom</li>
+                    <li>Profile Photo: </li>
+                    <li>Email: jasonhawkharris@gmail.com</li>
+                    <li>Hometown: Houston, TX</li>
+                    <li>Password: <a href="">Change Password</a></li>
+                </ul>
+            </div>
+        </div>
 {% endblock %}

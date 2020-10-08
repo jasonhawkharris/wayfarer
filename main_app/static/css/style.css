@@ -1,3 +1,7 @@
-body {
-    background-color: pink;
+.ui.secondary.vertical.pointing.menu {
+    height: 100vh;    
+}
+
+.ui.vertical.fluid.tabular.menu {
+    height: 100vh;
 }

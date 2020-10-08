@@ -36,3 +36,7 @@ def register(request):
         'profile_form': profile_form
     }
     return render(request, 'home', context)
+
+
+def profile(request):
+    return render(request, 'profile/profile_home.html')

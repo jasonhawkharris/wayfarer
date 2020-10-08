@@ -4,34 +4,56 @@
         <div class="ui grid">
             <div class="four wide column">
                 <div class="ui vertical fluid tabular menu">
-                    <a class="active item">
+                    <a class="item" data-tab="my_profile">
                         My Profile
                     </a>
-                    <a class="item">
+                    <a class="item" data-tab="create_post">
                         Create Post
                     </a>
-                    <a class="item">
+                    <a class="item" data-tab="my_posts">
                         My Posts
                     </a>
-                    <a class="item">
+                    <a class="item" data-tab="my_activity">
                         My Activity
                     </a>
-                    <a class="item">
+                    <a class="item" data-tab="my_settings">
                         My Settings
                     </a>
                 </div>
             </div>
-            <div class="twelve wide stretched column">
-                <h2>My Profile</h2>
-                <ul>
-                    <li>First Name: Jason</li>
-                    <li>Last Name: Harris</li>
-                    <li>Username: lakeytom</li>
-                    <li>Profile Photo: </li>
-                    <li>Email: jasonhawkharris@gmail.com</li>
-                    <li>Hometown: Houston, TX</li>
-                    <li>Password: <a href="">Change Password</a></li>
-                </ul>
+            <div class="ui tab" data-tab="my_profile">
+                <div class="twelve wide stretched column">
+                    <h2>My Profile</h2>
+                    <ul>
+                        <li>First Name: Jason</li>
+                        <li>Last Name: Harris</li>
+                        <li>Username: lakeytom</li>
+                        <li>Profile Photo: </li>
+                        <li>Email: jasonhawkharris@gmail.com</li>
+                        <li>Hometown: Houston, TX</li>
+                        <li>Password: <a href="">Change Password</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ui tab" data-tab="create_post">
+                <div class="twelve wide stretched column">
+                    <h2>Create Post</h2>
+                </div>
+            </div>
+            <div class="ui tab" data-tab="my_posts">
+                <div class="twelve wide stretched column">
+                    <h2>My Posts</h2>
+                </div>
+            </div>
+            <div class="ui tab" data-tab="my_activity">
+                <div class="twelve wide stretched column">
+                    <h2>My Activity</h2>
+                </div>
+            </div>
+            <div class="ui tab" data-tab="my_settings">
+                <div class="twelve wide stretched column">
+                    <h2>My Settings</h2>
+                </div>
             </div>
         </div>
 {% endblock %}

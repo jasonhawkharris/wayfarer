@@ -17,6 +17,12 @@ class Profile_Form(ModelForm):
         fields = ['hometown', 'photo']
 
 
+class UpdateProfile_Form(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['hometown', 'photo']
+
+
 class Login_Form(ModelForm):
     class Meta:
         model = User

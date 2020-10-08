@@ -25,12 +25,12 @@
                 <div class="twelve wide stretched column">
                     <h2>My Profile</h2>
                     <ul>
-                        <li>First Name: Jason</li>
-                        <li>Last Name: Harris</li>
-                        <li>Username: lakeytom</li>
-                        <li>Profile Photo: </li>
-                        <li>Email: jasonhawkharris@gmail.com</li>
-                        <li>Hometown: Houston, TX</li>
+                        <li>First Name: {{ user.first_name }}</li>
+                        <li>Last Name: {{ user.last_name }}</li>
+                        <li>Username: {{ user.username }}</li>
+                        <li>Profile Photo: {{ user.photo }} </li>
+                        <li>Email: {{ user.email }}</li>
+                        <li>Hometown: {{ user.profile.hometown }}</li>
                         <li>Password: <a href="">Change Password</a></li>
                     </ul>
                 </div>
@@ -53,6 +53,18 @@
             <div class="ui tab" data-tab="my_settings">
                 <div class="twelve wide stretched column">
                     <h2>My Settings</h2>
+                    <form class="ui form">
+                        <div class="field">
+                          <label>Hometown</label>
+                          <input type="text" name="hometown" placeholder="Hometown">
+                        </div>
+                        <div class="field">
+                          <label>Profile Picture</label>
+                          <input type="text" name="photo" placeholder="Profile Pic">
+                        </div>
+                        <button class="ui button" type="submit">Submit</button>
+                      </form>
+                    
                 </div>
             </div>
         </div>

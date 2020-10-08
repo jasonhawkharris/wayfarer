@@ -10,6 +10,15 @@ class Profile(models.Model):
     hometown = models.CharField(max_length=50)
     photo = models.CharField(max_length=250)
 
+    def __str__(self):
+        return self.user.username
+
+
+def create_profile(sender, **kwargs):
+    if kwargs['created']:
+        user_profile = Profile.objects.create(user=kwargs['instance'])
+
+post_save.connect(create_profile, sender=User)
 
 class City(models.Model):
     name = models.CharField(max_length=50)

@@ -3,7 +3,7 @@ from .models import City
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .forms import Login_Form, User_Form, Profile_Form
+from .forms import Login_Form, User_Form, Profile_Form, UpdateProfile_Form
 # Create your views here.
 
 
@@ -55,4 +55,14 @@ def register(request):
 
 
 def profile(request):
-    return render(request, 'profile/profile_home.html')
+    error_message = ''
+    if request.method == 'POST':
+        update_form = UpdateProfile_Form(request.POST, instance=request.user.profile)
+        if update_form.is_valid():
+            update_form.save()
+    else:
+        update_form = UpdateProfile_Form()
+    context = {
+        'update_form': update_form
+    }
+    return render(request, 'profile/profile_home.html', context)

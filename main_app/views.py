@@ -18,8 +18,12 @@ def cities(request):
         'user_form': user_modal,
         'profile_form': profile_modal
     }
-    return render(request, 'cities.html', context)
+    return render(request, 'cities/index.html', context)
 
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    context = {'city': city}
+    return render(request, 'cities/detail.html', context)
 
 def home(request):
     login_modal = Login_Form()

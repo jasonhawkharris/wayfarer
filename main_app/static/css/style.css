@@ -1,5 +1,6 @@
 .ui.secondary.vertical.pointing.menu {
-    height: 100vh;    
+    height: 100vh;   
+    position: fixed;
 }
 
 .ui.vertical.fluid.tabular.menu {

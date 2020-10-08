@@ -53,18 +53,14 @@
             <div class="ui tab" data-tab="my_settings">
                 <div class="twelve wide stretched column">
                     <h2>My Settings</h2>
-                    <form class="ui form">
+                    <form class="ui form" action="{% url 'profile' %}" method="POST">
                         <div class="field">
-                          <label>Hometown</label>
-                          <input type="text" name="hometown" placeholder="Hometown">
-                        </div>
-                        <div class="field">
-                          <label>Profile Picture</label>
-                          <input type="text" name="photo" placeholder="Profile Pic">
+                            {% csrf_token %}
+                            
+                            {{ update_form.as_p }}
                         </div>
                         <button class="ui button" type="submit">Submit</button>
-                      </form>
-                    
+                    </form>
                 </div>
             </div>
         </div>

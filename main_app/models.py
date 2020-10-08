@@ -16,6 +16,7 @@ class City(models.Model):
     state = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     photo = models.CharField(max_length=250)
+    population = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

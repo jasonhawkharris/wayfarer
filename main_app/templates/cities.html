@@ -4,8 +4,8 @@
     {%for city in cities%}
     <div class="ui card">
         <div class="ui slide masked reveal image">
-            <img src={{city.photo}} class="visible content">
-            <img src="/images/avatar/large/elliot.jpg" class="hidden content">
+            <img src={{city.photo_day}} class="visible content">
+            <img src={{city.photo_night}} class="hidden content">
         </div>
         <div class="content">
             <a class="header">{{city.name}}</a>

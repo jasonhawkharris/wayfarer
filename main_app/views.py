@@ -13,25 +13,19 @@ def home(request):
     context = {
         'login_form': login_modal,
         'user_form': user_modal,
-        #'profile_form': profile_modal
+        # 'profile_form': profile_modal
     }
     return render(request, 'home.html', context)
 
-   
 
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
     my_post = Post.objects.all()
-    
     context = {
-        'city': city, 
-        'posts': my_post,
-        
+        'city': city,
+        'posts': my_post
     }
     return render(request, 'cities/detail.html', context)
-
- 
-
 
 
 def cities(request):
@@ -43,28 +37,8 @@ def cities(request):
         'login_form': login_modal,
         'user_form': user_modal,
     }
-    return render(request, 'cities.html', context)
+    return render(request, 'cities/index.html', context)
 
-
-""" def register(request):
-    error_message = ''
-    if request.method == 'POST':
-        user_form = User_Form(request.POST)
-        profile_form = Profile_Form(
-            request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            return redirect('home')
-    else:
-        user_form = User_Form()
-        profile_form = Profile_Form()
-    context = {
-        'user_form': user_form,
-        'profile_form': profile_form
-    }
-    return render(request, 'home', context) """
 
 def register(request):
     error_message = ''
@@ -88,12 +62,12 @@ def register(request):
     return render(request, 'home', {'form': form})
 
 
-
 def profile(request):
     error_message = ''
     if request.method == 'POST':
         updateU_form = UpdateUser_Form(request.POST, instance=request.user)
-        updateP_form = UpdateProfile_Form(request.POST, instance=request.user.profile)
+        updateP_form = UpdateProfile_Form(
+            request.POST, instance=request.user.profile)
         if updateU_form.is_valid() and updateP_form.is_valid():
             updateU_form.save()
             updateP_form.save()

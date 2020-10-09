@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import City, Profile
-
+from .models import City, Post, Profile
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form
@@ -17,6 +16,22 @@ def home(request):
         #'profile_form': profile_modal
     }
     return render(request, 'home.html', context)
+
+   
+
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    my_post = Post.objects.all()
+    
+    context = {
+        'city': city, 
+        'posts': my_post,
+        
+    }
+    return render(request, 'cities/detail.html', context)
+
+ 
+
 
 
 def cities(request):

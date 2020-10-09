@@ -151,8 +151,8 @@ body {
 
 .ui.vertical.fluid.tabular.menu {
     height: 100vh;
+    background-color: #eee;
 }
-
 
 
 .ui.large.feed {

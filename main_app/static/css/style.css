@@ -75,7 +75,7 @@ body {
 
 .ui.secondary.fixed.menu {
     padding: 10px;
-    /* z-index: 1; */
+    z-index: 1;
     background-color: #eee;
     /* border: 1px solid black; */
 }
@@ -86,18 +86,19 @@ body {
 
 #topbar {
     width: 88.3%;
-    margin: 0px 0px 0px 11.7%;
+    margin: 0px 0px 0px 11.7%; /* 11.7% */
     border: 1px solid black;
 }
 
 .main-body {
     background-color: #eee;
-    /* border: 1px solid black; */
-    margin-top: 3.7%;
-    margin-right: 0;
+    border: 1px solid black;
+    margin-top: 4%;
+    z-index: 0;
+    margin-right: 0px;
     margin-left: auto;
 
-    width: 89%;
+    width: 88.3%;
     height: 100vh;
 }
 

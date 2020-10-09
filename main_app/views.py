@@ -23,7 +23,7 @@ def cities(request):
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
     my_post = Post.objects.all()
-
+    
     context = {
         'city': city, 
         'posts': my_post,

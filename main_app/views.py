@@ -1,20 +1,20 @@
 from django.shortcuts import render, redirect
-from .models import City
+from .models import City, Profile
 
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import Login_Form, User_Form, Profile_Form, UpdateProfile_Form
+from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form
 # Create your views here.
 
 
 def home(request):
     login_modal = Login_Form()
-    user_modal = User_Form()
-    profile_modal = Profile_Form()
+    user_modal = Register_Form()
+    #profile_modal = Profile_Form()
     context = {
         'login_form': login_modal,
         'user_form': user_modal,
-        'profile_form': profile_modal
+        #'profile_form': profile_modal
     }
     return render(request, 'home.html', context)
 
@@ -33,7 +33,7 @@ def cities(request):
     return render(request, 'cities.html', context)
 
 
-def register(request):
+""" def register(request):
     error_message = ''
     if request.method == 'POST':
         user_form = User_Form(request.POST)
@@ -51,18 +51,44 @@ def register(request):
         'user_form': user_form,
         'profile_form': profile_form
     }
-    return render(request, 'home', context)
+    return render(request, 'home', context) """
+
+def register(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = Register_Form(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.hometown = form.cleaned_data.get('hometown')
+            user.profile.photo = form.cleaned_data.get('photo')
+            user.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = Register_Form()
+    return render(request, 'home', {'form': form})
+
 
 
 def profile(request):
     error_message = ''
     if request.method == 'POST':
-        update_form = UpdateProfile_Form(request.POST, instance=request.user.profile)
-        if update_form.is_valid():
-            update_form.save()
+        updateU_form = UpdateUser_Form(request.POST, instance=request.user)
+        updateP_form = UpdateProfile_Form(request.POST, instance=request.user.profile)
+        if updateU_form.is_valid() and updateP_form.is_valid():
+            updateU_form.save()
+            updateP_form.save()
     else:
-        update_form = UpdateProfile_Form()
+        updateP_form = UpdateProfile_Form()
+        updateU_form = UpdateUser_Form()
     context = {
-        'update_form': update_form
+        'updateU_Form': updateU_form,
+        'updateP_Form': updateP_form
     }
     return render(request, 'profile/profile_home.html', context)

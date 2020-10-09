@@ -23,16 +23,20 @@
             </div>
             <div class="ui tab" data-tab="my_profile">
                 <div class="twelve wide stretched column">
-                    <h2>My Profile</h2>
-                    <ul>
-                        <li>First Name: {{ user.first_name }}</li>
-                        <li>Last Name: {{ user.last_name }}</li>
-                        <li>Username: {{ user.username }}</li>
-                        <li>Profile Photo: <img src="{{ user.profile.photo }}"></li>
-                        <li>Email: {{ user.email }}</li>
-                        <li>Hometown: {{ user.profile.hometown }}</li>
-                        <li>Password: <a href="">Change Password</a></li>
-                    </ul>
+                    <div class="ui horizontal segments">
+                        <div class="ui segment">
+                            <h2>{{user.username}}'s Profile</h2>
+                            <img class="ui medium circular image" src="{{ user.profile.photo }}">
+                        </div>
+                        <div class="ui segment">
+                            {{ user.first_name }} {{ user.last_name }}
+                            <li>Username: {{ user.username }}</li>
+                            <li>Email: {{ user.email }}</li>
+                            <li>Hometown: {{ user.profile.hometown }}</li>
+                            <li>Password: <a href="">Change Password</a></li>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="ui tab" data-tab="create_post">
@@ -56,8 +60,8 @@
                     <form class="ui form" action="{% url 'profile' %}" method="POST">
                         <div class="field">
                             {% csrf_token %}
-                            
-                            {{ update_form.as_p }}
+                            {{ updateU_Form.as_p }}
+                            {{ updateP_Form.as_p }}
                         </div>
                         <button class="ui button" type="submit">Submit</button>
                     </form>

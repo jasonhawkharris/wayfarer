@@ -8,7 +8,8 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     hometown = models.CharField(max_length=50)
-    photo = models.CharField(max_length=250)
+    photo = models.CharField(
+        max_length=250, default='images/default_profile.png')
     date_joined = datetime.date(datetime.now())
 
     def __str__(self):
@@ -43,6 +44,7 @@ class City(models.Model):
 
 
 class Post(models.Model):
+    title = models.CharField(max_length=40, default="No Title Provided")
     content = models.TextField(max_length=500)
     publish_date = datetime.date(datetime.now())
     city = models.ForeignKey(City,

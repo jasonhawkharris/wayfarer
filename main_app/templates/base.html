@@ -183,19 +183,11 @@
 
         $('.carousel').flickity();
         var myCarousel = new Flickity('.carousel', {
-            // enable keyboard navigation
             accessibility: true,
-
-            // make the carousel's height fit the selected slide
             adaptiveHeight: false,
-
-            // enable auto play
-            // set delay time to enable the autoplay
-            // e.g. autoPlay: 5000
-            autoPlay: 5000,
-            lazyLoad: true,
-            initialIndex: 1,
-            wrapAround: false
+            autoPlay: 1000,
+            wrapAround: false,
+            contain: true
         });
     </script>
     </body>

@@ -16,6 +16,7 @@ body {
     margin-top: 10px;
     margin-bottom: 20px;
     color: rgb(119, 106, 107);
+    align-self: flex-end;
 }
 
 #full-name {
@@ -108,7 +109,24 @@ body {
     min-height: 100vh;
 }
 
+.section-heading {
+    font-size: 1.5rem;
+    color: black;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 25px;
+}
 
+#show-more {
+    font-size: 1rem;
+    color: rgb(184, 184, 184);
+}
+
+
+
+.carousel {
+    margin-left: 10px;
+}
 
 .slide {
     width: 1600px;
@@ -122,6 +140,10 @@ body {
     bottom: 20px;
     left: 20px;
     color: white;
+}
+
+.recent-posts {
+    margin-left: 10px;
 }
 
 

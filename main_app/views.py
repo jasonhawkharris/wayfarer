@@ -22,13 +22,11 @@ def home(request):
 def cities(request):
     my_cities = City.objects.all()
     login_modal = Login_Form()
-    user_modal = User_Form()
-    profile_modal = Profile_Form()
+    user_modal = Register_Form()
     context = {
         'cities': my_cities,
         'login_form': login_modal,
         'user_form': user_modal,
-        'profile_form': profile_modal
     }
     return render(request, 'cities.html', context)
 

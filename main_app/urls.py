@@ -8,7 +8,7 @@ urlpatterns = [
     path('cities/', views.cities, name='cities'),
     path('cities/<int:city_id>/', views.city_detail, name='detail'),
     path('posts/add_post', views.add_post, name='add_post'),
-    # path('posts/form', views.form, name='form'),
+    path('posts/form', views.form, name='form'),
     path('posts/', views.posts, name='posts'),
     path('accounts/register/', views.register, name='register'),
 ]

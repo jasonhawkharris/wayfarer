@@ -40,6 +40,12 @@
 
         <!-- SIDE BAR NAVIGATION START -->
         <div class="nav-link">
+            <i class="home icon"></i>
+            <a href="{% url 'home' %}" class="item">
+                Home
+            </a>
+        </div>
+        <div class="nav-link">
             <i class="flag outline icon"></i>
             <a href="" class="item">
                 Countries
@@ -69,7 +75,7 @@
             </div>
             <div class="nav-link">
                 <i class="edit outline icon"></i>
-                <a href="" class="item">
+                <a href="{% url 'form' %}" class="item">
                     Create Post
                 </a>
             </div>

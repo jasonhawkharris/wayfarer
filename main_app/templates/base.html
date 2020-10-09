@@ -6,16 +6,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/semantic/semantic.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flickity@latest/dist/flickity.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flickity@2.2.1/dist/flickity.pkgd.min.js"></script>
     <script src="{% static 'css/semantic/semantic.min.js' %}""></script>
 
-    <title>Document</title>
+    <title>The Wayfarer</title>
 </head>
 <body>
     <div class=" ui secondary vertical fixed menu" id="sidebar">
@@ -177,6 +179,16 @@
         $('#register-link').on('click', function () {
             $('#register-modal').modal('show');
         })
+
+
+        $('.carousel').flickity();
+        var myCarousel = new Flickity('.carousel', {
+            accessibility: true,
+            adaptiveHeight: false,
+            autoPlay: 1000,
+            wrapAround: false,
+            contain: true
+        });
     </script>
     </body>
 

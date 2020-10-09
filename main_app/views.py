@@ -27,7 +27,6 @@ def city_detail(request, city_id):
     context = {
         'city': city, 
         'posts': my_post,
-        
     }
     return render(request, 'cities/detail.html', context)
 

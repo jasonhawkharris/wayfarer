@@ -24,10 +24,10 @@
                 <img src="{% static 'images/default.png' %}" class="ui tiny circular image" id="profile-img" alt="">
                 <p id="full-name">User McUserson</p>
                 <p id="user-name">@mcuser_57</p>
-                <button class="ui labeled icon teal button">
+                <a href="{% url 'profile' %}" class="ui labeled icon teal button">
                     <i class="user icon"></i>
                     View Profile
-                </button>
+                </a>
             {% else %}
                 <div class="logo">
                     The Wayfarer
@@ -45,7 +45,7 @@
         </div>
         <div class="nav-link">
             <i class="building outline icon"></i>
-            <a href="" class="item">
+            <a href="{% url 'cities' %}" class="item">
                 Cities
             </a>
         </div>
@@ -61,7 +61,7 @@
             
             <div class="nav-link">
                 <i class="user outline icon"></i>
-                <a href="" class="item">
+                <a href="{% url 'profile' %}" class="item">
                     My Profile
                 </a>
             </div>
@@ -73,7 +73,7 @@
             </div>
             <div class="nav-link">
                 <i class="cog icon"></i>
-                <a href="" class="item">
+                <a href="{% url 'profile' %}" class="item">
                     Settings
                 </a>
             </div>
@@ -133,7 +133,7 @@
     <!-- Main Content -->
     <div class="main-body">
     {% block content %}
-    
+
     {% endblock %}
     </div>
 

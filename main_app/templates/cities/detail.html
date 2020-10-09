@@ -8,14 +8,22 @@
     </div>
     
     <div class="ui raised segment">
-            <h1>{{city.name}}</h1>
-            <h3>{{city.state}},&nbsp{{city.country}}</h3>
-            <h4>population: {{city.population}}</h4>
-            <p>New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers. Its iconic sites include skyscrapers such as the Empire State Building and sprawling Central Park. Broadway theater is staged in neon-lit Times Square.</p>
-</div>
+        <h1>{{city.name}}</h1>
+        <h3>{{city.state}},&nbsp{{city.country}}</h3>
+        <h4>population: {{city.population}}</h4>
+        <form class="ui reply form" action="{% url 'add_post' city.id%}" method="POST">
+          {%csrf_token%}
+          <!-- {{post_form.as_p}} -->
+          <!-- <div class="field">
+            <textarea></textarea>
+          </div> -->
+          {%csrf_token%}
+          {{post_form.as_p}}
+          <input type="submit" class="btn" value="Add Comment">
+        </form>
+        </div>
+
 {%for post in posts %}
-
-
 <div class="ui comments">
   <div class="event">
     <div class="label">

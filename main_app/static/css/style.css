@@ -152,3 +152,15 @@ body {
 .ui.vertical.fluid.tabular.menu {
     height: 100vh;
 }
+
+
+
+.ui.large.feed {
+    /* border: 1px solid black; */
+    margin-left: 20px;
+}
+
+.ui.large.feed .extra.text {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}

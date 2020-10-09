@@ -23,12 +23,22 @@ def city_detail(request, city_id):
     my_post = Post.objects.all()
     post_form = Post_Form()
     context = {
-        'city': city, 
+        'city': city,
         'posts': my_post,
         'post_form': post_form,
     }
-    
+
     return render(request, 'cities/detail.html', context)
+
+
+def add_post(request):
+    if request.method == 'POST':
+        post_form = Post_Form(request.POST)
+        if post_form.is_valid():
+            new_post = post_form.save(commit=False)
+            new_post.save()
+    return redirect('form')
+
 
 def form(request):
     post_form = Post_Form()
@@ -39,15 +49,6 @@ def form(request):
     }
     return render(request, 'posts/form.html',  context)
 
-
-def add_post(request):
-    if request.method == 'POST':
-        post_form = Post_Form(request.POST)
-        if post_form.is_valid():
-            new_post = post_form.save(commit=False)
-            new_post.save()
-    return redirect('form')
- 
 
 def cities(request):
     my_cities = City.objects.all()
@@ -64,7 +65,7 @@ def cities(request):
 def posts(request):
     my_posts = Post.objects.all()
     context = {'posts': my_posts}
-    return render(request, 'posts/index.html',context)
+    return render(request, 'posts/index.html', context)
 
 def user_post_index(request, user_id):
     user_posts = Post.objects.filter(id=user_id)

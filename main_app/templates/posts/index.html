@@ -1,8 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
+
+
+<div class="ui large feed">
+<h3>All Recent Posts</h3>
 {%for post in posts%}
-{{post.content}}
-{%endfor%}
+    <div class="event">
+        <div class="label">
+            <img src="{% static 'images/default.png' %}" alt="">
+        </div>
+        <div class="content">
+            <div class="summary">
+                <a class="user">
+                    @{{ post.user }}
+                </a> made a post about {{ post.city.name }}
+            </div>
+            <div class="extra text">
+                {{ post.content }}
+            </div>
+            <div class="date">
+                {{ post.publish_date }}
+            </div>
+            <div class="meta">
+                <a class="like">
+                <i class="like icon"></i> 11 Likes
+                </a>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+
+
 
 
 {% endblock %}

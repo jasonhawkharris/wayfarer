@@ -15,11 +15,20 @@ class Profile(models.Model):
         return self.user.username
 
 
+""" @receiver(post_save, sender=User)
+def create_profile(sender, **kwargs):
+    if kwargs['created']:
+        profile = Profile.objects.create(user=kwargs['instance'])
+
+post_save.connect(create_profile, sender=User) """
+
+
 @receiver(post_save, sender=User)
 def update_profile_signal(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
 
 class City(models.Model):
     name = models.CharField(max_length=50)
@@ -28,14 +37,14 @@ class City(models.Model):
     photo_day = models.CharField(max_length=250)
     photo_night = models.CharField(max_length=250, default='photo.jpg')
     population = models.IntegerField(default=0)
-    
+
     def __str__(self):
         return self.name
 
 
 class Post(models.Model):
     content = models.TextField(max_length=500)
-    publish_date = datetime.now()
+    publish_date = datetime.date(datetime.now())
     city = models.ForeignKey(City,
                              on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

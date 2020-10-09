@@ -33,7 +33,7 @@ class City(models.Model):
     photo_day = models.CharField(max_length=250)
     photo_night = models.CharField(max_length=250, default='photo.jpg')
     population = models.IntegerField(default=0)
-
+    
     def __str__(self):
         return self.name
 

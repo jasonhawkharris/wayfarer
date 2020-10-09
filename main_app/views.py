@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import City, Post, Profile
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form
+from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form
 # Create your views here.
 
 
@@ -22,14 +22,24 @@ def home(request):
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
     my_post = Post.objects.all()
+    post_form = Post_Form()
     context = {
         'city': city, 
         'posts': my_post,
+        'post_form': post_form,
     }
+    
     return render(request, 'cities/detail.html', context)
 
+def add_post(request, city_id):
+    if request.method == 'POST':
+        post_form = Post_Form(request.POST)
+        if post_form.is_valid():
+            new_post = post_form.save(commit=False)
+            new_post.city_id = city_id
+            new_post.save()
+    return redirect('detail', city_id=city_id)
  
-
 
 def cities(request):
     my_cities = City.objects.all()
@@ -41,6 +51,7 @@ def cities(request):
         'user_form': user_modal,
     }
     return render(request, 'cities/index.html', context)
+
 
 def posts(request):
     my_posts = Post.objects.all()

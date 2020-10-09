@@ -13,12 +13,18 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-
+""" @receiver(post_save, sender=User)
 def create_profile(sender, **kwargs):
     if kwargs['created']:
         profile = Profile.objects.create(user=kwargs['instance'])
 
-post_save.connect(create_profile, sender=User)
+post_save.connect(create_profile, sender=User) """
+
+@receiver(post_save, sender=User)
+def update_profile_signal(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
 
 class City(models.Model):
     name = models.CharField(max_length=50)

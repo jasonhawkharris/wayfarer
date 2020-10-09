@@ -21,7 +21,7 @@
     <div class=" ui secondary vertical fixed menu" id="sidebar">
         <div class="profile-card">
             {% if user.is_authenticated %}
-                <img src="{% static 'images/default.png' %}" class="ui tiny circular image" id="profile-img" alt="">
+                <img src="{{ user.profile.photo }}" class="ui tiny circular image" id="profile-img" alt="">
                 <p id="full-name">{{ user.first_name }} {{ user.last_name }}</p>
                 <p id="user-name">@{{ user.username }}</p>
                 <a href="{% url 'profile' %}" class="ui labeled icon teal button">

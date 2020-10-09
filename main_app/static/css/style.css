@@ -81,9 +81,9 @@ body {
     /* border: 1px solid black; */
 }
 
-#sidebar {
-    /* border: 1px solid black; */
-}
+/* #sidebar {
+    border: 1px solid black;
+} */
 
 #topbar {
     width: calc(100% - 222px);

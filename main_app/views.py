@@ -40,14 +40,13 @@ def form(request):
     return render(request, 'posts/form.html',  context)
 
 
-def add_post(request, city_id):
+def add_post(request):
     if request.method == 'POST':
         post_form = Post_Form(request.POST)
         if post_form.is_valid():
             new_post = post_form.save(commit=False)
-            new_post.city_id = city_id
             new_post.save()
-    return redirect('form', city_id=city_id)
+    return redirect('form')
  
 
 def cities(request):

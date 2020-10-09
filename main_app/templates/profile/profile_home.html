@@ -5,7 +5,7 @@
             <div class="four wide column">
                 <div class="ui vertical fluid tabular menu">
                     <a class="item" data-tab="my_profile">
-                        <h4>My Profile</h4>
+                        </h4>My Profile</h4>
                     </a>
                     <a class="item" data-tab="create_post">
                         Create Post
@@ -21,6 +21,9 @@
                     </a>
                 </div>
             </div>
+
+            <!-- ANCHOR: This is where to add CRUD functionality -->
+
             <div class="twelve wide stretched column">
                 <div class="ui horizontal segments">
                     <div class="ui segment">
@@ -62,6 +65,9 @@
             <div class="ui tab" data-tab="my_posts">
                 <div class="twelve wide stretched column">
                     <h2>My Posts</h2>
+                    {%for post in posts%}
+                        {{post.content}}
+                    {%endfor%}
                 </div>
             </div>
             <div class="ui tab" data-tab="my_activity">

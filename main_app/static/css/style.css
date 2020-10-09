@@ -2,6 +2,38 @@ body {
     background-color: #ddd;
 }
 
+.profile-card {
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+    align-items: center;
+}
+
+#full-name {
+    color: rgb(172, 96, 109);
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#user-name {
+    color: darkslategray;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+#profile-img {
+    border: 1px solid white;
+    box-shadow: 5px 5px 25px 5px #bbb;
+    margin-top: 23px;
+}
+
+.ui.teal.button {
+    border-radius: 0px;
+    margin-bottom: 20px;
+}
+
 .ui.secondary.vertical.menu .nav-link {
     margin-top: 20px;
 }

@@ -11,19 +11,10 @@
         <h1>{{city.name}}</h1>
         <h3>{{city.state}},&nbsp{{city.country}}</h3>
         <h4>population: {{city.population}}</h4>
-        <form class="ui reply form" action="{% url 'add_post' city.id%}" method="POST">
-          {%csrf_token%}
-          <!-- {{post_form.as_p}} -->
-          <!-- <div class="field">
-            <textarea></textarea>
-          </div> -->
-          {%csrf_token%}
-          {{post_form.as_p}}
-          <input type="submit" class="btn" value="Add Comment">
-        </form>
-        </div>
+      </div>
 
 {%for post in posts %}
+{% if post.city == city%}
 <div class="ui comments">
   <div class="event">
     <div class="label">
@@ -49,6 +40,6 @@
     </div>
   </div>
 </div>
-
+{% endif%}
 {% endfor %}
 {% endblock %}

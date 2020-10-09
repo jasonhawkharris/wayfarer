@@ -38,7 +38,7 @@ def add_post(request, city_id):
             new_post = post_form.save(commit=False)
             new_post.city_id = city_id
             new_post.save()
-    return redirect('detail', city_id=city_id)
+    return redirect('form')
 
 
 def cities(request):

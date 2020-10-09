@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import City
+from .models import City, Post, User
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -22,8 +22,15 @@ def cities(request):
 
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
-    context = {'city': city}
+    my_post = Post.objects.all()
+
+    context = {
+        'city': city, 
+        'posts': my_post,
+        
+    }
     return render(request, 'cities/detail.html', context)
+
 
 def home(request):
     login_modal = Login_Form()

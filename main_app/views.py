@@ -22,7 +22,6 @@ def home(request):
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
     my_post = Post.objects.all()
-    
     context = {
         'city': city, 
         'posts': my_post,
@@ -30,7 +29,6 @@ def city_detail(request, city_id):
     return render(request, 'cities/detail.html', context)
 
  
-
 
 
 def cities(request):
@@ -42,8 +40,12 @@ def cities(request):
         'login_form': login_modal,
         'user_form': user_modal,
     }
-    return render(request, 'cities.html', context)
+    return render(request, 'cities/index.html', context)
 
+def posts(request):
+    my_posts = Post.objects.all()
+    context = {'posts': my_posts}
+    return render(request, 'posts/index.html',context)
 
 """ def register(request):
     error_message = ''

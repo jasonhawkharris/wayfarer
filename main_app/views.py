@@ -9,11 +9,9 @@ from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form
 def home(request):
     login_modal = Login_Form()
     user_modal = Register_Form()
-    #profile_modal = Profile_Form()
     context = {
         'login_form': login_modal,
         'user_form': user_modal,
-        # 'profile_form': profile_modal
     }
     return render(request, 'home.html', context)
 

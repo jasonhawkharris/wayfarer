@@ -1,5 +1,6 @@
 body {
-    background-color: #ddd;
+    background-color: #eee;
+    height: 150%;
 }
 
 .profile-card {
@@ -32,6 +33,18 @@ body {
 .ui.teal.button {
     border-radius: 0px;
     margin-bottom: 20px;
+    font-weight: 100;
+}
+
+.ui.labeled.icon.teal.button i {
+    padding: 0px;
+}
+
+
+.ui.secondary.vertical.fixed.menu {
+    height: 100vh;
+    z-index: 2;
+    background-color: #eee;
 }
 
 .ui.secondary.vertical.menu .nav-link {
@@ -52,8 +65,23 @@ body {
     margin-bottom: 20px;
 }
 
+.ui.secondary.fixed.menu {
+    padding: 10px;
+    z-index: 1;
+    background-color: #eee;
+    /* border: 1px solid black; */
+}
 
+.main-body {
+    background-color: #ddd;
+    border: 1px solid black;
+    margin-top: 3.4%;
+    margin-right: 0;
+    margin-left: auto;
 
+    width: 89%;
+    height: 100vh;
+}
 
 
 

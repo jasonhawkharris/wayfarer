@@ -10,7 +10,7 @@
             <img src={{city.photo_night}} class="hidden content">
         </div>
         <div class="content">
-            <a class="header">{{city.name}}</a>
+            <a class="header" href="{% url 'detail' city.id %}">{{city.name}}</a>
             <div class="meta">
                 <span>{{city.state}},</span>
                 <span>{{city.country}}</span>

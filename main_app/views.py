@@ -57,6 +57,12 @@ def posts(request):
     context = {'posts': my_posts}
     return render(request, 'posts/index.html',context)
 
+def user_post_index(request, user_id):
+    user_posts = Post.objects.filter(id=user_id)
+    context = {'user_posts': user_posts}
+    return render (request, 'profile/profile_home.html', context)
+
+
 
 def register(request):
     error_message = ''

@@ -65,8 +65,8 @@
             <div class="ui tab" data-tab="my_posts">
                 <div class="twelve wide stretched column">
                     <h2>My Posts</h2>
-                    {%for post in posts%}
-                        {{post.content}}
+                    {%for post in user_posts%}
+                        {{user_posts.content}}
                     {%endfor%}
                 </div>
             </div>

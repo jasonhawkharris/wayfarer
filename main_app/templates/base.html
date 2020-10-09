@@ -2,71 +2,148 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/semantic/semantic.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script
-        src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flickity@latest/dist/flickity.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flickity@2.2.1/dist/flickity.pkgd.min.js"></script>
     <script src="{% static 'css/semantic/semantic.min.js' %}""></script>
-    <title>Document</title>
+
+    <title>The Wayfarer</title>
 </head>
 <body>
-    <div class="ui menu">
-        <a class="item" style="font-size: 1.8rem;">The Wayfarer</a>
-        <div class="right menu">
-            {% csrf_token %}
+    <div class=" ui secondary vertical fixed menu" id="sidebar">
+        <div class="profile-card">
             {% if user.is_authenticated %}
-                <div class="item">
-                    Welcome,&nbsp
-                    <a href="">{{ user.username }}</a>
-                </div>
-                <a class="item">About</a>
-                <a class="item" href="{% url 'logout' %}">Logout</a>
+                <img src="{{ user.profile.photo }}" class="ui tiny circular image" id="profile-img" alt="">
+                <p id="full-name">{{ user.first_name }} {{ user.last_name }}</p>
+                <p id="user-name">@{{ user.username }}</p>
+                <a href="{% url 'profile' %}" class="ui labeled icon teal button">
+                    <i class="user icon"></i>
+                    View Profile
+                </a>
             {% else %}
-                <a class="item">About</a>
-                <a class="item" id="login-link">Login</a>
-                <a class="item" id="register-link">Register</a>
+                <div class="logo">
+                    The Wayfarer
+                </div>
+            {% endif %}
+        </div>
+
+
+        <!-- SIDE BAR NAVIGATION START -->
+        <div class="nav-link">
+            <i class="flag outline icon"></i>
+            <a href="" class="item">
+                Countries
+            </a>
+        </div>
+        <div class="nav-link">
+            <i class="building outline icon"></i>
+            <a href="{% url 'cities' %}" class="item">
+                Cities
+            </a>
+        </div>
+        <div class="nav-link">
+            <i class="newspaper outline icon"></i>
+            <a href="" class="item">
+                All Posts
+            </a>
+        </div>
+        
+        {% if user.is_authenticated %}
+            <div class="ui divider"></div>
+            
+            <div class="nav-link">
+                <i class="user outline icon"></i>
+                <a href="{% url 'profile' %}" class="item">
+                    My Profile
+                </a>
+            </div>
+            <div class="nav-link">
+                <i class="edit outline icon"></i>
+                <a href="" class="item">
+                    Create Post
+                </a>
+            </div>
+            <div class="nav-link">
+                <i class="cog icon"></i>
+                <a href="{% url 'profile' %}" class="item">
+                    Settings
+                </a>
+            </div>
+        {% endif %}
+
+        <div class="ui divider"></div>
+
+        <div class="nav-link">
+            <i class="book icon"></i>
+            <a href="" class="item">
+                About
+            </a>
+        </div>
+        <div class="nav-link">
+            <i class="envelope outline icon"></i>
+            <a href="" class="item">
+                Contact
+            </a>
+        </div>
+    </div>
+
+
+
+
+    <!-- Nav Bar -->
+    <div class="ui secondary fixed menu" id="topbar">
+        {% if user.is_authenticated %}
+            <div class="logo">
+                The Wayfarer
+            </div>
+        {% endif %}
+        <div class="item">
+            <div class="ui icon input">
+                <input type="text" placeholder="Search...">
+                <i class="search link icon"></i>
+            </div>
+        </div>
+        <div class="right menu">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="ui item">
+                    <!-- First name goes here -->
+                    Welcome, {{user.first_name}}
+                </a>
+                <a href="{% url 'logout' %}" class="ui item">
+                    Logout
+                </a>
+            {% else %}
+                <a class="ui item" id="login-link">Login</a>
+                <a class="ui item" id="register-link">Register</a>
             {% endif %}
         </div>
     </div>
-    <div class="ui secondary vertical pointing menu">
-        <a href="{% url 'home' %}" class=
-            {% if request.path == '/' %}
-                "active item"
-            {% else %}
-                "item"
-            {% endif %}>
-            Home
-        </a>
-        <a href="{% url 'cities' %}" class=
-            {% if request.path == '/cities/' %}
-                "active item"
-            {% else %}
-                "item"
-            {% endif %}>
-            Cities
-        </a>
-        <a href="{% url 'profile' %}" class=
-            {% if request.path == '/profile/' %}
-                "active item"
-            {% else %}
-                "item"
-            {% endif %}>
-            Profile
-        </a>
+
+
+
+
+    <!-- Main Content -->
+    <div class="main-body">
+    {% block content %}
+
+    {% endblock %}
     </div>
 
-
-    {% block content %}    
-    {% endblock %}
+    
 
 
-        <!--LOGIN MODAL-->
-    <div class="ui tiny modal" id="login-modal">
+    <!--LOGIN MODAL-->
+    <div class=" ui tiny modal" id="login-modal">
         <div class="header">Login</div>
         <div class="content">
             <form class="ui form" action="/accounts/login/" method="POST">
@@ -75,11 +152,6 @@
                 <input type="submit" class="ui primary button" value="Login">
                 <input type="hidden" name="next" value="{{ next }}">
             </form>
-        </div>
-        <div class="actions">
-            <div class="ui approve button">Approve</div>
-            <div class="ui button">Neutral</div>
-            <div class="ui cancel button">Cancel</div>
         </div>
     </div>
 
@@ -95,19 +167,29 @@
                 <input type="submit" class="ui primary button" value="Register">
             </form>
         </div>
-        <div class="actions">
-            <div class="ui approve button">Approve</div>
-            <div class="ui button">Neutral</div>
-            <div class="ui cancel button">Cancel</div>
-        </div>
+        
     </div>
+
+
+
     <script>
-        $('#login-link').on('click', function() {
+        $('#login-link').on('click', function () {
             $('#login-modal').modal('show');
         });
-        $('#register-link').on('click', function() {
+        $('#register-link').on('click', function () {
             $('#register-modal').modal('show');
         })
+
+
+        $('.carousel').flickity();
+        var myCarousel = new Flickity('.carousel', {
+            accessibility: true,
+            adaptiveHeight: false,
+            autoPlay: 1000,
+            wrapAround: false,
+            contain: true
+        });
     </script>
-</body>
+    </body>
+
 </html>

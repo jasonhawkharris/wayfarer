@@ -1,7 +1,153 @@
-.ui.secondary.vertical.pointing.menu {
-    height: 100vh;   
-    position: fixed;
+body {
+    background-color: #eee;
+    height: 150%;
 }
+
+.profile-card {
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: rgb(119, 106, 107);
+    align-self: flex-end;
+}
+
+#full-name {
+    color: rgb(172, 96, 109);
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#user-name {
+    color: darkslategray;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+#profile-img {
+    border: 1px solid white;
+    box-shadow: 5px 5px 25px 5px #bbb;
+    margin-top: 23px;
+    transition: .2s linear;
+}
+
+#profile-img:hover {
+    transform: scale(1.1);
+}
+
+.ui.teal.button {
+    border-radius: 0px;
+    margin-bottom: 20px;
+    font-weight: 100;
+}
+
+.ui.labeled.icon.teal.button i {
+    padding: 0px;
+}
+
+
+.ui.secondary.vertical.fixed.menu {
+    height: 100vh;
+    z-index: 2;
+    width: 222px;
+    background-color: #eee;
+}
+
+.ui.secondary.vertical.menu .nav-link {
+    margin-top: 20px;
+}
+
+.ui.secondary.vertical.menu i {
+    padding-left: 25px;
+    padding-right: 20px;
+}
+
+.ui.secondary.vertical.menu a {
+    display: inline;
+}
+
+.ui.secondary.vertical.menu .ui.divider {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.ui.secondary.fixed.menu {
+    padding: 10px;
+    z-index: 1;
+    background-color: #eee;
+    /* border: 1px solid black; */
+}
+
+/* #sidebar {
+    border: 1px solid black;
+} */
+
+#topbar {
+    width: calc(100% - 222px);
+    height: 80px;
+    margin: 0px 0px 0px 222px; /* 11.7% */
+    /* border: 1px solid black; */
+}
+
+.main-body {
+    background-color: #eee;
+    /* border: 1px solid black; */
+    margin-top: 80px;
+    z-index: 0;
+    width: calc(100% - 222px);
+    margin-right: 0px;
+    margin-left: 222px;
+    min-height: 100vh;
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    color: black;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 25px;
+}
+
+#show-more {
+    font-size: 1rem;
+    color: rgb(184, 184, 184);
+}
+
+
+
+.carousel {
+    margin-left: 10px;
+}
+
+.slide {
+    width: 1600px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.carousel-cell h1 {
+    background-color: rgba(20, 20, 20, .5);
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.recent-posts {
+    margin-left: 10px;
+}
+
+
+
 
 .ui.vertical.fluid.tabular.menu {
     height: 100vh;

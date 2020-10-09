@@ -9,15 +9,14 @@ from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form
 def home(request):
     login_modal = Login_Form()
     user_modal = Register_Form()
-    #profile_modal = Profile_Form()
+    cities = City.objects.all()
     context = {
         'login_form': login_modal,
         'user_form': user_modal,
-        #'profile_form': profile_modal
+        'cities': cities
     }
     return render(request, 'home.html', context)
 
-   
 
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
@@ -58,25 +57,6 @@ def posts(request):
     context = {'posts': my_posts}
     return render(request, 'posts/index.html',context)
 
-""" def register(request):
-    error_message = ''
-    if request.method == 'POST':
-        user_form = User_Form(request.POST)
-        profile_form = Profile_Form(
-            request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            return redirect('home')
-    else:
-        user_form = User_Form()
-        profile_form = Profile_Form()
-    context = {
-        'user_form': user_form,
-        'profile_form': profile_form
-    }
-    return render(request, 'home', context) """
 
 def register(request):
     error_message = ''
@@ -100,12 +80,12 @@ def register(request):
     return render(request, 'home', {'form': form})
 
 
-
 def profile(request):
     error_message = ''
     if request.method == 'POST':
         updateU_form = UpdateUser_Form(request.POST, instance=request.user)
-        updateP_form = UpdateProfile_Form(request.POST, instance=request.user.profile)
+        updateP_form = UpdateProfile_Form(
+            request.POST, instance=request.user.profile)
         if updateU_form.is_valid() and updateP_form.is_valid():
             updateU_form.save()
             updateP_form.save()

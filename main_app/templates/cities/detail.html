@@ -13,10 +13,10 @@
         <h4>population: {{city.population}}</h4>
         <form class="ui reply form" action="{% url 'add_post' city.id%}" method="POST">
           {%csrf_token%}
-          {{post_form.as_p}}
-          <div class="field">
+          <!-- {{post_form.as_p}} -->
+          <!-- <div class="field">
             <textarea></textarea>
-          </div>
+          </div> -->
           {%csrf_token%}
           {{post_form.as_p}}
           <input type="submit" class="btn" value="Add Comment">

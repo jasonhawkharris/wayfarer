@@ -86,7 +86,7 @@ def profile(request):
         updateP_form = UpdateProfile_Form()
         updateU_form = UpdateUser_Form()
     context = {
-        'updateU_Form': updateU_form,
-        'updateP_Form': updateP_form
+        'updateU_form': updateU_form,
+        'updateP_form': updateP_form
     }
     return render(request, 'profile/profile_home.html', context)

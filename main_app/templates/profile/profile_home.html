@@ -33,8 +33,6 @@
                             <li>Username: {{ user.username }}</li>
                             <li>Email: {{ user.email }}</li>
                             <li>Hometown: {{ user.profile.hometown }}</li>
-                            <li>Password: <a href="">Change Password</a></li>
-                            
                         </div>
                     </div>
                 </div>
@@ -60,12 +58,15 @@
                     <form class="ui form" action="{% url 'profile' %}" method="POST">
                         <div class="field">
                             {% csrf_token %}
-                            {{ updateU_Form.as_p }}
-                            {{ updateP_Form.as_p }}
+                            {{ updateU_form.as_p }}
+                            {{ updateP_form.as_p }}
                         </div>
                         <button class="ui button" type="submit">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
+        <script>
+            $('.tabular.menu .item').tab();
+        </script>
 {% endblock %}

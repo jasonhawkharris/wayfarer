@@ -29,10 +29,10 @@
                             <img class="ui medium circular image" src="{{ user.profile.photo }}">
                         </div>
                         <div class="ui segment">
-                            {{ user.first_name }} {{ user.last_name }}
+                            <h4>{{ user.first_name }} {{ user.last_name }}</h4>
                             <li>Username: {{ user.username }}</li>
-                            <li>Email: {{ user.email }}</li>
                             <li>Hometown: {{ user.profile.hometown }}</li>
+                            <li>Joined Wayfarer on {{ user.profile.date_joined }}</li>
                         </div>
                     </div>
                 </div>

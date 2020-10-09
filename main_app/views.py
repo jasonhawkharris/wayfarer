@@ -43,7 +43,7 @@ def cities(request):
         'login_form': login_modal,
         'user_form': user_modal,
     }
-    return render(request, 'cities.html', context)
+    return render(request, 'cities/index.html', context)
 
 
 """ def register(request):

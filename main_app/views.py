@@ -30,6 +30,16 @@ def city_detail(request, city_id):
     
     return render(request, 'cities/detail.html', context)
 
+def form(request):
+    post_form = Post_Form()
+    my_cities = City.objects.all()
+    context = {
+        'post_form': post_form,
+        'cities': my_cities,
+    }
+    return render(request, 'posts/form.html',  context)
+
+
 def add_post(request, city_id):
     if request.method == 'POST':
         post_form = Post_Form(request.POST)
@@ -37,7 +47,7 @@ def add_post(request, city_id):
             new_post = post_form.save(commit=False)
             new_post.city_id = city_id
             new_post.save()
-    return redirect('detail', city_id=city_id)
+    return redirect('form', city_id=city_id)
  
 
 def cities(request):

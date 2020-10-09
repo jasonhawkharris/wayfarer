@@ -1,7 +1,23 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <div class="ui container" id="home-page">
-        
+    <div class="carousel" data-flickety={}>
+        <div class="carousel-cell">
+            <img src="{% static 'images/hongkong.jpg' %}" class="slide" alt="">
+            {% comment %} <h1>Hong Kong</h1> {% endcomment %}
+        </div>
+        <div class="carousel-cell">
+            <img src="{% static 'images/prague.jpg' %}" class="slide" alt="">
+            {% comment %} <h1>Prague, Czech Republic</h1> {% endcomment %}
+        </div>
+        <div class="carousel-cell">
+            <img src="{% static 'images/regensburg.jpg' %}" class="slide" alt="">
+            {% comment %} <h1>Regensburg, Germany</h1> {% endcomment %}
+        </div>
+        <div class="carousel-cell">
+            <img src="{% static 'images/london.jpg' %}" class="slide" alt="">
+            {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
+        </div>
     </div>
 {% endblock %}

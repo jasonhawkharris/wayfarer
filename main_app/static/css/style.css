@@ -16,6 +16,7 @@ body {
     margin-top: 10px;
     margin-bottom: 20px;
     color: rgb(119, 106, 107);
+    align-self: flex-end;
 }
 
 #full-name {
@@ -36,6 +37,11 @@ body {
     border: 1px solid white;
     box-shadow: 5px 5px 25px 5px #bbb;
     margin-top: 23px;
+    transition: .2s linear;
+}
+
+#profile-img:hover {
+    transform: scale(1.1);
 }
 
 .ui.teal.button {
@@ -87,7 +93,7 @@ body {
 
 #topbar {
     width: calc(100% - 222px);
-    height: 7vh;
+    height: 80px;
     margin: 0px 0px 0px 222px; /* 11.7% */
     /* border: 1px solid black; */
 }
@@ -95,12 +101,49 @@ body {
 .main-body {
     background-color: #eee;
     /* border: 1px solid black; */
-    margin-top: 7vh;
+    margin-top: 80px;
     z-index: 0;
     width: calc(100% - 222px);
     margin-right: 0px;
     margin-left: 222px;
     min-height: 100vh;
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    color: black;
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-bottom: 25px;
+}
+
+#show-more {
+    font-size: 1rem;
+    color: rgb(184, 184, 184);
+}
+
+
+
+.carousel {
+    margin-left: 10px;
+}
+
+.slide {
+    width: 1600px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.carousel-cell h1 {
+    background-color: rgba(20, 20, 20, .5);
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.recent-posts {
+    margin-left: 10px;
 }
 
 

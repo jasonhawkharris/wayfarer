@@ -1,4 +1,4 @@
-{% extends './profile_base.html' %}
+{% extends '../base.html' %}
 {% block content %}
 <div class="ui container">
         <div class="ui grid">
@@ -62,8 +62,8 @@
                     <form class="ui form" action="{% url 'profile' %}" method="POST">
                         <div class="field">
                             {% csrf_token %}
-                            {{ updateU_Form.as_p }}
-                            {{ updateP_Form.as_p }}
+                            {{ updateU_form.as_p }}
+                            {{ updateP_form.as_p }}
                         </div>
                         <button class="ui button" type="submit">Submit</button>
                     </form>

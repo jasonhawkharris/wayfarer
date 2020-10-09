@@ -23,12 +23,13 @@ def city_detail(request, city_id):
     my_post = Post.objects.all()
     post_form = Post_Form()
     context = {
-        'city': city, 
+        'city': city,
         'posts': my_post,
         'post_form': post_form,
     }
-    
+
     return render(request, 'cities/detail.html', context)
+
 
 def add_post(request, city_id):
     if request.method == 'POST':
@@ -38,7 +39,7 @@ def add_post(request, city_id):
             new_post.city_id = city_id
             new_post.save()
     return redirect('detail', city_id=city_id)
- 
+
 
 def cities(request):
     my_cities = City.objects.all()
@@ -55,7 +56,7 @@ def cities(request):
 def posts(request):
     my_posts = Post.objects.all()
     context = {'posts': my_posts}
-    return render(request, 'posts/index.html',context)
+    return render(request, 'posts/index.html', context)
 
 
 def register(request):
@@ -93,7 +94,7 @@ def profile(request):
         updateP_form = UpdateProfile_Form()
         updateU_form = UpdateUser_Form()
     context = {
-        'updateU_Form': updateU_form,
-        'updateP_Form': updateP_form
+        'updateU_form': updateU_form,
+        'updateP_form': updateP_form
     }
     return render(request, 'profile/profile_home.html', context)

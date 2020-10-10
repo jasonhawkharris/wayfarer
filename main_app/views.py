@@ -116,7 +116,9 @@ def settings(request):
 
 def profile(request):
     user_profile = Profile.objects.get(user=request.user.id)
+    user_posts = Post.objects.filter(user=request.user.id)
     context = {
-        'user_profile': user_profile
+        'user_profile': user_profile,
+        'user_posts': user_posts
     }
     return render(request, 'profile/profile.html', context)

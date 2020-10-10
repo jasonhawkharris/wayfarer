@@ -11,6 +11,9 @@
             <img src="{{city.photo_day}}">
           </div>
         </div>
+        <a href="{% url 'city_post' city.id %}" class="fluid ui teal button">
+            Make A Post About This City
+        </a>
     </div>
 
 {%for post in posts %}

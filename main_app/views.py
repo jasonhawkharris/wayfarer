@@ -3,7 +3,7 @@ from .models import City, Post, Profile
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form
+from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form, CityPost_Form
 # Create your views here.
 
 
@@ -77,6 +77,14 @@ def post(request, post_id):
     post = Post.objects.get(id=post_id)
     context = {'post': post}
     return render(request, 'posts/post.html', context)
+
+# post for specific city page
+
+def city_post(request, city_id):
+    city = City.objects.get(id=city_id)
+    post_form = CityPost_Form()
+    context = { 'city':city, 'post_form': post_form }
+    return render(request, 'cities/post.html', context)
 
 
 def register(request):

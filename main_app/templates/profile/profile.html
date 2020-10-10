@@ -1,0 +1,7 @@
+{% extends '../base.html' %}
+{% comment %} populate this template with current users data. {% endcomment %}
+
+{% block content %}
+<h1>Hi {{user.first_name}}, this shit works.</h1>
+<h2>Your hometown is {{user_profile.hometown}}</h2>
+{% endblock %}

@@ -10,10 +10,9 @@ class Profile(models.Model):
     hometown = models.CharField(max_length=50)
     photo = models.CharField(max_length=250)
     date_joined = datetime.date(datetime.now())
-    
+
     def __str__(self):
         return self.user.username
-
 
 
 @receiver(post_save, sender=User)

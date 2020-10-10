@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="ui four column doubling stackable grid container">
   
@@ -12,26 +13,39 @@
           </div>
         </div>
     </div>
+  </div>
 
+<h3>All Recent Posts</h3>
 {%for post in posts %}
+<div class="ui large feed">
 {% if post.city == city%}
-<div class="ui comments">
   <div class="event">
-    <div class="label">
-      <img src="{{post.user.photo}}">
-    </div>
-    <div class="content"></div>
-      <div class="summary">
-        <a class="user" href="" >
-            {{post.user}}
-       
-          {{post.publish_date}}
-       
-        {{post.content}}
-      
-        <a class="like">
-          <i class="like icon"></i> 4 Likes
-        </a>
+      <div class="label">
+          <img src="{% static 'images/default.png' %}" alt="">
+      </div>
+<div class="content">
+  <div class="summary">
+      <a class="user" >
+          @{{ post.user }}
+      </a> 
+      <a href="{% url 'post' post.id %}">made a post about {{ post.city.name }}</a> 
+  </div>
+  <div class="extra text">
+      {{ post.content }}
+  </div>
+  <div class="date">
+      {{ post.publish_date }}
+  </div>
+  <div class="meta">
+      <a class="like">
+      <i class="like icon"></i> 11 Likes
+      </a>
+  </div>
+</div>
+</div>
+<hr>
 {% endif%}
 {% endfor %}
+</div>
+
 {% endblock %}

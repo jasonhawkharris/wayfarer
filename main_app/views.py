@@ -62,8 +62,9 @@ def cities(request):
 
 
 def posts(request):
+    user_profile = Profile.objects.get(user=request.user.id)
     my_posts = Post.objects.all()
-    context = {'posts': my_posts}
+    context = {'posts': my_posts, 'user_profile':user_profile}
     return render(request, 'posts/index.html', context)
 
 

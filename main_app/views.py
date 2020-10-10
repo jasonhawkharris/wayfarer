@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import City, Post, Profile
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form
 # Create your views here.
@@ -65,6 +66,7 @@ def posts(request):
     context = {'posts': my_posts}
     return render(request, 'posts/index.html', context)
 
+
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     context = {'post': post}
@@ -93,7 +95,7 @@ def register(request):
     return render(request, 'home', {'form': form})
 
 
-def profile(request):
+def settings(request):
     error_message = ''
     if request.method == 'POST':
         updateU_form = UpdateUser_Form(request.POST, instance=request.user)
@@ -109,4 +111,12 @@ def profile(request):
         'updateU_form': updateU_form,
         'updateP_form': updateP_form
     }
-    return render(request, 'profile/profile_home.html', context)
+    return render(request, 'settings.html', context)
+
+
+def profile(request):
+    user_profile = Profile.objects.get(user=request.user.id)
+    context = {
+        'user_profile': user_profile
+    }
+    return render(request, 'profile/profile.html', context)

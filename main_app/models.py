@@ -35,11 +35,15 @@ class City(models.Model):
 
 
 class Post(models.Model):
+    title = models.CharField(max_length=50)
     content = models.TextField(max_length=500)
     publish_date = datetime.date(datetime.now())
     city = models.ForeignKey(City,
                              on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):

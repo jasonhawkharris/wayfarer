@@ -3,5 +3,10 @@
 
 {% block content %}
 <h1>Hi {{user.first_name}}, this shit works.</h1>
-<h2>Your hometown is {{user_profile.hometown}}</h2>
+<ul>
+{% for post in user_posts %}
+    <li>{{ post.title }}</li>
+{% endfor %}
+</ul>
+
 {% endblock %}

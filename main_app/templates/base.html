@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/flickity@2.2.1/dist/flickity.pkgd.min.js"></script>
-    <script src="{% static 'css/semantic/semantic.min.js' %}""></script>
+    <script src="{% static 'css/semantic/semantic.min.js' %}"></script>
 
     <title>The Wayfarer</title>
 </head>
@@ -104,7 +104,9 @@
     <div class="ui secondary fixed menu" id="topbar">
         {% if user.is_authenticated %}
             <div class="logo">
-                The Wayfarer
+                <a href="{% url 'home' %}">
+                    The Wayfarer
+                </a>
             </div>
         {% endif %}
         <div class="item">

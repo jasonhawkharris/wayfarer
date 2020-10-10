@@ -2,6 +2,17 @@
 {% comment %} populate this template with current users data. {% endcomment %}
 
 {% block content %}
-<h1>Hi {{user.first_name}}, this shit works.</h1>
-<h2>Your hometown is {{user_profile.hometown}}</h2>
+<h1>{{ user.first_name }}'s Profile</h1>
+<img class="ui tiny circular image" src="{{ user_profile.photo }}" alt="">
+    <h2>Hometown: {{ user_profile.hometown }}</h2>
+    <h2>Date Joined: {{ user_profile.date_joined }}</h2>
+    <ul>
+    {% for post in user_posts %}
+        <li>
+            <a href="{% url 'post' post.id %}">
+                    {{ post.title }}
+            </a>
+        </li>
+    {% endfor %}
+
 {% endblock %}

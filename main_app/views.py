@@ -10,7 +10,7 @@ from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form
 def home(request):
     login_modal = Login_Form()
     user_modal = Register_Form()
-    all_posts = Post.objects.all()
+    all_posts = Post.objects.all()[:5]
     cities = City.objects.all()
     context = {
         'login_form': login_modal,

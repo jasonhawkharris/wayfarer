@@ -6,7 +6,8 @@
 
 <div class="ui large feed">
 <h3>All Recent Posts</h3>
-{%for post in posts%}
+{% csrf_token %}
+{%for post in posts_set.all%}
     <div class="event">
         <div class="label">
             <img src="{% static 'images/default.png' %}" alt="">

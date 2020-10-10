@@ -9,7 +9,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     hometown = models.CharField(max_length=50)
     photo = models.CharField(max_length=250)
-    date_joined = datetime.date(datetime.now())
+    date_joined = models.DateTimeField(auto_now_add=True)
+    # datetime.date(datetime.now())
 
     def __str__(self):
         return self.user.username
@@ -37,17 +38,21 @@ class City(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField(max_length=500)
-    publish_date = datetime.date(datetime.now())
+    publish_date = models.DateTimeField(auto_now_add=True)
+    # datetime.date(datetime.now())
     city = models.ForeignKey(City,
                              on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ['-publish_date']
 
 
 class Comment(models.Model):
-    publish_date = datetime.now()
+    publish_date = models.DateTimeField(auto_now_add=True)
     content = models.TextField(max_length=500)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

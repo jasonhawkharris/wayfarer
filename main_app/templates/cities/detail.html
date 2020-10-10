@@ -20,32 +20,18 @@
     <div class="label">
       <img src="{{post.user.photo}}">
     </div>
-    <div class="ui large feed">
-      <div class="event">
-          <div class="label">
-              <img src="{{user.photo}}" alt="">
-          </div>
-          <div class="content">
-              <div class="summary">
-                  <a class="user" >
-                      @{{ post.user }}
-                  </a> 
-                  <a href="{% url 'post' post.id %}">made a post about {{ post.city.name }}</a>
-              </div>
-              <div class="extra text">
-                  {{ post.content }}
-              </div>
-              <div class="date">
-                  {{ post.publish_date }}
-              </div>
-              <div class="meta">
-                  <a class="like">
-                  <i class="like icon"></i> 11 Likes
-                  </a>
-              </div>
-          </div>
-      </div>
-      </div>
+    <div class="content"></div>
+      <div class="summary">
+        <a class="user" href="" >
+            {{post.user}}
+       
+          {{post.publish_date}}
+       
+        {{post.content}}
+      
+        <a class="like">
+          <i class="like icon"></i> 4 Likes
+        </a>
 {% endif%}
 {% endfor %}
 {% endblock %}

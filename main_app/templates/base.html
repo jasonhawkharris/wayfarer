@@ -26,7 +26,7 @@
                 <img src="{{ user.profile.photo }}" class="ui tiny circular image" id="profile-img" alt="">
                 <p id="full-name">{{ user.first_name }} {{ user.last_name }}</p>
                 <p id="user-name">@{{ user.username }}</p>
-                <a href="{% url 'settings' %}" class="ui labeled icon teal button">
+                <a href="{% url 'profile' %}" class="ui labeled icon teal button">
                     <i class="user icon"></i>
                     View Profile
                 </a>
@@ -69,7 +69,7 @@
             
             <div class="nav-link">
                 <i class="user outline icon"></i>
-                <a href="{% url 'settings' %}" class="item">
+                <a href="{% url 'profile' %}" class="item">
                     My Profile
                 </a>
             </div>

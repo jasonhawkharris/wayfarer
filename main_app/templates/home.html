@@ -3,53 +3,77 @@
 
 {% block content %}
 {% comment %} TODO replace this with a for loop and a new database model for coverphotos {% endcomment %}
-    <div class="carousel" data-flickety={}>
-        <div class="carousel-cell">
-            <img src="{% static 'images/hongkong.jpg' %}" class="slide" alt="">
-            {% comment %} <h1>Hong Kong</h1> {% endcomment %}
+<div class="carousel" data-flickety={}>
+    <div class="carousel-cell">
+        <img src="{% static 'images/hongkong.jpg' %}" class="slide" alt="">
+        {% comment %} <h1>Hong Kong</h1> {% endcomment %}
+    </div>
+    <div class="carousel-cell">
+        <img src="{% static 'images/prague.jpg' %}" class="slide" alt="">
+        {% comment %} <h1>Prague, Czech Republic</h1> {% endcomment %}
+    </div>
+    <div class="carousel-cell">
+        <img src="{% static 'images/regensburg.jpg' %}" class="slide" alt="">
+        {% comment %} <h1>Regensburg, Germany</h1> {% endcomment %}
+    </div>
+    <div class="carousel-cell">
+        <img src="{% static 'images/london.jpg' %}" class="slide" alt="">
+        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
+    </div>
+    <div class="carousel-cell">
+        <img src="{% static 'images/cape-town.jpg' %}" class="slide" alt="">
+        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
+    </div>
+    <div class="carousel-cell">
+        <img src="{% static 'images/machu-pichu.jpg' %}" class="slide" alt="">
+        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
+    </div>
+    <div class="carousel-cell">
+        <img src="{% static 'images/montreal.jpg' %}" class="slide" alt="">
+        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
+    </div>
+    <div class="carousel-cell">
+        <img src="{% static 'images/tokyo.jpg' %}" class="slide" alt="">
+        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
+    </div>
+    <div class="carousel-cell">
+        <img src="{% static 'images/vienna.jpg' %}" class="slide" alt="">
+        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
+    </div>
+</div>
+
+<div class="section-heading">
+    <p>Recent Posts
+        <!--TODO connect this link to the all posts page-->
+        <a href="{% url 'posts' %}" class="ui item" id="show-more">
+            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Show More...
+        </a>
+    </p>
+</div>
+
+<div class="ui items">
+    <!-- TODO have this print out in order of most recent. Limit them to 5 -->
+    {% for post in all_posts %}
+    <div class="item">
+        <div class="image">
+            <img src="{{ post.city.photo_night }}">
         </div>
-        <div class="carousel-cell">
-            <img src="{% static 'images/prague.jpg' %}" class="slide" alt="">
-            {% comment %} <h1>Prague, Czech Republic</h1> {% endcomment %}
-        </div>
-        <div class="carousel-cell">
-            <img src="{% static 'images/regensburg.jpg' %}" class="slide" alt="">
-            {% comment %} <h1>Regensburg, Germany</h1> {% endcomment %}
-        </div>
-        <div class="carousel-cell">
-            <img src="{% static 'images/london.jpg' %}" class="slide" alt="">
-            {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
-        </div>
-        <div class="carousel-cell">
-            <img src="{% static 'images/cape-town.jpg' %}" class="slide" alt="">
-            {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
-        </div>
-        <div class="carousel-cell">
-            <img src="{% static 'images/machu-pichu.jpg' %}" class="slide" alt="">
-            {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
-        </div>
-        <div class="carousel-cell">
-            <img src="{% static 'images/montreal.jpg' %}" class="slide" alt="">
-            {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
-        </div>
-        <div class="carousel-cell">
-            <img src="{% static 'images/tokyo.jpg' %}" class="slide" alt="">
-            {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
-        </div>
-        <div class="carousel-cell">
-            <img src="{% static 'images/vienna.jpg' %}" class="slide" alt="">
-            {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
+        <div class="content">
+            <a href="{% url 'post' post.id %}" class="header">{{ post.city }} - {{ post.title }}</a>
+            <div class="meta">
+                <span>
+                    <!-- TODO link this to users public profile. -->
+                    {{ post.user.first_name }} {{ post.user.last_name }}&nbsp;|&nbsp;{{ post.publish_date }}
+                </span>
+            </div>
+            <div class="description">
+                <p>{{ post.content }}</p>
+            </div>
+            <div class="extra">
+                <a href="{% url 'post' post.id %}">Read More...</a>
+            </div>
         </div>
     </div>
-
-    <div class="section-heading">
-        <p>Recent Posts
-            <!--TODO connect this link to the all posts page-->
-            <a href="" class="ui item" id="show-more">
-                &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Show More...
-            </a>
-        </p>
-    </div>
-
-    {% comment %} Recent posts go here. {% endcomment %}
+    {% endfor %}
+</div>
 {% endblock %}

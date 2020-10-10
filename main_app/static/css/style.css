@@ -157,7 +157,11 @@ body {
 
 .ui.large.feed {
     /* border: 1px solid black; */
-    margin-left: 20px;
+    margin-left: 50px;
+}
+
+.ui.large.feed h3 {
+    padding-top: 20px;
 }
 
 .ui.large.feed .extra.text {

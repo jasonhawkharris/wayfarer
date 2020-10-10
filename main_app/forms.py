@@ -17,11 +17,11 @@ class Register_Form(UserCreationForm):
     last_name = forms.CharField(max_length=100,)
     hometown = forms.CharField(max_length=50)
     photo = forms.CharField(max_length=250)
+
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username',
-                  'email', 'password1', 'password2', 'hometown', 'photo']
-
+                  'email', 'password1', 'password2', 'hometown']
 
 
 class Profile_Form(ModelForm):
@@ -29,11 +29,13 @@ class Profile_Form(ModelForm):
         model = Profile
         fields = ['hometown', 'photo']
 
+
 class UpdateUser_Form(ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'username',
                   'email']
+
 
 class UpdateProfile_Form(ModelForm):
     class Meta:
@@ -46,7 +48,8 @@ class Login_Form(ModelForm):
         model = User
         fields = ['username', 'password']
 
+
 class Post_Form(ModelForm):
     class Meta:
         model = Post
-        fields = ['content', 'city', 'user']
+        fields = ['title', 'content', 'city', 'user']

@@ -13,9 +13,10 @@
         </div>
         <div class="content">
             <div class="summary">
-                <a class="user">
+                <a class="user" >
                     @{{ post.user }}
-                </a> made a post about {{ post.city.name }}
+                </a> 
+                <a href="{% url 'post' post.id %}">made a post about {{ post.city.name }}</a>
             </div>
             <div class="extra text">
                 {{ post.content }}
@@ -30,10 +31,8 @@
             </div>
         </div>
     </div>
+    <hr>
     {%endfor%}
 </div>
-
-
-
 
 {% endblock %}

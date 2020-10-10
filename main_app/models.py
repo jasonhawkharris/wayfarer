@@ -8,20 +8,11 @@ from django.dispatch import receiver
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     hometown = models.CharField(max_length=50)
-    photo = models.CharField(
-        max_length=250, default='images/default_profile.png')
+    photo = models.CharField(max_length=250)
     date_joined = datetime.date(datetime.now())
 
     def __str__(self):
         return self.user.username
-
-
-# """ @receiver(post_save, sender=User)
-# def create_profile(sender, **kwargs):
-#     if kwargs['created']:
-#         profile = Profile.objects.create(user=kwargs['instance'])
-
-# post_save.connect(create_profile, sender=User) """
 
 
 @receiver(post_save, sender=User)
@@ -44,12 +35,15 @@ class City(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=40, default="No Title Provided")
+    title = models.CharField(max_length=50)
     content = models.TextField(max_length=500)
     publish_date = datetime.date(datetime.now())
     city = models.ForeignKey(City,
                              on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):

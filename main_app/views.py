@@ -21,11 +21,9 @@ def home(request):
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
     my_post = Post.objects.all()
-    post_form = Post_Form()
     context = {
         'city': city,
         'posts': my_post,
-        'post_form': post_form,
     }
 
     return render(request, 'cities/detail.html', context)
@@ -66,6 +64,11 @@ def posts(request):
     my_posts = Post.objects.all()
     context = {'posts': my_posts}
     return render(request, 'posts/index.html', context)
+
+def post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {'post': post}
+    return render(request, 'posts/post.html', context)
 
 
 def register(request):

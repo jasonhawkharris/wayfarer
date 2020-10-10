@@ -10,10 +10,12 @@ from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form
 def home(request):
     login_modal = Login_Form()
     user_modal = Register_Form()
+    all_posts = Post.objects.all()
     cities = City.objects.all()
     context = {
         'login_form': login_modal,
         'user_form': user_modal,
+        'all_posts': all_posts,
         'cities': cities
     }
     return render(request, 'home.html', context)

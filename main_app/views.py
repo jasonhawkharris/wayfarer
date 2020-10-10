@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form
+from django.utils import timezone
 # Create your views here.
 
 
@@ -38,7 +39,7 @@ def add_post(request):
         if post_form.is_valid():
             new_post = post_form.save(commit=False)
             new_post.save()
-    return redirect('form')
+    return redirect('profile')
 
 
 def form(request):

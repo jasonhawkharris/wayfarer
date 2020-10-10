@@ -14,16 +14,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
-<<<<<<< HEAD
-
-""" @receiver(post_save, sender=User)
-def create_profile(sender, **kwargs):
-    if kwargs['created']:
-        profile = Profile.objects.create(user=kwargs['instance'])
-
-post_save.connect(create_profile, sender=User) """
-=======
->>>>>>> 5332a240cb4651c99d1aa79451d585be1fe8f103
 
 
 @receiver(post_save, sender=User)

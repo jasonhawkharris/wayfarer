@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, redirect
 from .models import City, Post, Profile
 from django.contrib.auth import login, authenticate
@@ -79,9 +80,34 @@ def user_post_index(request, user_id):
 
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
-
     context = {'post': post}
     return render(request, 'posts/post.html', context)
+
+# def edit(request, post_id):
+#     post = Post.objects.get(id=post_id)
+#     edit_form = Post_Form(request.POST, instance=post)
+#     context = {'post': post, 'edit_form':edit_form}
+#     return render(request, 'posts/edit.html', context)
+
+
+
+def edit_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        edit_form = Post_Form(request.POST, instance=post)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('edit', post_id)
+        else:
+            context = {'post': post, 'edit_form':edit_form}
+            return render(request, 'posts/edit.html', context)
+
+
+def post_delete(request, post_id):
+    Post.objects.get(id=post_id).delete()
+    return redirect("settings")
+
+    
 
 # post for specific city page
 
@@ -92,7 +118,7 @@ def add_city_post(request, city_id):
         post_form = CityPost_Form(request.POST)
         if post_form.is_valid():
             new_post = post_form.save(commit=False)
-            new_post.city = City.objects.get(id=city_id)
+            new_post.city = city
             new_post.user = request.user
             new_post.save()
     return redirect('home')

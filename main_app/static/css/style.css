@@ -19,6 +19,7 @@ body {
     font-family: 'Lobster', cursive;
     font-size: 2rem;
     margin-top: 10px;
+    margin-left: 50px;
     margin-bottom: 20px;
     color: rgb(119, 106, 107);
     align-self: flex-end;
@@ -28,7 +29,9 @@ body {
     font-family: 'Lobster', cursive;
     font-size: 2rem;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 100px;
+    margin-left: 20px;
+    text-align: left;
     color: rgb(119, 106, 107);
     align-self: flex-end;
 }
@@ -81,7 +84,7 @@ body {
     height: 100vh;
     z-index: 2;
     width: 222px;
-    background-color: #eee;
+    background-color: #ddd;
 }
 
 .ui.secondary.vertical.menu .nav-link {
@@ -124,6 +127,10 @@ body {
     margin: 0px 0px 0px 222px;
 }
 
+#topbar .right.menu {
+    margin-right: 3px;
+}
+
 .main-body {
     background-color: #eee;
     margin-top: 80px;
@@ -138,7 +145,7 @@ body {
     font-size: 1.5rem;
     color: black;
     margin-top: 50px;
-    margin-left: 10px;
+    margin-left: 50px;
     margin-bottom: 25px;
 }
 
@@ -148,7 +155,8 @@ body {
 }
 
 .carousel {
-    margin-left: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .slide {
@@ -166,12 +174,12 @@ body {
 }
 
 .recent-posts {
-    margin-left: 10px;
+    margin-left: 50px;
 }
 
 .ui.items {
-    margin-left: 10px;
-    margin-right: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .ui.vertical.fluid.tabular.menu {

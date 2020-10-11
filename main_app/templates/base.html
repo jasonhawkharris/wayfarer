@@ -19,25 +19,27 @@
 
     <title>The Wayfarer</title>
 </head>
+
 <body>
     <div class=" ui secondary vertical fixed menu" id="sidebar">
+
+        {% if user.is_authenticated and target_user != request.user %}
         <div class="profile-card">
-            {% if user.is_authenticated and target_user != request.user %}
-                <img src="{{ user.profile.photo }}" class="ui tiny circular image" id="profile-img" alt="">
-                <p id="full-name">{{ user.first_name }} {{ user.last_name }}</p>
-                <p id="user-name">@{{ user.username }}</p>
-                <a href="{% url 'profile' user.id %}" class="ui labeled icon teal button">
-                    <i class="user icon"></i>
-                    View Profile
-                </a>
-            {% else %}
-                <div class="sidebar-logo">
-                    <a href="{% url 'home' %}">
-                        The Wayfarer
-                    </a>
-                </div>
-            {% endif %}
+            <img src="{{ user.profile.photo }}" class="ui tiny circular image" id="profile-img" alt="">
+            <p id="full-name">{{ user.first_name }} {{ user.last_name }}</p>
+            <p id="user-name">@{{ user.username }}</p>
+            <a href="{% url 'profile' user.id %}" class="ui labeled icon teal button">
+                <i class="user icon"></i>
+                View Profile
+            </a>
         </div>
+        {% else %}
+        <div class="sidebar-logo">
+            <a href="{% url 'home' %}">
+                The Wayfarer
+            </a>
+        </div>
+        {% endif %}
 
 
         <!-- SIDE BAR NAVIGATION START -->
@@ -65,28 +67,28 @@
                 All Posts
             </a>
         </div>
-        
+
         {% if user.is_authenticated %}
-            <div class="ui divider"></div>
-            
-            <div class="nav-link">
-                <i class="user outline icon"></i>
-                <a href="{% url 'profile' user.id %}" class="item">
-                    My Profile
-                </a>
-            </div>
-            <div class="nav-link">
-                <i class="edit outline icon"></i>
-                <a href="{% url 'form' %}" class="item">
-                    Create Post
-                </a>
-            </div>
-            <div class="nav-link">
-                <i class="cog icon"></i>
-                <a href="{% url 'settings' %}" class="item">
-                    Settings
-                </a>
-            </div>
+        <div class="ui divider"></div>
+
+        <div class="nav-link">
+            <i class="user outline icon"></i>
+            <a href="{% url 'profile' user.id %}" class="item">
+                My Profile
+            </a>
+        </div>
+        <div class="nav-link">
+            <i class="edit outline icon"></i>
+            <a href="{% url 'form' %}" class="item">
+                Create Post
+            </a>
+        </div>
+        <div class="nav-link">
+            <i class="cog icon"></i>
+            <a href="{% url 'settings' %}" class="item">
+                Settings
+            </a>
+        </div>
         {% endif %}
 
         <div class="ui divider"></div>
@@ -111,11 +113,11 @@
     <!-- Nav Bar -->
     <div class="ui secondary fixed menu" id="topbar">
         {% if user.is_authenticated and target_user != request.user %}
-            <div class="logo">
-                <a href="{% url 'home' %}">
-                    The Wayfarer
-                </a>
-            </div>
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                The Wayfarer
+            </a>
+        </div>
         {% endif %}
         <div class="item">
             <div class="ui icon input">
@@ -125,19 +127,19 @@
         </div>
         <div class="right menu">
             {% if user.is_authenticated %}
-                <a href="{% url 'profile' user.id %}" class="ui item">
-                    <!-- First name goes here -->
-                    Welcome, {{user.first_name}}
-                </a>
-                <a href="{% url 'logout' %}" class="ui item">
-                    Logout
-                </a>
-                <a href="{% url 'settings' %}" class="ui item">
-                    <i class="cog icon"></i>
-                </a>
+            <a href="{% url 'profile' user.id %}" class="ui item">
+                <!-- First name goes here -->
+                Welcome, {{user.first_name}}
+            </a>
+            <a href="{% url 'logout' %}" class="ui item">
+                Logout
+            </a>
+            <a href="{% url 'settings' %}" class="ui item">
+                <i class="cog icon"></i>
+            </a>
             {% else %}
-                <a class="ui item" id="login-link">Login</a>
-                <a class="ui item" id="register-link">Register</a>
+            <a class="ui item" id="login-link">Login</a>
+            <a class="ui item" id="register-link">Register</a>
             {% endif %}
         </div>
     </div>
@@ -147,12 +149,12 @@
 
     <!-- Main Content -->
     <div class="main-body">
-    {% block content %}
+        {% block content %}
 
-    {% endblock %}
+        {% endblock %}
     </div>
 
-    
+
 
 
     <!--LOGIN MODAL-->
@@ -180,7 +182,7 @@
                 <input type="submit" class="ui primary button" value="Register">
             </form>
         </div>
-        
+
     </div>
 
 
@@ -203,6 +205,6 @@
             contain: true
         });
     </script>
-    </body>
+</body>
 
 </html>

@@ -35,6 +35,7 @@ def add_post(request):
         post_form = Post_Form(request.POST)
         if post_form.is_valid():
             new_post = post_form.save(commit=False)
+            new_post.user = request.user
             new_post.save()
     return redirect('form')
 
@@ -89,7 +90,6 @@ def add_city_post(request, city_id):
             new_post.city = City.objects.get(id=city_id)
             new_post.user = request.user
             new_post.save()
-            print(f"{new_post}")
     return redirect('home')
 
 

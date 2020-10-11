@@ -58,12 +58,16 @@
             <img src="{{ post.city.photo_night }}">
         </div>
         <div class="content">
-            <a href="{% url 'post' post.id %}" class="header">{{ post.city }} - {{ post.title }}</a>
+            <a href="{% url 'post' post.id %}" class="header">{{ post.title }}</a>
             <div class="meta">
                 <span>
                     <!-- TODO link this to users public profile. -->
                     <a href="{% url 'profile' post.user.id %}">
                         {{ post.user.first_name }} {{ post.user.last_name }}
+                    </a>
+                    &nbsp;|&nbsp;
+                    <a href="{% url 'detail' post.city.id %}">
+                        {{ post.city }}
                     </a>
                     &nbsp;|&nbsp;{{ post.publish_date }}
                 </span>

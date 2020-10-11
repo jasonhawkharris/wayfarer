@@ -29,7 +29,6 @@ def city_detail(request, city_id):
         'city': city,
         'posts': my_post,
     }
-
     return render(request, 'cities/detail.html', context)
 
 
@@ -40,7 +39,7 @@ def add_post(request):
             new_post = post_form.save(commit=False)
             new_post.user = request.user
             new_post.save()
-    return redirect('profile')
+    return redirect('home')
 
 
 def form(request):
@@ -68,23 +67,24 @@ def cities(request):
 def posts(request):
     user_profile = Profile.objects.get(user=request.user.id)
     my_posts = Post.objects.all()
-    context = {'posts': my_posts, 'user_profile':user_profile}
+    context = {'posts': my_posts, 'user_profile': user_profile}
     return render(request, 'posts/index.html', context)
+
 
 def user_post_index(request, user_id):
     user_posts = Post.objects.filter(id=user_id)
     context = {'user_posts': user_posts}
-    return render (request, 'profile/profile_home.html', context)
-
+    return render(request, 'profile/profile_home.html', context)
 
 
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
-    
+
     context = {'post': post}
     return render(request, 'posts/post.html', context)
 
 # post for specific city page
+
 
 def add_city_post(request, city_id):
     city = City.objects.get(id=city_id)
@@ -100,8 +100,9 @@ def add_city_post(request, city_id):
 
 def city_post_form(request, city_id):
     city = City.objects.get(id=city_id)
+    city_name = city.name
     post_form = CityPost_Form()
-    context = { 'city':city, 'post_form': post_form }
+    context = {'city': city, 'city_name': city_name, 'post_form': post_form}
     return render(request, 'cities/form.html', context)
 
 
@@ -158,3 +159,8 @@ def profile(request, user_id):
         'user_posts': user_posts
     }
     return render(request, 'profile/profile.html', context)
+
+
+def login_redirect(request):
+    user = request.user
+    return redirect('profile', user.id)

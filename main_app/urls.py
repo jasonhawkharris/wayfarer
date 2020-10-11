@@ -9,10 +9,10 @@ urlpatterns = [
     path('cities/', views.cities, name='cities'),
     path('cities/<int:city_id>/', views.city_detail, name='detail'),
     path('posts/add_post', views.add_post, name='add_post'),
-    path('posts/<int:post_id>/delete/', views.post_delete, name='post_delete'),
     path('posts/', views.posts, name='posts'),
+    path('post/<int:post_id>/delete/', views.post_delete, name='post_delete'),
     path('posts/<int:post_id>/', views.post, name='post'),
     path('posts/form', views.form, name='form'),
-    # path('post/<int:post_id>/edit', views.edit, name='edit'),
+    # path('post/<int:post_id>/edit', views.edit_post, name='edit_post'),
     path('accounts/register/', views.register, name='register'),
 ]

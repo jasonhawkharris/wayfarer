@@ -1,3 +1,4 @@
+from django.http import request
 from django.shortcuts import render, redirect
 from .models import City, Post, Profile
 from django.contrib.auth import login, authenticate
@@ -98,8 +99,7 @@ def post(request, post_id):
 
 def post_delete(request, post_id):
     Post.objects.get(id=post_id).delete()
-    return redirect('settings')
-
+    return redirect("settings")
 
 def register(request):
     error_message = ''

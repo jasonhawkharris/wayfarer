@@ -6,19 +6,14 @@
 
 <div class="ui large feed">
 <h3>All Recent Posts</h3>
-<<<<<<< HEAD
-{% csrf_token %}
-{%for post in posts_set.all%}
-=======
 {%for post in posts %}
->>>>>>> 5f461daf30860d7d69edfeec9da0a8dfb9752232
     <div class="event">
         <div class="label">
             <img src="{% static 'images/default.png' %}" alt="">
         </div>
         <div class="content">
             <div class="summary">
-                <a class="user" >
+                <a href="{% url 'profile' post.user.id %}" class="user" >
                     @{{ post.user }}
                 </a> 
                 <a href="{% url 'post' post.id %}">made a post about {{ post.city.name }}</a>

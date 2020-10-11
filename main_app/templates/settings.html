@@ -71,7 +71,7 @@
                         </div>
                         <div class="ui mini buttons">
                             <a href="{% url 'post' post.id %}" class="ui green button">View</a>
-                            <a class="ui blue button">Edit</a>
+                            <a class="ui blue button" href="{% url 'edit' post.id %}">Edit</a>
                             <a class="ui red button" href="{% url 'post_delete' post.id %}">Delete</a>
                         </div>
                     </div>

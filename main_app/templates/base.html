@@ -22,7 +22,7 @@
 <body>
     <div class=" ui secondary vertical fixed menu" id="sidebar">
         <div class="profile-card">
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and request.path != '/profile/' %}
                 <img src="{{ user.profile.photo }}" class="ui tiny circular image" id="profile-img" alt="">
                 <p id="full-name">{{ user.first_name }} {{ user.last_name }}</p>
                 <p id="user-name">@{{ user.username }}</p>
@@ -110,7 +110,7 @@
 
     <!-- Nav Bar -->
     <div class="ui secondary fixed menu" id="topbar">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and request.path != '/profile/' %}
             <div class="logo">
                 <a href="{% url 'home' %}">
                     The Wayfarer

@@ -2,17 +2,49 @@
 {% comment %} populate this template with current users data. {% endcomment %}
 
 {% block content %}
-<h1>{{ user.first_name }}'s Profile</h1>
-<img class="ui tiny circular image" src="{{ user_profile.photo }}" alt="">
-    <h2>Hometown: {{ user_profile.hometown }}</h2>
-    <h2>Date Joined: {{ user_profile.date_joined }}</h2>
-    <ul>
-    {% for post in user_posts %}
-        <li>
-            <a href="{% url 'post' post.id %}">
-                    {{ post.title }}
-            </a>
-        </li>
-    {% endfor %}
+<div class="public-profile">
+    <div class="ui items">
+        <div class="item">
+            <div class="content">
+                <img class="ui tiny circular image" src="{{ user_profile.photo }}" alt="">
+                <div class="header" id="profile-header">
+                    {{ user.first_name }}'s Profile
+                </div>
+                <div class="meta">
+                    <span>
+                        {{ user.first_name }} {{ user.last_name }}&nbsp;|
+                    </span>
+                    <span style="font-style: italic;">
+                        Member since {{ user_profile.date_joined }}
+                    </span>
+                </div>
+                <div class="description">
+                    <p><strong>Hometown:</strong> {{ user_profile.hometown }}</p>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="header">
+                    Recent Posts
+                </div>
 
+                {% for post in user_posts  %}
+                <div class="ui relaxed divided list">
+                    <div class="item">
+                        <i class="plane icon"></i>
+                        <div class="content">
+                            <a href="{% url 'post' post.id %}" class="header">
+                                {{ post.title }}
+                            </a>
+                            <div class="description">
+                                {{ post.city }} | {{ post.publish_date }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

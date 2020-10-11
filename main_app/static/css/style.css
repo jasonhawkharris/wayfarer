@@ -42,6 +42,15 @@ body {
     font-style: italic;
 }
 
+.public-profile {
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+#profile-header {
+    margin-top: 25px;
+}
+
 #profile-img {
     border: 1px solid white;
     box-shadow: 5px 5px 25px 5px #bbb;
@@ -62,7 +71,6 @@ body {
 .ui.labeled.icon.teal.button i {
     padding: 0px;
 }
-
 
 .ui.secondary.vertical.fixed.menu {
     height: 100vh;
@@ -93,23 +101,16 @@ body {
     padding: 10px;
     z-index: 1;
     background-color: #eee;
-    /* border: 1px solid black; */
 }
-
-/* #sidebar {
-    border: 1px solid black;
-} */
 
 #topbar {
     width: calc(100% - 222px);
     height: 80px;
-    margin: 0px 0px 0px 222px; /* 11.7% */
-    /* border: 1px solid black; */
+    margin: 0px 0px 0px 222px;
 }
 
 .main-body {
     background-color: #eee;
-    /* border: 1px solid black; */
     margin-top: 80px;
     z-index: 0;
     width: calc(100% - 222px);
@@ -130,8 +131,6 @@ body {
     font-size: 1rem;
     color: rgb(184, 184, 184);
 }
-
-
 
 .carousel {
     margin-left: 10px;
@@ -160,17 +159,12 @@ body {
     margin-right: 40px;
 }
 
-
-
-
 .ui.vertical.fluid.tabular.menu {
     height: 100vh;
     background-color: #eee;
 }
 
-
 .ui.large.feed {
-    /* border: 1px solid black; */
     margin-left: 50px;
 }
 

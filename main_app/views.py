@@ -85,16 +85,16 @@ def post(request, post_id):
 
 
 
-# def edit_post(request, post_id):
-#     post = Post.objects.get(id=post_id)
-#     if request.method == 'POST':
-#         edit_form = Post_Form(request.POST, instance=post)
-#         if edit_form.is_valid():
-#             edit_form.save()
-#             return redirect('edit', post_id)
-#         else:
-#             context = {'post': post, 'edit_form':edit_form}
-#             return render(request, 'posts/edit.html', context)
+def edit_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        edit_form = Post_Form(request.POST, instance=post)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('edit', post_id)
+        else:
+            context = {'post': post, 'edit_form':edit_form}
+            return render(request, 'posts/edit.html', context)
 
 
 def post_delete(request, post_id):

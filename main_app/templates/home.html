@@ -52,7 +52,6 @@
 </div>
 
 <div class="ui items">
-    <!-- TODO have this print out in order of most recent. Limit them to 5 -->
     {% for post in all_posts %}
     <div class="item">
         <div class="image">
@@ -63,7 +62,10 @@
             <div class="meta">
                 <span>
                     <!-- TODO link this to users public profile. -->
-                    {{ post.user.first_name }} {{ post.user.last_name }}&nbsp;|&nbsp;{{ post.publish_date }}
+                    <a href="{% url 'profile' post.user.id %}">
+                        {{ post.user.first_name }} {{ post.user.last_name }}
+                    </a>
+                    &nbsp;|&nbsp;{{ post.publish_date }}
                 </span>
             </div>
             <div class="description">

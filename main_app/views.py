@@ -108,11 +108,13 @@ def settings(request):
             updateU_form.save()
             updateP_form.save()
     else:
+        posts = Post.objects.filter(user=request.user.id)
         updateP_form = UpdateProfile_Form()
         updateU_form = UpdateUser_Form()
     context = {
         'updateU_form': updateU_form,
-        'updateP_form': updateP_form
+        'updateP_form': updateP_form,
+        'posts': posts
     }
     return render(request, 'settings.html', context)
 

@@ -103,6 +103,16 @@ body {
     background-color: #eee;
 }
 
+.ui.mini.buttons {
+    margin-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.ui.tab h2 {
+    margin-top: 30px;
+}
+
 #topbar {
     width: calc(100% - 222px);
     height: 80px;

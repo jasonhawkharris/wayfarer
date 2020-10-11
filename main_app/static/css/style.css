@@ -64,6 +64,7 @@ body {
     box-shadow: 5px 5px 25px 5px #bbb;
     margin-top: 23px;
     transition: .2s linear;
+    cursor: pointer;
 }
 
 #profile-img:hover {

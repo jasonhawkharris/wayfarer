@@ -25,7 +25,9 @@
 
         {% if user.is_authenticated and target_user != request.user %}
         <div class="profile-card">
-            <img src="{{ user.profile.photo }}" class="ui tiny circular image" id="profile-img" alt="">
+            <a href="{% url 'profile' user.id %}">
+                <img src="{{ user.profile.photo }}" class="ui tiny circular image" id="profile-img" alt="">
+            </a>
             <p id="full-name">{{ user.first_name }} {{ user.last_name }}</p>
             <p id="user-name">@{{ user.username }}</p>
             <a href="{% url 'profile' user.id %}" class="ui labeled icon teal button">

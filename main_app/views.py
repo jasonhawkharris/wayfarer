@@ -3,7 +3,7 @@ from .models import City, Post, Profile
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form
+from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form, CityPost_Form
 from django.utils import timezone
 # Create your views here.
 
@@ -38,6 +38,7 @@ def add_post(request):
         post_form = Post_Form(request.POST)
         if post_form.is_valid():
             new_post = post_form.save(commit=False)
+            new_post.user = request.user
             new_post.save()
     return redirect('profile')
 
@@ -70,12 +71,38 @@ def posts(request):
     context = {'posts': my_posts, 'user_profile':user_profile}
     return render(request, 'posts/index.html', context)
 
+def user_post_index(request, user_id):
+    user_posts = Post.objects.filter(id=user_id)
+    context = {'user_posts': user_posts}
+    return render (request, 'profile/profile_home.html', context)
+
+
 
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     
     context = {'post': post}
     return render(request, 'posts/post.html', context)
+
+# post for specific city page
+
+def add_city_post(request, city_id):
+    city = City.objects.get(id=city_id)
+    if request.method == 'POST':
+        post_form = CityPost_Form(request.POST)
+        if post_form.is_valid():
+            new_post = post_form.save(commit=False)
+            new_post.city = City.objects.get(id=city_id)
+            new_post.user = request.user
+            new_post.save()
+    return redirect('home')
+
+
+def city_post_form(request, city_id):
+    city = City.objects.get(id=city_id)
+    post_form = CityPost_Form()
+    context = { 'city':city, 'post_form': post_form }
+    return render(request, 'cities/form.html', context)
 
 
 def register(request):

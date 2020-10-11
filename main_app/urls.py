@@ -1,4 +1,4 @@
-from main_app.views import add_post
+from main_app.views import add_post, add_city_post
 from django.urls import path
 from . import views
 
@@ -13,4 +13,6 @@ urlpatterns = [
     path('posts/<int:post_id>/', views.post, name='post'),
     path('posts/form', views.form, name='form'),
     path('accounts/register/', views.register, name='register'),
+    path('cities/<int:city_id>/add_city_post', views.add_city_post, name='add_city_post'),
+    path('cities/<int:city_id>/city_post_form', views.city_post_form, name='city_post_form'),
 ]

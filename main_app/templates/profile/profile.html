@@ -8,11 +8,11 @@
             <div class="content">
                 <img class="ui small circular image" id="profile-img" src="{{ user_profile.photo }}" alt="">
                 <div class="header" id="profile-header">
-                    {{ user.first_name }}'s Profile
+                    {{ target_user.first_name }}'s Profile
                 </div>
                 <div class="meta">
                     <span>
-                        {{ user.first_name }} {{ user.last_name }}&nbsp;|
+                        {{ target_user.first_name }} {{ user.last_name }}&nbsp;|
                     </span>
                     <span style="font-style: italic;">
                         Member since {{ user_profile.date_joined }}

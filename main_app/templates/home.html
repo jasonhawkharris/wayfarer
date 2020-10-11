@@ -62,7 +62,10 @@
             <div class="meta">
                 <span>
                     <!-- TODO link this to users public profile. -->
-                    {{ post.user.first_name }} {{ post.user.last_name }}&nbsp;|&nbsp;{{ post.publish_date }}
+                    <a href="{% url 'profile' post.user.id %}">
+                        {{ post.user.first_name }} {{ post.user.last_name }}
+                    </a>
+                    &nbsp;|&nbsp;{{ post.publish_date }}
                 </span>
             </div>
             <div class="description">

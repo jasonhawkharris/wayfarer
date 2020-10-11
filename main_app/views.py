@@ -119,10 +119,12 @@ def settings(request):
     return render(request, 'settings.html', context)
 
 
-def profile(request):
-    user_profile = Profile.objects.get(user=request.user.id)
-    user_posts = Post.objects.filter(user=request.user.id)
+def profile(request, user_id):
+    target_user = User.objects.get(id=user_id)
+    user_profile = Profile.objects.get(user=user_id)
+    user_posts = Post.objects.filter(user=user_id)
     context = {
+        'target_user': target_user,
         'user_profile': user_profile,
         'user_posts': user_posts
     }

@@ -8,7 +8,7 @@
     </div>
     <div class="content">
         <div class="summary">
-            <a class="user" >
+            <a href="{% url 'profile' post.user.id %}" class="user" >
                 @{{ post.user }}
             </a> 
             made a post about {{ post.city.name }}</a>

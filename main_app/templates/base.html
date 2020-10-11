@@ -22,17 +22,19 @@
 <body>
     <div class=" ui secondary vertical fixed menu" id="sidebar">
         <div class="profile-card">
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and request.path != '/profile/' %}
                 <img src="{{ user.profile.photo }}" class="ui tiny circular image" id="profile-img" alt="">
                 <p id="full-name">{{ user.first_name }} {{ user.last_name }}</p>
                 <p id="user-name">@{{ user.username }}</p>
-                <a href="{% url 'settings' %}" class="ui labeled icon teal button">
+                <a href="{% url 'profile' user.id %}" class="ui labeled icon teal button">
                     <i class="user icon"></i>
                     View Profile
                 </a>
             {% else %}
-                <div class="logo">
-                    The Wayfarer
+                <div class="sidebar-logo">
+                    <a href="{% url 'home' %}">
+                        The Wayfarer
+                    </a>
                 </div>
             {% endif %}
         </div>
@@ -69,7 +71,7 @@
             
             <div class="nav-link">
                 <i class="user outline icon"></i>
-                <a href="{% url 'settings' %}" class="item">
+                <a href="{% url 'profile' user.id %}" class="item">
                     My Profile
                 </a>
             </div>
@@ -108,7 +110,7 @@
 
     <!-- Nav Bar -->
     <div class="ui secondary fixed menu" id="topbar">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and request.path != '/profile/' %}
             <div class="logo">
                 <a href="{% url 'home' %}">
                     The Wayfarer
@@ -123,12 +125,15 @@
         </div>
         <div class="right menu">
             {% if user.is_authenticated %}
-                <a href="{% url 'settings' %}" class="ui item">
+                <a href="{% url 'profile' user.id %}" class="ui item">
                     <!-- First name goes here -->
                     Welcome, {{user.first_name}}
                 </a>
                 <a href="{% url 'logout' %}" class="ui item">
                     Logout
+                </a>
+                <a href="{% url 'settings' %}" class="ui item">
+                    <i class="cog icon"></i>
                 </a>
             {% else %}
                 <a class="ui item" id="login-link">Login</a>

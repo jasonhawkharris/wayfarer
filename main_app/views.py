@@ -4,16 +4,19 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form
+from django.utils import timezone
 # Create your views here.
 
 
 def home(request):
     login_modal = Login_Form()
     user_modal = Register_Form()
+    all_posts = Post.objects.all()[:5]
     cities = City.objects.all()
     context = {
         'login_form': login_modal,
         'user_form': user_modal,
+        'all_posts': all_posts,
         'cities': cities
     }
     return render(request, 'home.html', context)
@@ -36,7 +39,7 @@ def add_post(request):
         if post_form.is_valid():
             new_post = post_form.save(commit=False)
             new_post.save()
-    return redirect('form')
+    return redirect('profile')
 
 
 def form(request):
@@ -83,7 +86,7 @@ def register(request):
             user.profile.first_name = form.cleaned_data.get('first_name')
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.profile.hometown = form.cleaned_data.get('hometown')
-            user.profile.photo = form.cleaned_data.get('photo')
+            # user.profile.photo = form.cleaned_data.get('photo')
             user.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
@@ -105,19 +108,23 @@ def settings(request):
             updateU_form.save()
             updateP_form.save()
     else:
+        posts = Post.objects.filter(user=request.user.id)
         updateP_form = UpdateProfile_Form()
         updateU_form = UpdateUser_Form()
     context = {
         'updateU_form': updateU_form,
-        'updateP_form': updateP_form
+        'updateP_form': updateP_form,
+        'posts': posts
     }
     return render(request, 'settings.html', context)
 
 
-def profile(request):
-    user_profile = Profile.objects.get(user=request.user.id)
-    user_posts = Post.objects.filter(user=request.user.id)
+def profile(request, user_id):
+    target_user = User.objects.get(id=user_id)
+    user_profile = Profile.objects.get(user=user_id)
+    user_posts = Post.objects.filter(user=user_id)
     context = {
+        'target_user': target_user,
         'user_profile': user_profile,
         'user_posts': user_posts
     }

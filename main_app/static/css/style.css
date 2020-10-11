@@ -19,6 +19,15 @@ body {
     align-self: flex-end;
 }
 
+.sidebar-logo {
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(119, 106, 107);
+    align-self: flex-end;
+}
+
 #full-name {
     color: rgb(172, 96, 109);
     margin-top: 20px;
@@ -144,6 +153,11 @@ body {
 
 .recent-posts {
     margin-left: 10px;
+}
+
+.ui.items {
+    margin-left: 10px;
+    margin-right: 40px;
 }
 
 

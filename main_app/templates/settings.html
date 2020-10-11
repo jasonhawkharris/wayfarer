@@ -10,9 +10,6 @@
                 <a class="item" data-tab="my_posts">
                     My Posts
                 </a>
-                <a class="item" data-tab="my_activity">
-                    My Activity
-                </a>
                 <a class="item" data-tab="edit_my_profile">
                     Edit My Profile
                 </a>
@@ -72,9 +69,9 @@
                             </div>
                         </div>
                         <div class="ui mini buttons">
-                            <button class="ui green button">View</button>
-                            <button class="ui blue button">Edit</button>
-                            <button class="ui red button">Delete</button>
+                            <a href="{% url 'post' post.id %}" class="ui green button">View</a>
+                            <a class="ui blue button">Edit</a>
+                            <a class="ui red button">Delete</a>
                         </div>
                     </div>
                     {% endfor %}
@@ -82,11 +79,6 @@
             </div>
         </div>
 
-        <div class="ui tab" data-tab="my_activity">
-            <div class="twelve wide stretched column">
-                <h2>My Activity</h2>
-            </div>
-        </div>
         <div class="ui tab" data-tab="edit_my_profile">
             <div class="twelve wide stretched column">
                 <h2>Edit My Profile</h2>

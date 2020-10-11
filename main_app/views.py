@@ -80,11 +80,24 @@ def post(request, post_id):
 
 # post for specific city page
 
-def city_post(request, city_id):
+def add_city_post(request, city_id):
+    city = City.objects.get(id=city_id)
+    if request.method == 'POST':
+        post_form = CityPost_Form(request.POST)
+        if post_form.is_valid():
+            new_post = post_form.save(commit=False)
+            new_post.city = City.objects.get(id=city_id)
+            new_post.user = request.user
+            new_post.save()
+            print(f"{new_post}")
+    return redirect('home')
+
+
+def city_post_form(request, city_id):
     city = City.objects.get(id=city_id)
     post_form = CityPost_Form()
     context = { 'city':city, 'post_form': post_form }
-    return render(request, 'cities/post.html', context)
+    return render(request, 'cities/form.html', context)
 
 
 def register(request):

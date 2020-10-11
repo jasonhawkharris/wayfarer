@@ -5,7 +5,7 @@
 <h1>Post for this city</h1>
 
 <div class="ui container">
-    <form class="ui reply form" action="{% url 'add_post'%}" method="POST">
+    <form class="ui reply form" action="{% url 'add_city_post' city.id %}" method="POST">
       {%csrf_token%}
       {{post_form.as_p}}
       <input type="submit" class="btn" value="Add Post">

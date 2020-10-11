@@ -1,23 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="ui four column doubling stackable grid container">
+<!-- <div class="ui four column doubling stackable grid container"> -->
   
-  <div class="ui raised segment">
-    {{city.name}}
-    {{city.state}},&nbsp{{city.country}}
-    population: {{city.population}}
-    <div class="ui card">
-        <div class="image">
-            <img src="{{city.photo_day}}">
-          </div>
+  <!-- <div class="ui card" style="z-index: 0">
+    <div class="ui slide masked reveal image">
+        <img src={{city.photo_day}} class="visible content">
+        <img src={{city.photo_night}} class="hidden content">
+    </div>
+    <div class="content">
+        <a class="header" href="{% url 'detail' city.id %}">{{city.name}}</a>
+        <div class="meta">
+            <span>{{city.state}},</span>
+            <span>{{city.country}}</span>
         </div>
     </div>
-  </div>
-
+    <div class="extra content">
+        <a>
+            <i class="building outline icon"></i>
+            population: {{city.population}}
+        </a>
+        <!--TODO make this go to the make a post page with the city auto filled in-->
+        
+    <!-- </div>
+    <a href="" class="fluid ui teal button">
+        Make A Post About This City
+    </a> -->
+<!-- </div> -->
+<div class="carousel" data-flickety={}>
+  <div class="carousel-cell">
+    <img src={{city.photo_day}} class="slide" alt="">
+</div>
+  <div class="carousel-cell">
+    <img src={{city.photo_night}} class="slide" alt="">
+</div>
+</div>
 <h3>All Recent Posts</h3>
-{%for post in posts %}
-<div class="ui large feed">
+{%for post in posts %} 
+<div class="ui large feed"> 
 {% if post.city == city%}
   <div class="event">
       <div class="label">

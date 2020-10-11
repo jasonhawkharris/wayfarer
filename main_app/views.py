@@ -93,7 +93,7 @@ def edit(request, post_id):
 def update_post(request, post_id):
     post = Post.objects.get(id=post_id)
     if request.method == 'POST':
-        update_form = Post_Form(request.POST, instance=post)
+        update_form = Post_Form(request.GET, instance=post)
         if update_form.is_valid():
             update_form.save()
             return redirect('edit', post_id)

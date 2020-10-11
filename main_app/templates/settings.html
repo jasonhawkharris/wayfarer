@@ -63,6 +63,7 @@
                         <div class="content">
                             <a href="{% url 'post' post.id %}" class="header">
                                 {{ post.title }}
+                                {{post.container}}
                             </a>
                             <div class="description">
                                 {{ post.city }} | {{ post.publish_date }}
@@ -71,7 +72,7 @@
                         <div class="ui mini buttons">
                             <a href="{% url 'post' post.id %}" class="ui green button">View</a>
                             <a class="ui blue button">Edit</a>
-                            <a class="ui red button">Delete</a>
+                            <a class="ui red button" href="{% url 'post_delete' post.id %}">Delete</a>
                         </div>
                     </div>
                     {% endfor %}

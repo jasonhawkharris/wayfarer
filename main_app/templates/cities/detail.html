@@ -38,6 +38,9 @@
     <img src={{city.photo_night}} class="slide" alt="">
 </div>
 </div>
+<a href="{% url 'city_post_form' city.id %}" class="fluid ui teal button">
+        Make A Post About This City
+</a>
 <h3>All Recent Posts</h3>
 {%for post in posts %} 
 <div class="ui large feed"> 

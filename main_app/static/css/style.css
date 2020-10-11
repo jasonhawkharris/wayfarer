@@ -37,7 +37,7 @@ body {
 }
 
 #full-name {
-    color: rgb(172, 96, 109);
+    color: rgb(200, 0, 84);
     margin-top: 20px;
     margin-bottom: 0px;
     font-size: 1.2rem;
@@ -77,19 +77,22 @@ body {
     font-weight: 100;
 }
 
-.ui.labeled.icon.teal.button i {
+.ui.labeled.icon.red.button i {
     padding: 0px;
+    /* background-color: rgb(200, 0, 84); */
 }
 
 .ui.secondary.vertical.fixed.menu {
     height: 100vh;
     z-index: 2;
     width: 222px;
+    margin-right: 0px;
     background-color: #ddd;
 }
 
 .ui.secondary.vertical.menu .nav-link {
     margin-top: 20px;
+    width: 100%;
 }
 
 .ui.secondary.vertical.menu i {
@@ -199,4 +202,21 @@ body {
 .ui.large.feed .extra.text {
     margin-top: 5px;
     margin-bottom: 10px;
+}
+
+.nav-link:hover {
+    color: rgb(200, 0, 84);
+    font-weight: bold;
+}
+
+.activated {
+    color: rgb(200, 0, 84);
+    font-weight: bold;
+
+}
+
+.nav-link.activated .item {
+    color: rgb(200, 0, 84);
+    font-weight: bold;
+
 }

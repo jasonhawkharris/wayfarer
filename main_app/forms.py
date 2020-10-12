@@ -59,3 +59,6 @@ class CityPost_Form(ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content']
+
+
+class City_Form(ModelForm):

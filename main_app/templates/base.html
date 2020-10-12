@@ -238,6 +238,10 @@
             $('#new-city-modal').modal('show');
         });
 
+        $('#cancel-button').on('click', function () {
+            $('#delete-modal').modal('hide');
+        })
+
 
         $('.carousel').flickity();
         var myCarousel = new Flickity('.carousel', {

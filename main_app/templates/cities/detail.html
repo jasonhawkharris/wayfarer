@@ -2,8 +2,8 @@
 {% load static %}
 {% block content %}
 <!-- <div class="ui four column doubling stackable grid container"> -->
-  
-  <!-- <div class="ui card" style="z-index: 0">
+
+<!-- <div class="ui card" style="z-index: 0">
     <div class="ui slide masked reveal image">
         <img src={{city.photo_day}} class="visible content">
         <img src={{city.photo_night}} class="hidden content">
@@ -24,54 +24,67 @@
             population: {{city.population}}
         </a>
         <!--TODO make this go to the make a post page with the city auto filled in-->
-        
-    <!-- </div>
+
+<!-- </div>
     <a href="" class="fluid ui teal button">
         Make A Post About This City
     </a> -->
 <!-- </div> -->
 <div class="carousel" data-flickety={}>
-  <div class="carousel-cell">
-    <img src={{city.photo_day}} class="slide" alt="">
+    <div class="carousel-cell">
+        <img src={{city.photo_day}} class="slide" alt="">
+    </div>
+    <div class="carousel-cell">
+        <img src={{city.photo_night}} class="slide" alt="">
+    </div>
+
 </div>
-  <div class="carousel-cell">
-    <img src={{city.photo_night}} class="slide" alt="">
-</div>
-</div>
-<a href="{% url 'city_post_form' city.id %}" class="fluid ui teal button">
+<div class="city-post">
+    <a href="{% url 'city_post_form' city.id %}" class="fluid ui teal button">
         Make A Post About This City
-</a>
-<h3>All Recent Posts</h3>
-{%for post in posts %} 
-<div class="ui large feed"> 
-{% if post.city == city%}
-  <div class="event">
-      <div class="label">
-          <img src="{% static 'images/default.png' %}" alt="">
-      </div>
-<div class="content">
-  <div class="summary">
-      <a class="user" >
-          @{{ post.user }}
-      </a> 
-      <a href="{% url 'post' post.id %}">made a post about {{ post.city.name }}</a> 
-  </div>
-  <div class="extra text">
-      {{ post.content }}
-  </div>
-  <div class="date">
-      {{ post.publish_date }}
-  </div>
-  <div class="meta">
-      <a class="like">
-      <i class="like icon"></i> 11 Likes
-      </a>
-  </div>
+    </a>
 </div>
+
+<div class="section-heading">
+    <h3>All Recent Posts</h3>
 </div>
-<hr>
-{% endif%}
-{% endfor %}
+
+<div class="ui large feed">
+    {%for post in posts %}
+    {% if post.city == city%}
+    <div class="event">
+        <div class="label">
+            <img src="{{ post.user.profile.photo }}" alt="">
+        </div>
+        <div class="content">
+            <div class="ui header">
+                <a href="{% url 'post' post.id %}">
+                    {{ post.title }}
+                </a>
+            </div>
+            <div class="summary">
+                Written by
+                <a class="user">
+                    {{post.user.first_name}} {{post.user.last_name}}
+                </a>
+            </div>
+            <div class="extra text">
+                {{ post.content }}
+            </div>
+            <div class="date">
+                {{ post.publish_date }}
+            </div>
+            <div class="meta">
+                <a class="like">
+                    <i class="like icon"></i> 11 Likes
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif%}
+    {% endfor %}
+
+    <hr>
 </div>
 
 {% endblock %}

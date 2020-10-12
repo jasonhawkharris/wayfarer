@@ -90,11 +90,11 @@ def post(request, post_id):
     context = {'post': post}
     return render(request, 'posts/post.html', context)
 
-def edit(request, post_id):
-    post = Post.objects.get(id=post_id)
-    edit_form = Post_Form(request.POST, post)
-    context = {'post': post, 'edit_form':edit_form}
-    return render(request, 'posts/edit.html', context)
+# def edit(request, post_id):
+#     post = Post.objects.get(id=post_id)
+#     edit_form = Post_Form(request.POST, post)
+#     context = {'post': post, 'edit_form':edit_form}
+#     return render(request, 'posts/edit.html', context)
 
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)

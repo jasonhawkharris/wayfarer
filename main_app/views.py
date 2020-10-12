@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form, CityPost_Form
+from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form, CityPost_Form, City_Form
 from django.utils import timezone
 # Create your views here.
 
@@ -46,9 +46,11 @@ def add_post(request):
 
 def form(request):
     post_form = Post_Form()
+    city_form = City_Form()
     my_cities = City.objects.all()
     context = {
         'post_form': post_form,
+        'city_form': city_form,
         'cities': my_cities,
     }
     return render(request, 'posts/form.html',  context)
@@ -90,18 +92,26 @@ def edit(request, post_id):
     context = {'post': post, 'edit_form':edit_form}
     return render(request, 'posts/edit.html', context)
 
-
-def update_post(request, post_id):
+def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
+
     if request.method == 'POST':
-        update_form = Post_Form(request.GET, instance=post)
-        if update_form.is_valid():
-            update_form.save()
-            return redirect('edit', post_id)
-        else:
-            update_form = Post_Form(request.POST, instance=post)
-            context = {'post': post, 'update_form':update_form}
-            return render(request, 'posts/edit.html', context)
+        edit_form = Post_Form(request.POST, instance=post)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('settings')
+    else:
+        edit_form = Post_Form(initial={
+            'title': post.title,
+            'content': post.content,
+            'city': post.city,
+            'user': request.user.id,
+        })
+        context = {
+            'post': post,
+            'edit_form': edit_form
+        }
+        return render(request, 'posts/edit.html', context)
 
 
 def post_delete(request, post_id):
@@ -112,7 +122,6 @@ def post_delete(request, post_id):
         return redirect('settings')
     
 
-    
 
 # post for specific city page
 
@@ -169,13 +178,13 @@ def settings(request):
             updateU_form.save()
             updateP_form.save()
     else:
-        posts = Post.objects.filter(user=request.user.id)
+        user_posts = Post.objects.filter(user=request.user)
         updateP_form = UpdateProfile_Form()
         updateU_form = UpdateUser_Form()
     context = {
         'updateU_form': updateU_form,
         'updateP_form': updateP_form,
-        'posts': posts
+        'user_posts': user_posts
     }
     return render(request, 'settings.html', context)
 
@@ -195,3 +204,11 @@ def profile(request, user_id):
 def login_redirect(request):
     user = request.user
     return redirect('profile', user.id)
+
+
+def add_city(request):
+    if request.method == 'POST':
+        city_form = City_Form(request.POST)
+        if city_form.is_valid():
+            new_city = city_form.save()
+            return redirect('form')

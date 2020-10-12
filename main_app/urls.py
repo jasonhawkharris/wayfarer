@@ -15,10 +15,11 @@ urlpatterns = [
     path('posts/<int:post_id>/', views.post, name='post'),
     path('posts/form', views.form, name='form'),
     path('post/<int:post_id>/edit', views.edit, name='edit'),
-    path('post/<int:post_id>/edit', views.update_post, name='update_post'),
+    path('post/<int:post_id>/edit', views.edit_post, name='edit_post'),
     path('accounts/register/', views.register, name='register'),
     path('cities/<int:city_id>/add_city_post',
          views.add_city_post, name='add_city_post'),
     path('cities/<int:city_id>/city_post_form',
          views.city_post_form, name='city_post_form'),
+    path('cities/add-city/', views.add_city, name='add_city')
 ]

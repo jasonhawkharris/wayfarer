@@ -75,40 +75,38 @@
                         </div>
                     </div>
 
-    <!-- DELETE MODAL-->
+                    <!-- DELETE MODAL-->
                     <div class="ui tiny modal" id="delete-modal">
-                        <div class="header">Delete</div>
+                        <div class="header">Delete "{{ post.title }}"</div>
                         <div class="content">
                             <form class="ui form" action="{% url 'post_delete' post.id%}" method="POST">
                                 {% csrf_token %}
-                                <h1>
-                                    Are you sure you want to delete this post?</p>
-                                </h1>
-                                <p>{{ post.content }}</p>
-                            <input type="submit" class="ui primary button" value="Delete">
+                                <p>Are you sure you want to delete {{ post.title }}?</p>
+                                <input type="submit" class="ui primary button" value="Delete">
                             </form>
+                            <button class="ui red button" id="cancel-button">Cancel</button>
                         </div>
                     </div>
                     {% endfor %}
+                </div>
+            </div>
+
+            <div class="ui tab" data-tab="edit_my_profile">
+                <div class="twelve wide stretched column">
+                    <h2>Edit My Profile</h2>
+                    <form class="ui form" action="{% url 'settings' %}" method="POST">
+                        <div class="field">
+                            {% csrf_token %}
+                            {{ updateU_form.as_p }}
+                            {{ updateP_form.as_p }}
+                        </div>
+                        <button class="ui button" type="submit">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
 
-        <div class="ui tab" data-tab="edit_my_profile">
-            <div class="twelve wide stretched column">
-                <h2>Edit My Profile</h2>
-                <form class="ui form" action="{% url 'settings' %}" method="POST">
-                    <div class="field">
-                        {% csrf_token %}
-                        {{ updateU_form.as_p }}
-                        {{ updateP_form.as_p }}
-                    </div>
-                    <button class="ui button" type="submit">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        $('.tabular.menu .item').tab();
-    </script>
-    {% endblock %}
+        <script>
+            $('.tabular.menu .item').tab();
+        </script>
+        {% endblock %}

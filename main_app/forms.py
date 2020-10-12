@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Post, Profile
+from .models import Post, Profile, City
 
 
 """ class User_Form(UserCreationForm):
@@ -62,3 +62,7 @@ class CityPost_Form(ModelForm):
 
 
 class City_Form(ModelForm):
+    class Meta:
+        model = City
+        fields = ['name', 'state', 'country',
+                  'photo_day', 'photo_night', 'population']

@@ -20,4 +20,5 @@ urlpatterns = [
          views.add_city_post, name='add_city_post'),
     path('cities/<int:city_id>/city_post_form',
          views.city_post_form, name='city_post_form'),
+    path('cities/add-city/', views.add_city, name='add_city')
 ]

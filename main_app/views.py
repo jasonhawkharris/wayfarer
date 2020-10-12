@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, ValidationError
 from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form, CityPost_Form, City_Form
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -34,6 +35,7 @@ def city_detail(request, city_id):
     return render(request, 'cities/detail.html', context)
 
 
+@login_required
 def add_post(request):
     if request.method == 'POST':
         # post_form = Post_Form(request.POST)
@@ -48,6 +50,7 @@ def add_post(request):
     return redirect('home')
 
 
+@login_required
 def form(request):
     post_form = Post_Form()
     city_form = City_Form()
@@ -79,6 +82,7 @@ def posts(request):
     return render(request, 'posts/index.html', context)
 
 
+@login_required
 def user_post_index(request, user_id):
     user_posts = Post.objects.filter(id=user_id)
     context = {'user_posts': user_posts}
@@ -97,6 +101,7 @@ def post(request, post_id):
 #     return render(request, 'posts/edit.html', context)
 
 
+@login_required
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
 
@@ -119,6 +124,7 @@ def edit_post(request, post_id):
         return render(request, 'posts/edit.html', context)
 
 
+@login_required
 def post_delete(request, post_id):
     # messages.warning(request, 'This post will be deleted.')
     if request.method == 'POST':
@@ -129,7 +135,7 @@ def post_delete(request, post_id):
 
 # post for specific city page
 
-
+@login_required
 def add_city_post(request, city_id):
     city = City.objects.get(id=city_id)
     if request.method == 'POST':
@@ -142,6 +148,7 @@ def add_city_post(request, city_id):
     return redirect('home')
 
 
+@login_required
 def city_post_form(request, city_id):
     city = City.objects.get(id=city_id)
     city_name = city.name
@@ -180,6 +187,7 @@ def register(request):
     return render(request, 'home', {'form': form})
 
 
+@login_required
 def settings(request):
     error_message = ''
     if request.method == 'POST':
@@ -201,6 +209,7 @@ def settings(request):
     return render(request, 'settings.html', context)
 
 
+@login_required
 def profile(request, user_id):
     target_user = User.objects.get(id=user_id)
     user_profile = Profile.objects.get(user=user_id)
@@ -218,6 +227,7 @@ def login_redirect(request):
     return redirect('profile', user.id)
 
 
+@login_required
 def add_city(request):
     if request.method == 'POST':
         city_form = City_Form(request.POST)

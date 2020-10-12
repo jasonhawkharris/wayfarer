@@ -96,6 +96,7 @@ def post(request, post_id):
 #     context = {'post': post, 'edit_form':edit_form}
 #     return render(request, 'posts/edit.html', context)
 
+
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
 
@@ -119,12 +120,11 @@ def edit_post(request, post_id):
 
 
 def post_delete(request, post_id):
-        # messages.warning(request, 'This post will be deleted.')
-    if request.method ==  'POST':
+    # messages.warning(request, 'This post will be deleted.')
+    if request.method == 'POST':
         print(post_id)
         Post.objects.get(id=post_id).delete()
         return redirect('settings')
-    
 
 
 # post for specific city page
@@ -161,6 +161,12 @@ def register(request):
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.profile.hometown = form.cleaned_data.get('hometown')
             # user.profile.photo = form.cleaned_data.get('photo')
+            # ANCHOR This is where logic for unique email should go.
+            emails = User.objects.values('email')
+            if user.email in emails:
+                print('This email is taken')
+                return
+
             user.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')

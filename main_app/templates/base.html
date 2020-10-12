@@ -230,16 +230,17 @@
         $('#register-link').on('click', function () {
             $('#register-modal').modal('show');
         })
-        $('#delete-link').on('click', function(){
-            $('#delete-modal').modal('show');
+
+        $('.delete-link').on('click', function(){
+            $('.delete-modal').modal('show');
         })
 
         $('#new-city-link').on('click', function () {
             $('#new-city-modal').modal('show');
         });
 
-        $('#cancel-button').on('click', function () {
-            $('#delete-modal').modal('hide');
+        $('.cancel-button').on('click', function () {
+            $('.delete-modal').modal('hide');
         })
 
 

@@ -50,9 +50,6 @@ class Post(models.Model):
     class Meta:
         ordering = ['-publish_date']
 
-    class Meta:
-        ordering = ['-publish_date']
-
 
 class Comment(models.Model):
     publish_date = models.DateTimeField(

@@ -25,6 +25,7 @@ def update_profile_signal(sender, instance, created, **kwargs):
 
 class City(models.Model):
     name = models.CharField(max_length=50)
+    slug = models.SlugField(null=True)
     state = models.CharField(max_length=50)
     country = models.CharField(max_length=50)
     photo_day = models.CharField(max_length=250)
@@ -45,7 +46,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     class Meta:
         ordering = ['-publish_date']
 

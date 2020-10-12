@@ -54,26 +54,42 @@
         </div>
 
         <div class="ui tab" data-tab="my_posts">
-            <h2>My Posts</h2>
-            <div class="ui relaxed divided list">
-                {% for post in user_posts %}
-                <div class="item">
-                    <i class="plane icon"></i>
-                    <div class="content">
-                        <a href="{% url 'post' post.id %}" class="header">
-                            {{ post.title }}
-                        </a>
-                        <div class="description">
-                            {{ post.city }} | {{ post.publish_date }}
+            <div class="twelve wide stretched column">
+                <h2>My Posts</h2>
+                <div class="ui relaxed divided list">
+                    {% for post in user_posts %}
+                    <div class="item">
+                        <i class="plane icon"></i>
+                        <div class="content">
+                            <a href="{% url 'post' post.id %}" class="header">
+                                {{ post.title }}
+                            </a>
+                            <div class="description">
+                                {{ post.city }} | {{ post.publish_date }}
+                            </div>
+                        </div>
+                        <div class="ui mini buttons">
+                            <a href="{% url 'post' post.id %}" class="ui green button">View</a>
+                            <a href="{% url 'edit_post' post.id %}" class="ui blue button">Edit</a>
+                            <a class="ui red button" id='delete-link'>Delete</a>
                         </div>
                     </div>
-                    <div class="ui mini buttons">
-                        <a href="{% url 'post' post.id %}" class="ui green button">View</a>
-                        <a href="{% url 'edit_post' post.id %}" class="ui blue button">Edit</a>
-                        <a class="ui red button" href="{% url 'post_delete' post.id %}">Delete</a>
+
+    <!-- DELETE MODAL-->
+                    <div class="ui tiny modal" id="delete-modal">
+                        <div class="header">Delete</div>
+                        <div class="content">
+                            <form class="ui form" action="{% url 'post_delete' post.id%}" method="POST">
+                                {% csrf_token %}
+                                <h1>
+                                    Are you sure you want to delete this post?</p>
+                                </h1>
+                                <p>{{ post.content }}</p>
+                            <input type="submit" class="ui primary button" value="Delete">
+                            </form>
+                        </div>
                     </div>
-                </div>
-                {% endfor %}
+                    {% endfor %}
             </div>
         </div>
 
@@ -91,6 +107,7 @@
             </div>
         </div>
     </div>
+
     <script>
         $('.tabular.menu .item').tab();
     </script>

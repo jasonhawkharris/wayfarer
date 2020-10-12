@@ -44,12 +44,6 @@ def add_post(request):
         new_post = Post(title=title, content=content,
                         user=user_id, city=city)
         new_post.save()
-
-        # if post_form.is_valid():
-        #     new_post = post_form.save(commit=False)
-        #     new_post.user = request.user.id
-        #     new_post.save()
-
     return redirect('home')
 
 

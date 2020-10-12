@@ -40,7 +40,7 @@ def add_post(request):
             new_post = post_form.save(commit=False)
             new_post.user = request.user
             new_post.save()
-    return redirect('profile')
+    return redirect('home')
 
 
 def form(request):

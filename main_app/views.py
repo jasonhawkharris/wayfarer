@@ -1,6 +1,8 @@
 from django.http import request
 from django.shortcuts import render, redirect
 from .models import City, Post, Profile
+from django.contrib import messages
+from popup_field.views import PopupCRUDViewSet
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -104,8 +106,12 @@ def update_post(request, post_id):
 
 
 def post_delete(request, post_id):
-    Post.objects.get(id=post_id).delete()
-    return redirect("settings")
+        # messages.warning(request, 'This post will be deleted.')
+    if request.method ==  'POST':
+        print(post_id)
+        Post.objects.get(id=post_id).delete()
+        return redirect('settings')
+    
 
     
 

@@ -91,18 +91,20 @@
                 </div>
             </div>
 
-            <div class="ui tab" data-tab="edit_my_profile">
-                <div class="twelve wide stretched column">
-                    <h2>Edit My Profile</h2>
-                    <form class="ui form" action="{% url 'settings' %}" method="POST">
-                        <div class="field">
-                            {% csrf_token %}
-                            {{ updateU_form.as_p }}
-                            {{ updateP_form.as_p }}
-                        </div>
-                        <button class="ui button" type="submit">Submit</button>
-                    </form>
-                </div>
+
+        </div>
+
+        <div class="ui tab" data-tab="edit_my_profile">
+            <div class="twelve wide stretched column">
+                <h2>Edit My Profile</h2>
+                <form class="ui form" action="{% url 'settings' %}" method="POST">
+                    <div class="field">
+                        {% csrf_token %}
+                        {{ updateU_form.as_p }}
+                        {{ updateP_form.as_p }}
+                    </div>
+                    <button class="ui button" type="submit">Submit</button>
+                </form>
             </div>
         </div>
 

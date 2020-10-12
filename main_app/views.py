@@ -35,11 +35,21 @@ def city_detail(request, city_id):
 
 def add_post(request):
     if request.method == 'POST':
-        post_form = Post_Form(request.POST)
-        if post_form.is_valid():
-            new_post = post_form.save(commit=False)
-            new_post.user = request.user
-            new_post.save()
+        # post_form = Post_Form(request.POST)
+        user_id = User.objects.get(id=request.user.id)
+        city_id = request.POST['city']
+        city = City.objects.get(id=city_id)
+        title = request.POST['title']
+        content = request.POST['content']
+        new_post = Post(title=title, content=content,
+                        user=user_id, city=city)
+        new_post.save()
+
+        # if post_form.is_valid():
+        #     new_post = post_form.save(commit=False)
+        #     new_post.user = request.user.id
+        #     new_post.save()
+
     return redirect('home')
 
 

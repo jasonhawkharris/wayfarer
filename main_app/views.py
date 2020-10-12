@@ -90,24 +90,31 @@ def post(request, post_id):
 #     return render(request, 'posts/edit.html', context)
 
 
-
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
+    edit_form = Post_Form(initial={
+        'title': post.title,
+        'content': post.content,
+        'city': post.city,
+        'user': request.user.id,
+    })
+
     if request.method == 'POST':
-        edit_form = Post_Form(request.POST, instance=post)
         if edit_form.is_valid():
             edit_form.save()
-            return redirect('edit', post_id)
-        else:
-            context = {'post': post, 'edit_form':edit_form}
-            return render(request, 'posts/edit.html', context)
+            return redirect('posts', post_id)
+    else:
+        context = {
+            'post': post,
+            'edit_form': edit_form
+        }
+        return render(request, 'posts/edit.html', context)
 
 
 def post_delete(request, post_id):
     Post.objects.get(id=post_id).delete()
     return redirect("settings")
 
-    
 
 # post for specific city page
 
@@ -164,13 +171,13 @@ def settings(request):
             updateU_form.save()
             updateP_form.save()
     else:
-        posts = Post.objects.filter(user=request.user.id)
+        user_posts = Post.objects.filter(user=request.user)
         updateP_form = UpdateProfile_Form()
         updateU_form = UpdateUser_Form()
     context = {
         'updateU_form': updateU_form,
         'updateP_form': updateP_form,
-        'posts': posts
+        'user_posts': user_posts
     }
     return render(request, 'settings.html', context)
 

@@ -7,19 +7,15 @@
 		{%csrf_token%}
 		<label for="city">City</label>
 		{{post_form.city}}
-		{% if created_city in post_form.city %}
-		this shit worked.
-		{% else %}
 		<p>Don't see your city? Add one!</p>
 		<button class="ui mini primary button" id="new-city-link">Add A City</button>
 		<br>
 		<br>
-		{% endif %}
 		<label for="title">Title your post here</label>
 		{{post_form.title}}
 		<label for="content">Write your post here</label>
 		{{post_form.content}}
-		<input type="submit" class="btn" value="Add Post">
+		<input type="submit" class="ui primary button" value="Add Post">
 	</form>
 </div>
 

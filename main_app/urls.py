@@ -14,6 +14,7 @@ urlpatterns = [
     path('post/<int:post_id>/delete/', views.post_delete, name='post_delete'),
     path('posts/<int:post_id>/', views.post, name='post'),
     path('posts/form', views.form, name='form'),
+    path('post/<int:post_id>/edit', views.edit, name='edit'),
     path('post/<int:post_id>/edit', views.edit_post, name='edit_post'),
     path('accounts/register/', views.register, name='register'),
     path('cities/<int:city_id>/add_city_post',

@@ -219,6 +219,7 @@
 
     </div>
 
+   
 
 
     <script>
@@ -228,7 +229,10 @@
 
         $('#register-link').on('click', function () {
             $('#register-modal').modal('show');
-        });
+        })
+        $('#delete-link').on('click', function(){
+            $('#delete-modal').modal('show');
+        })
 
         $('#new-city-link').on('click', function () {
             $('#new-city-modal').modal('show');

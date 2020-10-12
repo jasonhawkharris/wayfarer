@@ -92,7 +92,7 @@ def post(request, post_id):
 
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
-    edit_form = Post_Form({
+    edit_form = Post_Form(initial={
         'title': post.title,
         'content': post.content,
         'city': post.city,

@@ -4,7 +4,7 @@ from .models import City, Post, Profile
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, ValidationError
 from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form, CityPost_Form, City_Form
 from django.utils import timezone
 # Create your views here.
@@ -151,22 +151,23 @@ def city_post_form(request, city_id):
 
 
 def register(request):
-    error_message = ''
+    error_message = 'this email is in use'
     if request.method == 'POST':
         form = Register_Form(request.POST)
+        error_message = 'this email is already in use'
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()
             user.profile.first_name = form.cleaned_data.get('first_name')
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.profile.hometown = form.cleaned_data.get('hometown')
-            # user.profile.photo = form.cleaned_data.get('photo')
+            user.profile.photo = form.cleaned_data.get('photo')
             # ANCHOR This is where logic for unique email should go.
-            emails = User.objects.values('email')
-            if user.email in emails:
-                print('This email is taken')
-                return
-
+            if form.clean_email:
+                user.email = form.cleaned_data.get('email')
+            else:
+                raise ValidationError('This email is already registered for this site')
+                
             user.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
@@ -175,6 +176,7 @@ def register(request):
             return redirect('home')
     else:
         form = Register_Form()
+        raise ValidationError('This email is already registered for this site')
     return render(request, 'home', {'form': form})
 
 

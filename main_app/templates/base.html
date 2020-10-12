@@ -212,7 +212,6 @@
             <form class="ui form" action="{% url 'register' %}" method="POST">
                 {% csrf_token %}
                 {{ user_form.as_p }}
-                {{ profile_form.as_p }}
                 <input type="submit" class="ui primary button" value="Register">
             </form>
         </div>

@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, ValidationError
 from django.contrib.auth.models import User
 from .models import Post, Profile, City
 
@@ -22,6 +22,14 @@ class Register_Form(UserCreationForm):
         model = User
         fields = ['first_name', 'last_name', 'username',
                   'email', 'password1', 'password2', 'hometown']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        user_count = User.objects.filter(email=email).count()
+        if user_count > 0:
+            clean_email = False
+            raise ValidationError('This email is already registered for this site')
+        return email
 
 
 class Profile_Form(ModelForm):

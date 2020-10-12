@@ -2,9 +2,9 @@
 {% block content %}
 <h1>Edit Post</h1>
 <div class="ui container">
-    <form class="ui reply form" action="" method="POST">
+    <form class="ui reply form" action="{% url 'edit_post' post.id %}" method="POST">
         {%csrf_token%}
-        {{edit_form.as_p}} 
+        {{edit_form.as_p}}
     <input type="submit" class="btn" value="Edit Post">
   </form>
 </div>

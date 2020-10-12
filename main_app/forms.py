@@ -52,11 +52,10 @@ class Login_Form(ModelForm):
 class Post_Form(ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'content', 'city']
+        fields = ['title', 'content', 'city', 'user']
+
 
 class CityPost_Form(ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content']
-
-    

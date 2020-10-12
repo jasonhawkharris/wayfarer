@@ -1,6 +1,7 @@
 from django.http import request
 from django.shortcuts import render, redirect
 from .models import City, Post, Profile
+from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
@@ -89,12 +90,11 @@ def post(request, post_id):
     context = {'post': post}
     return render(request, 'posts/post.html', context)
 
-# def edit(request, post_id):
-#     post = Post.objects.get(id=post_id)
-#     edit_form = Post_Form(request.POST, instance=post)
-#     context = {'post': post, 'edit_form':edit_form}
-#     return render(request, 'posts/edit.html', context)
-
+def edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+    edit_form = Post_Form(request.POST, post)
+    context = {'post': post, 'edit_form':edit_form}
+    return render(request, 'posts/edit.html', context)
 
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
@@ -119,8 +119,12 @@ def edit_post(request, post_id):
 
 
 def post_delete(request, post_id):
-    Post.objects.get(id=post_id).delete()
-    return redirect("settings")
+        # messages.warning(request, 'This post will be deleted.')
+    if request.method ==  'POST':
+        print(post_id)
+        Post.objects.get(id=post_id).delete()
+        return redirect('settings')
+    
 
 
 # post for specific city page

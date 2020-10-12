@@ -2,7 +2,6 @@ from django.http import request
 from django.shortcuts import render, redirect
 from .models import City, Post, Profile
 from django.contrib import messages
-from popup_field.views import PopupCRUDViewSet
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm

@@ -4,7 +4,6 @@
 <div class="ui container">
     <form class="ui reply form" action="{% url 'update_post' post.id%}" method="POST">
         {%csrf_token%}
-        <!-- {{edit_form.as_p}} -->
         {{update_post.as_p}}
     <input type="submit" class="btn" value="Edit Post">
   </form>

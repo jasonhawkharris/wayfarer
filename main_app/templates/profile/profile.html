@@ -39,11 +39,13 @@
                             <div class="description">
                                 {{ post.city }} | {{ post.publish_date }}
                             </div>
+                            {% if post.user.id == request.user.id %}
                             <div class="profile-btn-group">
                                 <a href="{% url 'edit_post' post.id %}"><i class="edit outline icon"></i></a>
                                 <a class="delete-link" href="{% url 'post_delete' post.id %}"><i
                                         class="trash alternate outline icon"></i></a>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                     {% endfor %}

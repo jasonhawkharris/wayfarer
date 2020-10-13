@@ -71,10 +71,11 @@
                         <div class="ui mini buttons">
                             <a href="{% url 'post' post.id %}" class="ui green button">View</a>
                             <a href="{% url 'edit_post' post.id %}" class="ui blue button">Edit</a>
-                            <a class="ui red button delete-link">Delete</a>
+                            <a href="{% url 'post_delete' post.id %}" class="ui red button delete-link">Delete</a>
                         </div>
                     </div>
-
+                    {% endfor %}
+{% comment %} 
                     <!-- DELETE MODAL-->
                     <div class="ui tiny modal delete-modal">
                         <div class="header">Delete "{{ post.title }}"</div>
@@ -87,7 +88,7 @@
                             <button class="ui red button cancel-button">Cancel</button>
                         </div>
                     </div>
-                    {% endfor %}
+                    {% endfor %} {% endcomment %}
                 </div>
             </div>
 

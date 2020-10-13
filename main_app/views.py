@@ -127,11 +127,8 @@ def edit_post(request, post_id):
 
 @login_required
 def post_delete(request, post_id):
-    # messages.warning(request, 'This post will be deleted.')
-    if request.method == 'POST':
-        print(post_id)
-        Post.objects.get(id=post_id).delete()
-        return redirect('settings')
+    Post.objects.get(id=post_id).delete()
+    return redirect('profile', request.user.id)
 
 
 # post for specific city page

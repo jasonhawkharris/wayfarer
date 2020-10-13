@@ -314,3 +314,8 @@ h2.section-title {
     font-size: 1rem;
     line-height: 2rem !important;
 }
+
+.ui.large.feed .event .content .ui.header .btn-group {
+    display: inline;
+    margin-left: 15px;
+}

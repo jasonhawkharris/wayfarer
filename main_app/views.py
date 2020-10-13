@@ -4,7 +4,7 @@ from .models import City, Post, Profile
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, ValidationError
 from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form, CityPost_Form, City_Form
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -157,10 +157,12 @@ def city_post_form(request, city_id):
 
 
 def register(request):
-    error_message = ''
+    error_message = 'this email is in use'
     if request.method == 'POST':
         form = Register_Form(request.POST)
+        form_error = False
         if form.is_valid():
+            form_error = False
             user = form.save()
             user.refresh_from_db()
             user.profile.first_name = form.cleaned_data.get('first_name')
@@ -204,16 +206,26 @@ def settings(request):
         if updateU_form.is_valid() and updateP_form.is_valid():
             updateU_form.save()
             updateP_form.save()
+            return redirect('settings')
     else:
         user_posts = Post.objects.filter(user=request.user)
-        updateP_form = UpdateProfile_Form()
-        updateU_form = UpdateUser_Form()
-    context = {
-        'updateU_form': updateU_form,
-        'updateP_form': updateP_form,
-        'user_posts': user_posts
-    }
-    return render(request, 'settings.html', context)
+
+        updateP_form = UpdateProfile_Form(initial={
+            'hometown': request.user.profile.hometown,
+            'photo': request.user.profile.photo
+        })
+        updateU_form = UpdateUser_Form(initial={
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name,
+            'username': request.user.username,
+            'email': request.user.email        
+        })
+        context = {
+            'updateU_form': updateU_form,
+            'updateP_form': updateP_form,
+            'user_posts': user_posts
+        }
+        return render(request, 'settings.html', context)
 
 
 @login_required

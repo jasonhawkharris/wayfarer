@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, ValidationError
 from django.contrib.auth.models import User
 from .models import Post, Profile, City
 
@@ -23,6 +23,19 @@ class Register_Form(UserCreationForm):
         fields = ['first_name', 'last_name', 'username',
                   'email', 'password1', 'password2', 'hometown']
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        user_count = User.objects.filter(email=email).count()
+        if user_count > 0:
+            raise ValidationError('This email is already registered for this site')
+        return email
+
+    def save(self, commit=True):
+            user = super(Register_Form, self).save(commit=False)
+            user.email = self.cleaned_data['email']
+            if commit:
+                user.save()
+            return user
 
 class Profile_Form(ModelForm):
     class Meta:

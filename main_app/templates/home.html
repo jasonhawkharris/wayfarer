@@ -44,7 +44,6 @@
 
 <div class="section-heading">
     <p>Recent Posts
-        <!--TODO connect this link to the all posts page-->
         <a href="{% url 'posts' %}" class="ui item" id="show-more">
             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Show More...
         </a>
@@ -61,7 +60,6 @@
             <a href="{% url 'post' post.id %}" class="header">{{ post.title }}</a>
             <div class="meta">
                 <span>
-                    <!-- TODO link this to users public profile. -->
                     <a href="{% url 'profile' post.user.id %}">
                         {{ post.user.first_name }} {{ post.user.last_name }}
                     </a>
@@ -80,6 +78,8 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
     <br>
     {% endfor %}
 </div>

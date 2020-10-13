@@ -143,6 +143,11 @@ body {
     margin-right: 3px;
 }
 
+.ui.inverted.vertical.footer.segment {
+    width: calc(100% - 222px);
+    margin: 290px 0px 0px 222px;
+}
+
 .main-body {
     background-color: #eee;
     margin-top: 80px;
@@ -247,7 +252,7 @@ h1.section-title {
     font-size: 3rem;
     text-align: center;
     letter-spacing: 5px;
-    margin-top: 50px;
+    margin-top: 130px;
     margin-bottom: 40px;
 }
 
@@ -299,4 +304,13 @@ h2.section-title {
 
 .post-date {
     color: rgb(172, 172, 172);
+}
+
+.privacy {
+    margin: 100px 100px 200px 100px;
+}
+
+.ui.large.feed .event .content .extra.text {
+    font-size: 1rem;
+    line-height: 2rem !important;
 }

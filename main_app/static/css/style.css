@@ -240,7 +240,7 @@ body {
     height: 200px !important;
 }
 
-.section-title {
+h1.section-title {
     font-weight: lighter;
     font-size: 3rem;
     text-align: center;
@@ -249,3 +249,52 @@ body {
     margin-bottom: 40px;
 }
 
+h2.section-title {
+    font-weight: lighter;
+    font-size: 2rem;
+    text-align: left;
+    margin-top: 50px;
+    margin-left: 60px;
+    margin-bottom: 40px;
+}
+
+.post-page {
+    margin: 150px 200px 50px 60px;
+}
+
+.post-title {
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 2.4rem;
+}
+
+.post-author {
+    font-size: 1.6rem;
+    color: gray;
+}
+
+.post-author a {
+    font-weight: bold;
+    color: var(--primary-red);
+}
+
+.post-author a:hover {
+    font-weight: bold;
+    color: var(--hover-red);
+}
+
+.post-country a {
+    color: var(--primary-red)
+}
+
+.post-country a:hover {
+    color: var(--hover-red)
+}
+
+.post-content {
+    line-height: 1.9rem;
+}
+
+.post-date {
+    color: rgb(172, 172, 172);
+}

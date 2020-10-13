@@ -25,8 +25,8 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-def city_detail(request, city_id):
-    city = City.objects.get(id=city_id)
+def city_detail(request, slug):
+    city = City.objects.get(slug=slug)
     my_post = Post.objects.all()
     context = {
         'city': city,
@@ -171,10 +171,14 @@ def register(request):
             user.profile.hometown = form.cleaned_data.get('hometown')
             user.profile.photo = form.cleaned_data.get('photo')
             # ANCHOR This is where logic for unique email should go.
-            #if form.clean_email:
-                #user.email = form.cleaned_data.get('email')
-            #else:
-                #raise ValidationError('This email is already registered for this site')
+            #if form.clean_email():
+               # user.email = form.cleaned_data.get('email')
+           # else:
+              #  form_error = True
+              #  print(user.email)
+               # form = Register_Form(request.POST)
+              #  raise ValidationError('This email is already taken')
+               # return render(request, 'base.html', {'form': form, 'form_error': form_error, 'error': 'email already exists'})
                 
             user.save()
             username = form.cleaned_data.get('username')
@@ -186,7 +190,7 @@ def register(request):
             form_error = True
             form = Register_Form(request.POST)
             raise ValidationError('This email is already')
-        return render(request, 'home', {'form': form, 'form_error': form_error, 'error': 'email already exists'})
+        return redirect('home', """ {'form': form, 'form_error': form_error, 'error': 'email already exists' }""")
     else:
         form = Register_Form()
         form_error = True

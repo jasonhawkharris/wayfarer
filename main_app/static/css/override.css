@@ -27,3 +27,7 @@
 .event .content .ui.header a:hover {
     color: var(--hover-red) !important;
 }
+
+.ui.items .item .content .description p {
+    line-height: 1.8rem !important;
+}

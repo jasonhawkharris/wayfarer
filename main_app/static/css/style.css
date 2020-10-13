@@ -191,8 +191,10 @@ body {
 
 .ui.items {
     margin-left: 50px;
-    margin-right: 50px;
+    margin-right: 75px;
 }
+
+
 
 .ui.vertical.fluid.tabular.menu {
     height: 100vh;

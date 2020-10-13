@@ -19,3 +19,11 @@
 .ui.items .content a {
     color: var(--primary-red) !important;
 }
+
+.event .content .ui.header a {
+    color: var(--primary-red) !important;
+}
+
+.event .content .ui.header a:hover {
+    color: var(--hover-red) !important;
+}

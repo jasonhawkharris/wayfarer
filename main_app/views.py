@@ -16,11 +16,13 @@ def home(request):
     user_modal = Register_Form()
     all_posts = Post.objects.all()[:8]
     cities = City.objects.all()
+    reroute = False
     context = {
         'login_form': login_modal,
         'user_form': user_modal,
         'all_posts': all_posts,
-        'cities': cities
+        'cities': cities,
+        'reroute': reroute
     }
     return render(request, 'home.html', context)
 
@@ -165,21 +167,31 @@ def register(request):
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.profile.hometown = form.cleaned_data.get('hometown')
             # user.profile.photo = form.cleaned_data.get('photo')
-            # ANCHOR This is where logic for unique email should go.
-            emails = User.objects.values('email')
-            if user.email in emails:
-                print('This email is taken')
-                return
-
             user.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('home')
-    else:
-        form = Register_Form()
-    return render(request, 'home', {'form': form})
+        else:
+            login_modal = Login_Form()
+            user_modal = Register_Form()
+            all_posts = Post.objects.all()[:8]
+            cities = City.objects.all()
+            reroute = True
+            error_msg = 'Email or username was taken. Please try again.'
+            context = {
+                'login_form': login_modal,
+                'user_form': user_modal,
+                'all_posts': all_posts,
+                'cities': cities,
+                'reroute': reroute,
+                'error_msg': error_msg
+            }
+            return render(request, 'home.html', context)
+    # else:
+    #     form = Register_Form()
+    #     return render(request, 'home', {'form': form})
 
 
 @login_required

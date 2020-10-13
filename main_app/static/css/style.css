@@ -256,6 +256,13 @@ h1.section-title {
     margin-bottom: 40px;
 }
 
+h1.section-title.left {
+    text-align: left;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    color: var(--primary-red);
+}
+
 h2.section-title {
     font-weight: lighter;
     font-size: 2rem;
@@ -313,4 +320,14 @@ h2.section-title {
 .ui.large.feed .event .content .extra.text {
     font-size: 1rem;
     line-height: 2rem !important;
+}
+
+.ui.large.feed .event .content .ui.header .btn-group {
+    display: inline;
+    margin-left: 15px;
+}
+
+.ui.relaxed.divided.list .item .content .profile-btn-group {
+    margin-top: 5px;
+    margin-bottom: 15px !important;
 }

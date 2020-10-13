@@ -31,3 +31,8 @@
 .ui.items .item .content .description p {
     line-height: 1.8rem !important;
 }
+
+/* NOTE this solves the problem of the photo section of the cards being too dang long. */
+.ui.slide.masked.reveal.image {
+    height: fit-content;
+}

@@ -75,6 +75,7 @@ def cities(request):
     return render(request, 'cities/index.html', context)
 
 
+@login_required
 def posts(request):
     user_profile = Profile.objects.get(user=request.user.id)
     my_posts = Post.objects.all()

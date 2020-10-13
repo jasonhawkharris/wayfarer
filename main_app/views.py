@@ -206,16 +206,26 @@ def settings(request):
         if updateU_form.is_valid() and updateP_form.is_valid():
             updateU_form.save()
             updateP_form.save()
+            return redirect('settings')
     else:
         user_posts = Post.objects.filter(user=request.user)
-        updateP_form = UpdateProfile_Form()
-        updateU_form = UpdateUser_Form()
-    context = {
-        'updateU_form': updateU_form,
-        'updateP_form': updateP_form,
-        'user_posts': user_posts
-    }
-    return render(request, 'settings.html', context)
+
+        updateP_form = UpdateProfile_Form(initial={
+            'hometown': request.user.profile.hometown,
+            'photo': request.user.profile.photo
+        })
+        updateU_form = UpdateUser_Form(initial={
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name,
+            'username': request.user.username,
+            'email': request.user.email        
+        })
+        context = {
+            'updateU_form': updateU_form,
+            'updateP_form': updateP_form,
+            'user_posts': user_posts
+        }
+        return render(request, 'settings.html', context)
 
 
 @login_required

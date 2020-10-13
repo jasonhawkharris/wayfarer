@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     login_modal = Login_Form()
     user_modal = Register_Form()
-    all_posts = Post.objects.all()[:5]
+    all_posts = Post.objects.all()[:8]
     cities = City.objects.all()
     context = {
         'login_form': login_modal,

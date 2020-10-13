@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% block content %}
 <h1 class="section-title">EXPLORE CITIES</h1>
 <div class="ui four column doubling stackable grid container">
@@ -19,7 +20,7 @@
             <div class="extra content">
                 <a>
                     <i class="building outline icon"></i>
-                    population: {{city.population}}
+                    population: {{ city.population|intcomma }}
                 </a>
             </div>
             <a href="{% url 'city_post_form' city.id %}" class="fluid ui red button">

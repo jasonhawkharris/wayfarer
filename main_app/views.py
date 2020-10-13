@@ -161,8 +161,9 @@ def register(request):
     error_message = 'this email is in use'
     if request.method == 'POST':
         form = Register_Form(request.POST)
-        error_message = 'this email is already in use'
+        form_error = False
         if form.is_valid():
+            form_error = False
             user = form.save()
             user.refresh_from_db()
             user.profile.first_name = form.cleaned_data.get('first_name')
@@ -170,10 +171,10 @@ def register(request):
             user.profile.hometown = form.cleaned_data.get('hometown')
             user.profile.photo = form.cleaned_data.get('photo')
             # ANCHOR This is where logic for unique email should go.
-            if form.clean_email:
-                user.email = form.cleaned_data.get('email')
-            else:
-                raise ValidationError('This email is already registered for this site')
+            #if form.clean_email:
+                #user.email = form.cleaned_data.get('email')
+            #else:
+                #raise ValidationError('This email is already registered for this site')
                 
             user.save()
             username = form.cleaned_data.get('username')
@@ -181,10 +182,16 @@ def register(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('home')
+        else:
+            form_error = True
+            form = Register_Form(request.POST)
+            raise ValidationError('This email is already')
+        return render(request, 'home', {'form': form, 'form_error': form_error, 'error': 'email already exists'})
     else:
         form = Register_Form()
-        raise ValidationError('This email is already registered for this site')
-    return render(request, 'home', {'form': form})
+        form_error = True
+        raise ValidationError('This email is already registered')
+    return render(request, 'home', {'form': form, 'form_error': form_error})
 
 
 @login_required

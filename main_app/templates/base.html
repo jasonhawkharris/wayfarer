@@ -225,10 +225,16 @@
         $('#login-link').on('click', function () {
             $('#login-modal').modal('show');
         });
+        function add_user(){
+            $('#register-modal').modal('show')
+        }
+        {% if form_error %}
+            add_user()
+        {% endif %}
 
         $('#register-link').on('click', function () {
-            $('#register-modal').modal('show');
-        })
+            add_user()
+        });
 
         $('.delete-link').on('click', function(){
             $('.delete-modal').modal('show');

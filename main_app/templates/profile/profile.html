@@ -2,17 +2,18 @@
 {% comment %} populate this template with current users data. {% endcomment %}
 
 {% block content %}
+<h1 class="section-title left">@{{ target_user.username }}</h1>
 <div class="public-profile">
     <div class="ui items">
         <div class="item">
             <div class="content">
                 <img class="ui small circular image" id="profile-img" src="{{ user_profile.photo }}" alt="">
                 <div class="header" id="profile-header">
-                    {{ target_user.first_name }}'s Profile
+                    {{ target_user.first_name }} {{ target_user.last_name }}
                 </div>
                 <div class="meta">
                     <span>
-                        {{ target_user.first_name }} {{ user.last_name }}&nbsp;|
+                        @{{ target_user.username }}&nbsp;|
                     </span>
                     <span style="font-style: italic;">
                         Member since {{ user_profile.date_joined }}
@@ -29,7 +30,7 @@
                 </div>
 
                 <div class="ui relaxed divided list">
-                {% for post in user_posts  %}
+                    {% for post in user_posts  %}
                     <div class="item">
                         <i class="plane icon"></i>
                         <div class="content">
@@ -39,9 +40,16 @@
                             <div class="description">
                                 {{ post.city }} | {{ post.publish_date }}
                             </div>
+                            {% if post.user.id == request.user.id %}
+                            <div class="profile-btn-group">
+                                <a href="{% url 'edit_post' post.id %}"><i class="edit outline icon"></i></a>
+                                <a class="delete-link" href="{% url 'post_delete' post.id %}"><i
+                                        class="trash alternate outline icon"></i></a>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -5,6 +5,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 
+User._meta.get_field('email')._unique = True
+User._meta.get_field('username')._unique = True
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -34,6 +37,9 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['name']
 
 
 class Post(models.Model):

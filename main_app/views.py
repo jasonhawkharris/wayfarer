@@ -14,13 +14,15 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     login_modal = Login_Form()
     user_modal = Register_Form()
-    all_posts = Post.objects.all()[:5]
+    all_posts = Post.objects.all()[:8]
     cities = City.objects.all()
+    reroute = False
     context = {
         'login_form': login_modal,
         'user_form': user_modal,
         'all_posts': all_posts,
-        'cities': cities
+        'cities': cities,
+        'reroute': reroute
     }
     return render(request, 'home.html', context)
 
@@ -38,7 +40,6 @@ def city_detail(request, city_id):
 @login_required
 def add_post(request):
     if request.method == 'POST':
-        # post_form = Post_Form(request.POST)
         user_id = User.objects.get(id=request.user.id)
         city_id = request.POST['city']
         city = City.objects.get(id=city_id)
@@ -47,7 +48,7 @@ def add_post(request):
         new_post = Post(title=title, content=content,
                         user=user_id, city=city)
         new_post.save()
-    return redirect('home')
+    return redirect('profile', request.user.id)
 
 
 @login_required
@@ -75,6 +76,7 @@ def cities(request):
     return render(request, 'cities/index.html', context)
 
 
+@login_required
 def posts(request):
     user_profile = Profile.objects.get(user=request.user.id)
     my_posts = Post.objects.all()
@@ -126,11 +128,8 @@ def edit_post(request, post_id):
 
 @login_required
 def post_delete(request, post_id):
-    # messages.warning(request, 'This post will be deleted.')
-    if request.method == 'POST':
-        print(post_id)
-        Post.objects.get(id=post_id).delete()
-        return redirect('settings')
+    Post.objects.get(id=post_id).delete()
+    return redirect('profile', request.user.id)
 
 
 # post for specific city page
@@ -168,21 +167,31 @@ def register(request):
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.profile.hometown = form.cleaned_data.get('hometown')
             # user.profile.photo = form.cleaned_data.get('photo')
-            # ANCHOR This is where logic for unique email should go.
-            emails = User.objects.values('email')
-            if user.email in emails:
-                print('This email is taken')
-                return
-
             user.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('home')
-    else:
-        form = Register_Form()
-    return render(request, 'home', {'form': form})
+        else:
+            login_modal = Login_Form()
+            user_modal = Register_Form()
+            all_posts = Post.objects.all()[:8]
+            cities = City.objects.all()
+            reroute = True
+            error_msg = 'Email or username was taken. Please try again.'
+            context = {
+                'login_form': login_modal,
+                'user_form': user_modal,
+                'all_posts': all_posts,
+                'cities': cities,
+                'reroute': reroute,
+                'error_msg': error_msg
+            }
+            return render(request, 'home.html', context)
+    # else:
+    #     form = Register_Form()
+    #     return render(request, 'home', {'form': form})
 
 
 @login_required
@@ -232,3 +241,7 @@ def add_city(request):
         if city_form.is_valid():
             new_city = city_form.save()
             return redirect('form')
+
+
+def privacy(request):
+    return render(request, 'privacy/privacy.html')

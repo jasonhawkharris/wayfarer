@@ -4,18 +4,22 @@
 
 
 <div class="ui large feed">
-<h3>All Recent Posts</h3>
-{%for post in posts %}
+    <h3>All Recent Posts</h3>
+    {%for post in posts %}
     <div class="event">
         <div class="label">
-            <img src="{% static 'images/default.png' %}" alt="">
+            <img src="{{ post.user.profile.photo }}" alt="">
         </div>
         <div class="content">
-            <div class="summary">
-                <a href="{% url 'profile' post.user.id %}" class="user" >
-                    @{{ post.user }}
-                </a> 
-                <a href="{% url 'post' post.id %}">made a post about {{ post.city.name }}</a>
+            <div class="ui header">
+                <a href="{% url 'post' post.id %}">
+                    {{ post.title }}
+                </a>
+
+            </div>
+            <div class="date">
+                Written by {{ post.user.first_name }} {{ post.user.last_name }}&nbsp; |&nbsp; {{ post.city.name }},
+                {{ post.city.country }}
             </div>
             <div class="extra text">
                 {{ post.content }}
@@ -25,12 +29,14 @@
             </div>
             <div class="meta">
                 <a class="like">
-                <i class="like icon"></i> 11 Likes
+                    <i class="like icon"></i> 11 Likes
                 </a>
             </div>
         </div>
     </div>
-    <hr>
+    <br>
+    <br>
+    <br>
     {%endfor%}
 </div>
 

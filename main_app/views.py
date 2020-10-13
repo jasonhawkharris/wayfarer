@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     login_modal = Login_Form()
     user_modal = Register_Form()
-    all_posts = Post.objects.all()[:5]
+    all_posts = Post.objects.all()[:8]
     cities = City.objects.all()
     context = {
         'login_form': login_modal,
@@ -25,8 +25,8 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-def city_detail(request, slug):
-    city = City.objects.get(slug=slug)
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
     my_post = Post.objects.all()
     context = {
         'city': city,
@@ -75,6 +75,7 @@ def cities(request):
     return render(request, 'cities/index.html', context)
 
 
+@login_required
 def posts(request):
     user_profile = Profile.objects.get(user=request.user.id)
     my_posts = Post.objects.all()
@@ -245,3 +246,7 @@ def add_city(request):
         if city_form.is_valid():
             new_city = city_form.save()
             return redirect('form')
+
+
+def privacy(request):
+    return render(request, 'privacy/privacy.html')

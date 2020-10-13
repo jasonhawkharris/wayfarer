@@ -35,8 +35,9 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return reverse('detail', kwargs={'slug': self.slug})
+    class Meta:
+        ordering = ['name']
+
 
 class Post(models.Model):
     title = models.CharField(max_length=200)

@@ -38,7 +38,6 @@ def city_detail(request, city_id):
 @login_required
 def add_post(request):
     if request.method == 'POST':
-        # post_form = Post_Form(request.POST)
         user_id = User.objects.get(id=request.user.id)
         city_id = request.POST['city']
         city = City.objects.get(id=city_id)
@@ -47,7 +46,7 @@ def add_post(request):
         new_post = Post(title=title, content=content,
                         user=user_id, city=city)
         new_post.save()
-    return redirect('home')
+    return redirect('profile', request.user.id)
 
 
 @login_required

@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="ui relaxed divided list">
-                {% for post in user_posts  %}
+                    {% for post in user_posts  %}
                     <div class="item">
                         <i class="plane icon"></i>
                         <div class="content">
@@ -39,9 +39,14 @@
                             <div class="description">
                                 {{ post.city }} | {{ post.publish_date }}
                             </div>
+                            <div class="profile-btn-group">
+                                <a href="{% url 'edit_post' post.id %}"><i class="edit outline icon"></i></a>
+                                <a class="delete-link" href="{% url 'post_delete' post.id %}"><i
+                                        class="trash alternate outline icon"></i></a>
+                            </div>
                         </div>
                     </div>
-                {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

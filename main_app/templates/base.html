@@ -37,43 +37,25 @@
         </div>
         {% else %}
         <div class="sidebar-logo">
-                The Wayfarer
+            The Wayfarer
         </div>
         {% endif %}
 
 
         <!-- SIDE BAR NAVIGATION START -->
-        <div 
-        {% if request.path == '/' %}
-        class="nav-link activated"
-        {% else %}
-        class="nav-link"
-        {% endif %}
-        >
+        <div {% if request.path == '/' %} class="nav-link activated" {% else %} class="nav-link" {% endif %}>
             <i class="home icon"></i>
             <a href="{% url 'home' %}" class="item">
                 Home
             </a>
         </div>
-        <div 
-        {% if request.path == '/cities/'%}
-        class="nav-link activated"
-        {% else %}
-        class="nav-link"
-        {% endif %}
-        >
+        <div {% if request.path == '/cities/'%} class="nav-link activated" {% else %} class="nav-link" {% endif %}>
             <i class="building outline icon"></i>
             <a href="{% url 'cities' %}" class="item">
                 Cities
             </a>
         </div>
-        <div 
-        {% if request.path == '/posts/'%}
-        class="nav-link activated"
-        {% else %}
-        class="nav-link"
-        {% endif %}
-        >
+        <div {% if request.path == '/posts/'%} class="nav-link activated" {% else %} class="nav-link" {% endif %}>
             <i class="newspaper outline icon"></i>
             <a href="{% url 'posts' %}" class="item">
                 All Posts
@@ -89,25 +71,13 @@
                 My Profile
             </a>
         </div>
-        <div 
-        {% if request.path == '/posts/form'%}
-        class="nav-link activated"
-        {% else %}
-        class="nav-link"
-        {% endif %}
-        >
+        <div {% if request.path == '/posts/form'%} class="nav-link activated" {% else %} class="nav-link" {% endif %}>
             <i class="edit outline icon"></i>
             <a href="{% url 'form' %}" class="item">
                 Create Post
             </a>
         </div>
-        <div 
-        {% if request.path == '/settings/'%}
-        class="nav-link activated"
-        {% else %}
-        class="nav-link"
-        {% endif %}
-        >
+        <div {% if request.path == '/settings/'%} class="nav-link activated" {% else %} class="nav-link" {% endif %}>
             <i class="cog icon"></i>
             <a href="{% url 'settings' %}" class="item">
                 Settings
@@ -117,25 +87,13 @@
 
         <div class="ui divider"></div>
 
-        <div 
-        {% if request.path == '/about/'%}
-        class="nav-link activated"
-        {% else %}
-        class="nav-link"
-        {% endif %}
-        >
+        <div {% if request.path == '/about/'%} class="nav-link activated" {% else %} class="nav-link" {% endif %}>
             <i class="book icon"></i>
             <a href="" class="item">
                 About
             </a>
         </div>
-        <div 
-        {% if request.path == '/contact/'%}
-        class="nav-link activated"
-        {% else %}
-        class="nav-link"
-        {% endif %}
-        >
+        <div {% if request.path == '/contact/'%} class="nav-link activated" {% else %} class="nav-link" {% endif %}>
             <i class="envelope outline icon"></i>
             <a href="" class="item">
                 Contact
@@ -150,7 +108,7 @@
     <div class="ui secondary fixed menu" id="topbar">
         {% if user.is_authenticated and target_user != request.user %}
         <div class="logo">
-                The Wayfarer
+            The Wayfarer
         </div>
         {% endif %}
         <div class="item">
@@ -218,8 +176,56 @@
 
     </div>
 
-   
 
+
+    <!-- FOOTER -->
+    {% if request.path != '/settings/' %}
+    <div class="ui inverted vertical footer segment">
+        <div class="ui center aligned container">
+            <div class="ui stackable inverted divided grid">
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Nav</h4>
+                    <div class="ui inverted link list">
+                        <a href="{% url 'home' %}" class="item">Home</a>
+                        <a href="{% url 'cities' %}" class="item">Cities</a>
+                        <a href="{% url 'posts' %}" class="item">All Posts</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">User</h4>
+                    {% if user.is_authenticated %}
+                    <div class="ui inverted link list">
+                        <a href="{% url 'profile' user.id %}" class="item">My Profile</a>
+                        <a href="{% url 'form' %}" class="item">Create Post</a>
+                        <a href="{% url 'settings' %}" class="item">Settings</a>
+                    </div>
+                    {% else %}
+                    <div class="ui inverted link list">
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Site</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">About</a>
+                        <a href="#" class="item">Contact</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">Copyright DMAA &copy; 2020</h4>
+                    <p>This website was bought and paid for with fake money by the Dalton Micah April Adonis Mega
+                        Conglomerate Corporation, Inc.</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <div class="logo">The Wayfarer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div class="ui horizontal inverted small divided link list">
+                <a class="item" href="#">Contact Us</a>
+                <a class="item" href="{% url 'privacy' %}">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
     <script>
         $('#login-link').on('click', function () {
@@ -230,7 +236,7 @@
             $('#register-modal').modal('show');
         })
 
-        $('.delete-link').on('click', function(){
+        $('.delete-link').on('click', function () {
             $('.delete-modal').modal('show');
         })
 

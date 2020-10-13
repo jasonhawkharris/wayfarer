@@ -233,3 +233,7 @@ def add_city(request):
         if city_form.is_valid():
             new_city = city_form.save()
             return redirect('form')
+
+
+def privacy(request):
+    return render(request, 'privacy/privacy.html')

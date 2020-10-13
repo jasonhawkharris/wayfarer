@@ -79,21 +79,40 @@ def cities(request):
 @login_required
 def posts(request):
     user_profile = Profile.objects.get(user=request.user.id)
+    login_modal = Login_Form()
+    user_modal = Register_Form()
     my_posts = Post.objects.all()
-    context = {'posts': my_posts, 'user_profile': user_profile}
+    context = {
+        'posts': my_posts,
+        'user_profile': user_profile,
+        'login_form': login_modal,
+        'user_form': user_modal
+    }
     return render(request, 'posts/index.html', context)
 
 
 @login_required
 def user_post_index(request, user_id):
     user_posts = Post.objects.filter(id=user_id)
-    context = {'user_posts': user_posts}
+    login_modal = Login_Form()
+    user_modal = Register_Form()
+    context = {
+        'user_posts': user_posts,
+        'login_form': login_modal,
+        'user_form': user_modal
+    }
     return render(request, 'profile/profile_home.html', context)
 
 
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
-    context = {'post': post}
+    login_modal = Login_Form()
+    user_modal = Register_Form()
+    context = {
+        'post': post,
+        'login_form': login_modal,
+        'user_form': user_modal
+    }
     return render(request, 'posts/post.html', context)
 
 # def edit(request, post_id):
@@ -113,6 +132,8 @@ def edit_post(request, post_id):
             edit_form.save()
             return redirect('settings')
     else:
+        login_modal = Login_Form()
+        user_modal = Register_Form()
         edit_form = Post_Form(initial={
             'title': post.title,
             'content': post.content,
@@ -121,7 +142,9 @@ def edit_post(request, post_id):
         })
         context = {
             'post': post,
-            'edit_form': edit_form
+            'edit_form': edit_form,
+            'login_form': login_modal,
+            'user_form': user_modal
         }
         return render(request, 'posts/edit.html', context)
 
@@ -152,7 +175,15 @@ def city_post_form(request, city_id):
     city = City.objects.get(id=city_id)
     city_name = city.name
     post_form = CityPost_Form()
-    context = {'city': city, 'city_name': city_name, 'post_form': post_form}
+    login_modal = Login_Form()
+    user_modal = Register_Form()
+    context = {
+        'city': city,
+        'city_name': city_name,
+        'post_form': post_form,
+        'login_form': login_modal,
+        'user_form': user_modal
+    }
     return render(request, 'cities/form.html', context)
 
 
@@ -191,9 +222,6 @@ def register(request):
                 'error_msg': error_msg
             }
             return render(request, 'home.html', context)
-    # else:
-    #     form = Register_Form()
-    #     return render(request, 'home', {'form': form})
 
 
 @login_required
@@ -209,7 +237,8 @@ def settings(request):
             return redirect('settings')
     else:
         user_posts = Post.objects.filter(user=request.user)
-
+        login_modal = Login_Form()
+        user_modal = Register_Form()
         updateP_form = UpdateProfile_Form(initial={
             'hometown': request.user.profile.hometown,
             'photo': request.user.profile.photo
@@ -218,12 +247,14 @@ def settings(request):
             'first_name': request.user.first_name,
             'last_name': request.user.last_name,
             'username': request.user.username,
-            'email': request.user.email        
+            'email': request.user.email
         })
         context = {
             'updateU_form': updateU_form,
             'updateP_form': updateP_form,
-            'user_posts': user_posts
+            'user_posts': user_posts,
+            'login_form': login_modal,
+            'user_form': user_modal
         }
         return render(request, 'settings.html', context)
 
@@ -231,12 +262,16 @@ def settings(request):
 @login_required
 def profile(request, user_id):
     target_user = User.objects.get(id=user_id)
+    login_modal = Login_Form()
+    user_modal = Register_Form()
     user_profile = Profile.objects.get(user=user_id)
     user_posts = Post.objects.filter(user=user_id)
     context = {
         'target_user': target_user,
         'user_profile': user_profile,
-        'user_posts': user_posts
+        'user_posts': user_posts,
+        'login_form': login_modal,
+        'user_form': user_modal
     }
     return render(request, 'profile/profile.html', context)
 
@@ -256,4 +291,10 @@ def add_city(request):
 
 
 def privacy(request):
-    return render(request, 'privacy/privacy.html')
+    login_modal = Login_Form()
+    user_modal = Register_Form()
+    context = {
+        'login_form': login_modal,
+        'user_form': user_modal
+    }
+    return render(request, 'privacy/privacy.html', context)

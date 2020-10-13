@@ -162,10 +162,6 @@
     </div>
 
 
-    {% comment %} 
-        1. We need to be able to hide and show the MODAL
-        2. We need to get it in the center of the page.
-     {% endcomment %}
     <!--REGISTER MODAL-->
     <div class="ui tiny modal" id="register-modal">
         <div class="header">Register</div>
@@ -232,14 +228,6 @@
             </div>
         </div>
     </div>
-    {% endif %}
-
-    {% if request.path == '/accounts/login/' %}
-        <script>
-            $(window).on('load', function(){
-                $('#login-modal').modal('show');
-            });
-        </script>
     {% endif %}
     
     {% if reroute %}

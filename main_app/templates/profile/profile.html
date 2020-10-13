@@ -2,17 +2,18 @@
 {% comment %} populate this template with current users data. {% endcomment %}
 
 {% block content %}
+<h1 class="section-title left">@{{ target_user.username }}</h1>
 <div class="public-profile">
     <div class="ui items">
         <div class="item">
             <div class="content">
                 <img class="ui small circular image" id="profile-img" src="{{ user_profile.photo }}" alt="">
                 <div class="header" id="profile-header">
-                    {{ target_user.first_name }}'s Profile
+                    {{ target_user.first_name }} {{ target_user.last_name }}
                 </div>
                 <div class="meta">
                     <span>
-                        {{ target_user.first_name }} {{ user.last_name }}&nbsp;|
+                        @{{ target_user.username }}&nbsp;|
                     </span>
                     <span style="font-style: italic;">
                         Member since {{ user_profile.date_joined }}

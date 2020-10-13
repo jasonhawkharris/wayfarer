@@ -1,9 +1,33 @@
+.fluid.ui.red.button,
 .ui.red.button {
     background-color: var(--primary-red) !important;
 }
 
+.fluid.ui.red.button:hover,
+.ui.red.button:hover {
+    background-color: var(--hover-red) !important;
+}
+
 
 /* a tag links */
-.ui.list .list>.item a.header, .ui.list>.item a.header {
-    color: var(--primary-red) !important
+.ui.list .list>.item a.header, 
+.ui.list>.item a.header {
+    color: var(--primary-red) !important;
+}
+
+
+.ui.items .content a {
+    color: var(--primary-red) !important;
+}
+
+.event .content .ui.header a {
+    color: var(--primary-red) !important;
+}
+
+.event .content .ui.header a:hover {
+    color: var(--hover-red) !important;
+}
+
+.ui.items .item .content .description p {
+    line-height: 1.8rem !important;
 }

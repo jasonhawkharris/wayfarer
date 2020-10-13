@@ -30,7 +30,7 @@
         Make A Post About This City
     </a> -->
 <!-- </div> -->
-<h1>{{ city.name }}</h1>
+<h1 class="section-title">{{ city.name.upper }}, {{ city.country.upper }}</h1>
 <div class="carousel" data-flickety={}>
     <div class="carousel-cell">
         <img src={{city.photo_day}} class="slide" alt="">
@@ -41,7 +41,7 @@
 
 </div>
 <div class="city-post">
-    <a href="{% url 'city_post_form' city.id %}" class="fluid ui teal button">
+    <a href="{% url 'city_post_form' city.id %}" class="fluid ui red button">
         Make A Post About This City
     </a>
 </div>

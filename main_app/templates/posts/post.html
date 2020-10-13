@@ -21,5 +21,12 @@
     <p class="post-date">
         {{ post.publish_date }}
     </p>
+    {% if post.user.id == request.user.id %}
+    <div class="ui icon buttons">
+        <a class="ui button" href="{% url 'edit_post' post.id %}"><i class="edit outline icon"></i></a>
+        <a class="ui button delete-link" href="{% url 'post_delete' post.id %}"><i
+                class="trash alternate outline icon"></i></a>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

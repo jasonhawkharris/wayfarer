@@ -162,20 +162,25 @@
     </div>
 
 
+    {% comment %} 
+        1. We need to be able to hide and show the MODAL
+        2. We need to get it in the center of the page.
+     {% endcomment %}
     <!--REGISTER MODAL-->
     <div class="ui tiny modal" id="register-modal">
         <div class="header">Register</div>
+        {% if reroute %}
+        <div class="ui red basic label" id="email_error">
+            {{ error_msg }}
+        </div>
+        {% endif %}
         <div class="content">
             <form class="ui form" action="{% url 'register' %}" method="POST">
                 {% csrf_token %}
                 {{ user_form.as_p }}
-                {% if form_error %}
-                    add_user()
-                {% endif %}
                 <input type="submit" class="ui primary button" value="Register">
             </form>
         </div>
-
     </div>
 
 
@@ -229,7 +234,28 @@
     </div>
     {% endif %}
 
+    {% if request.path == '/accounts/login/' %}
+        <script>
+            $(window).on('load', function(){
+                $('#login-modal').modal('show');
+            });
+        </script>
+    {% endif %}
+    
+    {% if reroute %}
     <script>
+        $(window).on('load', function(){
+            $('#register-modal').modal('show');
+        });
+
+        setTimeout(function () {
+                $('#email_error').fadeOut();
+            }, 7000);
+        
+        const openRegisterModal = () => {
+            $('#register-modal').modal('show');
+        }
+
         $('#login-link').on('click', function () {
             $('#login-modal').modal('show');
         });
@@ -238,12 +264,12 @@
         }
 
         $('#register-link').on('click', function () {
-            add_user()
+            openRegisterModal();
         });
 
         $('.delete-link').on('click', function () {
-            $('.delete-modal').modal('show');
-        })
+            return confirm('Are you sure you want to delete this post?');
+        });
 
         $('#new-city-link').on('click', function () {
             $('#new-city-modal').modal('show');
@@ -263,6 +289,50 @@
             contain: true
         });
     </script>
+    {% else %}
+    <script>
+        
+        const openRegisterModal = () => {
+            $('#register-modal').modal('show');
+        }
+
+        if ($('#register-modal').hasClass('active')) {
+            $(document).on('click', function() {
+                $('#register-modal').removeClass('active');
+            });
+        }
+
+        $('#login-link').on('click', function () {
+            $('#login-modal').modal('show');
+        });
+
+        $('#register-link').on('click', function () {
+            openRegisterModal();
+        });
+
+        $('.delete-link').on('click', function () {
+            return confirm('Are you sure you want to delete this post?');
+        });
+
+        $('#new-city-link').on('click', function () {
+            $('#new-city-modal').modal('show');
+        });
+
+        $('.cancel-button').on('click', function () {
+            $('.delete-modal').modal('hide');
+        })
+
+
+        $('.carousel').flickity();
+        var myCarousel = new Flickity('.carousel', {
+            accessibility: true,
+            adaptiveHeight: false,
+            autoPlay: 1000,
+            wrapAround: false,
+            contain: true
+        });
+    </script>
+    {% endif %}
 </body>
 
 </html>

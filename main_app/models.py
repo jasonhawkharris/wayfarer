@@ -4,7 +4,10 @@ from datetime import datetime
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
-from django.urls import reverse
+
+User._meta.get_field('email')._unique = True
+User._meta.get_field('username')._unique = True
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

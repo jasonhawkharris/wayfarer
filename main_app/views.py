@@ -16,11 +16,13 @@ def home(request):
     user_modal = Register_Form()
     all_posts = Post.objects.all()[:8]
     cities = City.objects.all()
+    reroute = False
     context = {
         'login_form': login_modal,
         'user_form': user_modal,
         'all_posts': all_posts,
-        'cities': cities
+        'cities': cities,
+        'reroute': reroute
     }
     return render(request, 'home.html', context)
 
@@ -38,7 +40,6 @@ def city_detail(request, city_id):
 @login_required
 def add_post(request):
     if request.method == 'POST':
-        # post_form = Post_Form(request.POST)
         user_id = User.objects.get(id=request.user.id)
         city_id = request.POST['city']
         city = City.objects.get(id=city_id)
@@ -47,7 +48,7 @@ def add_post(request):
         new_post = Post(title=title, content=content,
                         user=user_id, city=city)
         new_post.save()
-    return redirect('home')
+    return redirect('profile', request.user.id)
 
 
 @login_required
@@ -127,11 +128,8 @@ def edit_post(request, post_id):
 
 @login_required
 def post_delete(request, post_id):
-    # messages.warning(request, 'This post will be deleted.')
-    if request.method == 'POST':
-        print(post_id)
-        Post.objects.get(id=post_id).delete()
-        return redirect('settings')
+    Post.objects.get(id=post_id).delete()
+    return redirect('profile', request.user.id)
 
 
 # post for specific city page
@@ -170,17 +168,7 @@ def register(request):
             user.profile.first_name = form.cleaned_data.get('first_name')
             user.profile.last_name = form.cleaned_data.get('last_name')
             user.profile.hometown = form.cleaned_data.get('hometown')
-            user.profile.photo = form.cleaned_data.get('photo')
-            # ANCHOR This is where logic for unique email should go.
-            #if form.clean_email():
-               # user.email = form.cleaned_data.get('email')
-           # else:
-              #  form_error = True
-              #  print(user.email)
-               # form = Register_Form(request.POST)
-              #  raise ValidationError('This email is already taken')
-               # return render(request, 'base.html', {'form': form, 'form_error': form_error, 'error': 'email already exists'})
-                
+            # user.profile.photo = form.cleaned_data.get('photo')
             user.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
@@ -188,15 +176,24 @@ def register(request):
             login(request, user)
             return redirect('home')
         else:
-            form_error = True
-            form = Register_Form(request.POST)
-            raise ValidationError('This email is already')
-        return redirect('home', """ {'form': form, 'form_error': form_error, 'error': 'email already exists' }""")
-    else:
-        form = Register_Form()
-        form_error = True
-        raise ValidationError('This email is already registered')
-    return render(request, 'home', {'form': form, 'form_error': form_error})
+            login_modal = Login_Form()
+            user_modal = Register_Form()
+            all_posts = Post.objects.all()[:8]
+            cities = City.objects.all()
+            reroute = True
+            error_msg = 'Email or username was taken. Please try again.'
+            context = {
+                'login_form': login_modal,
+                'user_form': user_modal,
+                'all_posts': all_posts,
+                'cities': cities,
+                'reroute': reroute,
+                'error_msg': error_msg
+            }
+            return render(request, 'home.html', context)
+    # else:
+    #     form = Register_Form()
+    #     return render(request, 'home', {'form': form})
 
 
 @login_required

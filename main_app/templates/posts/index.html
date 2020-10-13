@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 class="section-title">ALL POSTS</h1>
+<div class="ui large feed">
+    {%for post in posts %}
+    <div class="event">
+        <div class="label">
+            <img src="{{ post.user.profile.photo }}" alt="">
+        </div>
+        <div class="content">
+            <div class="ui header">
+                <a href="{% url 'post' post.id %}">
+                    {{ post.title }}
+                </a>
+
+            </div>
+            <div class="date">
+                Written by {{ post.user.first_name }} {{ post.user.last_name }}&nbsp; |&nbsp; {{ post.city.name }},
+                {{ post.city.country }}
+            </div>
+            <div class="extra text">
+                {{ post.content }}
+            </div>
+            <div class="date">
+                {{ post.publish_date }}
+            </div>
+            {% if post.user.id == request.user.id %}
+            <br>
+            <div class="ui icon buttons">
+                <a class="ui button" href="{% url 'edit_post' post.id %}"><i class="edit outline icon"></i></a>
+                <a class="ui button delete-link" href="{% url 'post_delete' post.id %}"><i
+                        class="trash alternate outline icon"></i></a>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    {%endfor%}
+</div>
+
+{% endblock %}

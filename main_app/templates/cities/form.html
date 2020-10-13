@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1 class="section-title">CREATE POST</h1>
+
+<div class="twelve wide stretched column">
+  <form class="ui form" action="{% url 'add_city_post' city.id %}" method="POST">
+    {%csrf_token%}
+    {{post_form.as_p}}
+    <input type="submit" class="btn" value="Add Post">
+  </form>
+</div>
+
+<div class="four wide stretched column"></div>
+
+
+{% endblock %}

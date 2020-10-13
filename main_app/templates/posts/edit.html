@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="section-title">EDIT POST</h1>
+<div class="ui container">
+	<form class="ui reply form" action="{% url 'edit_post' post.id %}" method="POST">
+		{%csrf_token%}
+		{{edit_form.as_p}}
+		<input type="submit" class="btn" value="Edit Post">
+	</form>
+</div>
+{% endblock %}

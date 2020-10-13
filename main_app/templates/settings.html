@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="ui container">
+    <div class="ui grid">
+        <div class="four wide column">
+            <div class="ui vertical fluid tabular menu">
+                <a class="item" data-tab="my_info">
+                    </h4>My Info</h4>
+                </a>
+                <a class="item" data-tab="my_posts">
+                    My Posts
+                </a>
+                <a class="item" data-tab="edit_my_profile">
+                    Edit My Profile
+                </a>
+            </div>
+        </div>
+
+        <!-- My Info tab: displays user info -->
+        <div class="ui tab" data-tab="my_info">
+            <div class="twelve wide stretched column">
+                <div class="ui horizontal segments">
+                    <div class="ui segment">
+                        <h2>{{user.username}}'s Info</h2>
+                        <img class="ui medium circular image" src="{{ user.profile.photo }}">
+                    </div>
+                    <div class="ui segment">
+                        <div class="ui list">
+                            <div class="item">
+                                <i class="users icon"></i>
+                                <div class="content">
+                                    {{ user.username }}
+                                </div>
+                            </div>
+                            <div class="item">
+                                <i class="marker icon"></i>
+                                <div class="content">
+                                    {{ user.profile.hometown }}
+                                </div>
+                            </div>
+                            <div class="item">
+                                <i class="mail icon"></i>
+                                <div class="content">
+                                    {{ user.email }}
+                                </div>
+                            </div>
+                            <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+                            Joined Wayfarer on {{ user.profile.date_joined }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Posts Tab: User can view, edit or delete posts from here -->
+        <div class="ui tab" data-tab="my_posts">
+            <div class="twelve wide stretched column">
+                <h2>My Posts</h2>
+                <div class="ui relaxed divided list">
+                    {% for post in user_posts %}
+                    <div class="item">
+                        <i class="plane icon"></i>
+                        <div class="content">
+                            <a href="{% url 'post' post.id %}" class="header primary-link">
+                                {{ post.title }}
+                            </a>
+                            <div class="description">
+                                {{ post.city }} | {{ post.publish_date }}
+                            </div>
+                        </div>
+                        <div class="ui mini buttons">
+                            <a href="{% url 'post' post.id %}" class="ui green button">View</a>
+                            <a href="{% url 'edit_post' post.id %}" class="ui blue button">Edit</a>
+                            <a href="{% url 'post_delete' post.id %}" class="ui red button delete-link">Delete</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Edit My Profile Tab: User can edit profile from here. -->
+        <div class="ui tab" data-tab="edit_my_profile">
+            <div class="twelve wide stretched column">
+                <h2>Edit My Profile</h2>
+                <form class="ui form" action="{% url 'settings' %}" method="POST">
+                    <div class="field">
+                        {% csrf_token %}
+                        {{ updateU_form.as_p }}
+                        {{ updateP_form.as_p }}
+                    </div>
+                    <button class="ui button" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            $('.tabular.menu .item').tab();
+        </script>
+        {% endblock %}

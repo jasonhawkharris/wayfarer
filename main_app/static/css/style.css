@@ -1,0 +1,333 @@
+@import "./override.css";
+
+:root {
+    --primary-red: rgb(200, 0, 84);
+    --hover-red: rgb(167, 1, 70);
+}
+
+body {
+    background-color: #eee;
+    height: 150%;
+}
+
+.profile-card {
+    display: flex;
+    flex-flow: column nowrap;
+    text-align: center;
+    align-items: center;
+}
+
+.city-post {
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.logo {
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    color: var(--primary-red);
+    align-self: flex-end;
+}
+
+.sidebar-logo {
+    font-family: 'Lobster', cursive;
+    font-size: 2rem;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    margin-left: 20px;
+    text-align: left;
+    color: var(--primary-red);
+    align-self: flex-end;
+}
+
+#full-name {
+    color: rgb(200, 0, 84);
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#user-name {
+    color: darkslategray;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.public-profile {
+    margin-top: 75px;
+    margin-left: 50px;
+}
+
+#profile-header {
+    margin-top: 25px;
+}
+
+#profile-img {
+    border: 1px solid white;
+    box-shadow: 5px 5px 25px 5px #bbb;
+    margin-top: 23px;
+    transition: .2s linear;
+    cursor: pointer;
+}
+
+#profile-img:hover {
+    transform: scale(1.1);
+}
+
+.ui.teal.button {
+    border-radius: 0px;
+    margin-bottom: 20px;
+    font-weight: 100;
+}
+
+.ui.labeled.icon.red.button i {
+    padding: 0px;
+    /* background-color: rgb(200, 0, 84); */
+}
+
+.ui.secondary.vertical.fixed.menu {
+    height: 100vh;
+    z-index: 2;
+    width: 222px;
+    margin-right: 0px;
+    background-color: #ddd;
+}
+
+.ui.secondary.vertical.menu .nav-link {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.ui.secondary.vertical.menu i {
+    padding-left: 25px;
+    padding-right: 20px;
+}
+
+.ui.secondary.vertical.menu a {
+    display: inline;
+}
+
+.ui.secondary.vertical.menu .ui.divider {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.ui.secondary.fixed.menu {
+    padding: 10px;
+    z-index: 1;
+    background-color: #eee;
+}
+
+.ui.mini.buttons {
+    margin-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.ui.tab h2 {
+    margin-top: 30px;
+}
+
+#topbar {
+    width: calc(100% - 222px);
+    height: 80px;
+    margin: 0px 0px 0px 222px;
+}
+
+#topbar .right.menu {
+    margin-right: 3px;
+}
+
+.ui.inverted.vertical.footer.segment {
+    width: calc(100% - 222px);
+    margin: 290px 0px 0px 222px;
+}
+
+.main-body {
+    background-color: #eee;
+    margin-top: 80px;
+    z-index: 0;
+    width: calc(100% - 222px);
+    margin-right: 0px;
+    margin-left: 222px;
+    min-height: 100vh;
+}
+
+.section-heading {
+    font-size: 1.5rem;
+    color: black;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 25px;
+}
+
+#show-more {
+    font-size: 1rem;
+    color: rgb(184, 184, 184);
+}
+
+.carousel {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.slide {
+    width: 1600px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.carousel-cell h1 {
+    background-color: rgba(20, 20, 20, .5);
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+}
+
+.recent-posts {
+    margin-left: 50px;
+}
+
+.ui.items {
+    margin-left: 50px;
+    margin-right: 75px;
+}
+
+
+
+.ui.vertical.fluid.tabular.menu {
+    height: 100vh;
+    background-color: #eee;
+}
+
+.ui.large.feed {
+    margin-left: 50px;
+}
+
+.ui.large.feed h3 {
+    padding-top: 20px;
+}
+
+.ui.large.feed .extra.text {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.nav-link:hover {
+    color: rgb(200, 0, 84);
+    font-weight: bold;
+}
+
+.activated {
+    color: rgb(200, 0, 84);
+    font-weight: bold;
+
+}
+
+.nav-link.activated .item {
+    color: rgb(200, 0, 84);
+    font-weight: bold;
+
+}
+
+.greeting-name {
+    font-weight: bolder;
+    color: var(--primary-red);
+}
+
+.hidden.content.square-img, 
+.visible.content.square-img {
+    width: 260px !important;
+    height: 200px !important;
+}
+
+h1.section-title {
+    font-weight: lighter;
+    font-size: 3rem;
+    text-align: center;
+    letter-spacing: 5px;
+    margin-top: 130px;
+    margin-bottom: 40px;
+}
+
+h1.section-title.left {
+    text-align: left;
+    margin-left: 100px;
+    margin-bottom: 20px;
+    color: var(--primary-red);
+}
+
+h2.section-title {
+    font-weight: lighter;
+    font-size: 2rem;
+    text-align: left;
+    margin-top: 50px;
+    margin-left: 60px;
+    margin-bottom: 40px;
+}
+
+.post-page {
+    margin: 150px 200px 50px 60px;
+}
+
+.post-title {
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 2.4rem;
+}
+
+.post-author {
+    font-size: 1.6rem;
+    color: gray;
+}
+
+.post-author a {
+    font-weight: bold;
+    color: var(--primary-red);
+}
+
+.post-author a:hover {
+    font-weight: bold;
+    color: var(--hover-red);
+}
+
+.post-country a {
+    color: var(--primary-red)
+}
+
+.post-country a:hover {
+    color: var(--hover-red)
+}
+
+.post-content {
+    line-height: 1.9rem;
+}
+
+.post-date {
+    color: rgb(172, 172, 172);
+}
+
+.privacy {
+    margin: 100px 100px 200px 100px;
+}
+
+.ui.large.feed .event .content .extra.text {
+    font-size: 1rem;
+    line-height: 2rem !important;
+}
+
+.ui.large.feed .event .content .ui.header .btn-group {
+    display: inline;
+    margin-left: 15px;
+}
+
+.ui.relaxed.divided.list .item .content .profile-btn-group {
+    margin-top: 5px;
+    margin-bottom: 15px !important;
+}

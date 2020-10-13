@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="post-page">
+    <p class="post-title">{{ post.title }}</p>
+    <p class="post-author">
+        Written by
+        <a href="{% url 'profile' post.user.id %}">
+            {{ post.user.first_name }} {{ post.user.last_name }}
+        </a>
+    </p>
+    <p class="post-country">
+        <a href="{% url 'detail' post.city.id %}">
+            {{ post.city }}, {{ post.city.state }}, {{ post.city.country }}
+        </a>
+    </p>
+    <p class="post-content">
+        {{ post.content }}
+    </p>
+    <p class="post-date">
+        {{ post.publish_date }}
+    </p>
+    {% if post.user.id == request.user.id %}
+    <div class="ui icon buttons">
+        <a class="ui button" href="{% url 'edit_post' post.id %}"><i class="edit outline icon"></i></a>
+        <a class="ui button delete-link" href="{% url 'post_delete' post.id %}"><i
+                class="trash alternate outline icon"></i></a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

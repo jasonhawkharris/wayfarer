@@ -2,9 +2,8 @@
 
 :root {
     --primary-red: rgb(200, 0, 84);
+    --hover-red: rgb(167, 1, 70);
 }
-
-
 
 body {
     background-color: #eee;
@@ -20,7 +19,8 @@ body {
 
 .city-post {
     margin-top: 40px;
-    margin-left: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .logo {
@@ -29,7 +29,7 @@ body {
     margin-top: 10px;
     margin-left: 50px;
     margin-bottom: 20px;
-    color: rgb(119, 106, 107);
+    color: var(--primary-red);
     align-self: flex-end;
 }
 
@@ -40,7 +40,7 @@ body {
     margin-bottom: 100px;
     margin-left: 20px;
     text-align: left;
-    color: rgb(119, 106, 107);
+    color: var(--primary-red);
     align-self: flex-end;
 }
 
@@ -227,5 +227,25 @@ body {
     color: rgb(200, 0, 84);
     font-weight: bold;
 
+}
+
+.greeting-name {
+    font-weight: bolder;
+    color: var(--primary-red);
+}
+
+.hidden.content.square-img, 
+.visible.content.square-img {
+    width: 260px !important;
+    height: 200px !important;
+}
+
+.section-title {
+    font-weight: lighter;
+    font-size: 3rem;
+    text-align: center;
+    letter-spacing: 5px;
+    margin-top: 50px;
+    margin-bottom: 40px;
 }
 

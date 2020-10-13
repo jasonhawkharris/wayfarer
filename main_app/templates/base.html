@@ -162,8 +162,7 @@
         <div class="right menu">
             {% if user.is_authenticated %}
             <a href="{% url 'profile' user.id %}" class="ui item">
-                <!-- First name goes here -->
-                Welcome, {{user.first_name}}
+                Welcome,&nbsp; <span class="greeting-name">{{ user.first_name }}</span>
             </a>
             <a href="{% url 'logout' %}" class="ui item">
                 Logout

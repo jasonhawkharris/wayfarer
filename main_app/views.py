@@ -30,151 +30,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-# city: show
-def city_detail(request, city_id):
-    city = City.objects.get(id=city_id)
-    my_post = Post.objects.all()
-    context = {
-        'city': city,
-        'posts': my_post,
-    }
-    return render(request, 'cities/detail.html', context)
-
-
-# post: create
-@login_required
-def add_post(request):
-    if request.method == 'POST':
-        user_id = User.objects.get(id=request.user.id)
-        city_id = request.POST['city']
-        city = City.objects.get(id=city_id)
-        title = request.POST['title']
-        content = request.POST['content']
-        new_post = Post(title=title, content=content,
-                        user=user_id, city=city)
-        new_post.save()
-    return redirect('profile', request.user.id)
-
-
-# post: create/update
-@login_required
-def form(request):
-    post_form = Post_Form()
-    city_form = City_Form()
-    my_cities = City.objects.all()
-    context = {
-        'post_form': post_form,
-        'city_form': city_form,
-        'cities': my_cities,
-    }
-    return render(request, 'posts/form.html',  context)
-
-
-# cities: index
-def cities(request):
-    my_cities = City.objects.all()
-    login_modal = Login_Form()
-    user_modal = Register_Form()
-    context = {
-        'cities': my_cities,
-        'login_form': login_modal,
-        'user_form': user_modal,
-    }
-    return render(request, 'cities/index.html', context)
-
-
-# post: index
-@login_required
-def posts(request):
-    user_profile = Profile.objects.get(user=request.user.id)
-    login_modal = Login_Form()
-    user_modal = Register_Form()
-    my_posts = Post.objects.all()
-    context = {
-        'posts': my_posts,
-        'user_profile': user_profile,
-        'login_form': login_modal,
-        'user_form': user_modal
-    }
-    return render(request, 'posts/index.html', context)
-
-
-# user posts: index
-@login_required
-def user_post_index(request, user_id):
-    user_posts = Post.objects.filter(id=user_id)
-    login_modal = Login_Form()
-    user_modal = Register_Form()
-    context = {
-        'user_posts': user_posts,
-        'login_form': login_modal,
-        'user_form': user_modal
-    }
-    return render(request, 'profile/profile_home.html', context)
-
-
-# post: show
-def post(request, post_id):
-    post = Post.objects.get(id=post_id)
-    login_modal = Login_Form()
-    user_modal = Register_Form()
-    context = {
-        'post': post,
-        'login_form': login_modal,
-        'user_form': user_modal
-    }
-    return render(request, 'posts/post.html', context)
-
-
-# post edit
-@login_required
-def edit_post(request, post_id):
-    post = Post.objects.get(id=post_id)
-
-    if request.method == 'POST':
-        edit_form = Post_Form(request.POST, instance=post)
-        if edit_form.is_valid():
-            edit_form.save()
-            return redirect('settings')
-    else:
-        login_modal = Login_Form()
-        user_modal = Register_Form()
-        edit_form = Post_Form(initial={
-            'title': post.title,
-            'content': post.content,
-            'city': post.city,
-            'user': request.user.id,
-        })
-        context = {
-            'post': post,
-            'edit_form': edit_form,
-            'login_form': login_modal,
-            'user_form': user_modal
-        }
-        return render(request, 'posts/edit.html', context)
-
-
-# post: delete
-@login_required
-def post_delete(request, post_id):
-    Post.objects.get(id=post_id).delete()
-    return redirect('profile', request.user.id)
-
-
-# city posts: index
-@login_required
-def add_city_post(request, city_id):
-    city = City.objects.get(id=city_id)
-    if request.method == 'POST':
-        post_form = CityPost_Form(request.POST)
-        if post_form.is_valid():
-            new_post = post_form.save(commit=False)
-            new_post.city = city
-            new_post.user = request.user
-            new_post.save()
-    return redirect('home')
-
-
+# ANCHOR CRUD
 # city: create
 @login_required
 def city_post_form(request, city_id):
@@ -231,6 +87,161 @@ def register(request):
             return render(request, 'home.html', context)
 
 
+# post: create
+@login_required
+def add_post(request):
+    if request.method == 'POST':
+        user_id = User.objects.get(id=request.user.id)
+        city_id = request.POST['city']
+        city = City.objects.get(id=city_id)
+        title = request.POST['title']
+        content = request.POST['content']
+        new_post = Post(title=title, content=content,
+                        user=user_id, city=city)
+        new_post.save()
+    return redirect('profile', request.user.id)
+
+
+# city: create
+@login_required
+def add_city(request):
+    if request.method == 'POST':
+        city_form = City_Form(request.POST)
+        if city_form.is_valid():
+            new_city = city_form.save()
+            return redirect('form')
+
+
+# post: create (update)
+@login_required
+def form(request):
+    post_form = Post_Form()
+    city_form = City_Form()
+    my_cities = City.objects.all()
+    context = {
+        'post_form': post_form,
+        'city_form': city_form,
+        'cities': my_cities,
+    }
+    return render(request, 'posts/form.html', context)
+
+
+# city: read
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    my_post = Post.objects.all()
+    context = {
+        'city': city,
+        'posts': my_post,
+    }
+    return render(request, 'cities/detail.html', context)
+
+
+# post: read
+def post(request, post_id):
+    post = Post.objects.get(id=post_id)
+    login_modal = Login_Form()
+    user_modal = Register_Form()
+    context = {
+        'post': post,
+        'login_form': login_modal,
+        'user_form': user_modal
+    }
+    return render(request, 'posts/post.html', context)
+
+
+# cities: read
+@login_required
+def add_city_post(request, city_id):
+    city = City.objects.get(id=city_id)
+    if request.method == 'POST':
+        post_form = CityPost_Form(request.POST)
+        if post_form.is_valid():
+            new_post = post_form.save(commit=False)
+            new_post.city = city
+            new_post.user = request.user
+            new_post.save()
+    return redirect('home')
+
+
+# cities: read index
+def cities(request):
+    my_cities = City.objects.all()
+    login_modal = Login_Form()
+    user_modal = Register_Form()
+    context = {
+        'cities': my_cities,
+        'login_form': login_modal,
+        'user_form': user_modal,
+    }
+    return render(request, 'cities/index.html', context)
+
+
+# posts: read index
+@login_required
+def posts(request):
+    user_profile = Profile.objects.get(user=request.user.id)
+    login_modal = Login_Form()
+    user_modal = Register_Form()
+    my_posts = Post.objects.all()
+    context = {
+        'posts': my_posts,
+        'user_profile': user_profile,
+        'login_form': login_modal,
+        'user_form': user_modal
+    }
+    return render(request, 'posts/index.html', context)
+
+
+# user posts: read index
+@login_required
+def user_post_index(request, user_id):
+    user_posts = Post.objects.filter(id=user_id)
+    login_modal = Login_Form()
+    user_modal = Register_Form()
+    context = {
+        'user_posts': user_posts,
+        'login_form': login_modal,
+        'user_form': user_modal
+    }
+    return render(request, 'profile/profile_home.html', context)
+
+
+# post edit
+@login_required
+def edit_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+
+    if request.method == 'POST':
+        edit_form = Post_Form(request.POST, instance=post)
+        if edit_form.is_valid():
+            edit_form.save()
+            return redirect('settings')
+    else:
+        login_modal = Login_Form()
+        user_modal = Register_Form()
+        edit_form = Post_Form(initial={
+            'title': post.title,
+            'content': post.content,
+            'city': post.city,
+            'user': request.user.id,
+        })
+        context = {
+            'post': post,
+            'edit_form': edit_form,
+            'login_form': login_modal,
+            'user_form': user_modal
+        }
+        return render(request, 'posts/edit.html', context)
+
+
+# post: delete
+@login_required
+def post_delete(request, post_id):
+    Post.objects.get(id=post_id).delete()
+    return redirect('profile', request.user.id)
+
+
 # posts/profile: update/delete
 # profile: show
 @login_required
@@ -268,6 +279,7 @@ def settings(request):
         return render(request, 'settings.html', context)
 
 
+# ANCHOR Other
 # profile show
 @login_required
 def profile(request, user_id):
@@ -290,16 +302,6 @@ def profile(request, user_id):
 def login_redirect(request):
     user = request.user
     return redirect('profile', user.id)
-
-
-# city: create
-@login_required
-def add_city(request):
-    if request.method == 'POST':
-        city_form = City_Form(request.POST)
-        if city_form.is_valid():
-            new_city = city_form.save()
-            return redirect('form')
 
 
 # privacy: static

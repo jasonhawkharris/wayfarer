@@ -1,6 +1,8 @@
 {% extends '../base.html' %}
 
 {% block content %}
+
+<!-- LOGIN FORM -->
 <div class="ui container" style="width: 25%; margin-top: 200px;">
     <div class="ui header">Login</div>
     <form class="ui form" action="{% url 'login' %}" method="POST">
@@ -10,12 +12,6 @@
         <input type="hidden" name="next" value="{{ next }}">
     </form>
     <br>
-    <p>
-        Don't have an account?
-        <a href="">
-            Register here.
-        </a>
-    </p>
 </div>
 
 {% endblock %}

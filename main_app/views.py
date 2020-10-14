@@ -1,16 +1,19 @@
+# ANCHOR External Modules
 from django.http import request
+from django.utils import timezone
 from django.shortcuts import render, redirect
-from .models import City, Post, Profile
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, ValidationError
-from .forms import Login_Form, Profile_Form, UpdateProfile_Form, UpdateUser_Form, Register_Form, Post_Form, CityPost_Form, City_Form
-from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+
+# ANCHOR Internal Modules
+from .models import City, Post, Profile
+from .forms import *
 
 
+# ANCHOR view functions
 def home(request):
     login_modal = Login_Form()
     user_modal = Register_Form()
@@ -27,6 +30,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 
+# city: show
 def city_detail(request, city_id):
     city = City.objects.get(id=city_id)
     my_post = Post.objects.all()
@@ -37,6 +41,7 @@ def city_detail(request, city_id):
     return render(request, 'cities/detail.html', context)
 
 
+# post: create
 @login_required
 def add_post(request):
     if request.method == 'POST':
@@ -51,6 +56,7 @@ def add_post(request):
     return redirect('profile', request.user.id)
 
 
+# post: create/update
 @login_required
 def form(request):
     post_form = Post_Form()
@@ -64,6 +70,7 @@ def form(request):
     return render(request, 'posts/form.html',  context)
 
 
+# cities: index
 def cities(request):
     my_cities = City.objects.all()
     login_modal = Login_Form()
@@ -76,6 +83,7 @@ def cities(request):
     return render(request, 'cities/index.html', context)
 
 
+# post: index
 @login_required
 def posts(request):
     user_profile = Profile.objects.get(user=request.user.id)
@@ -91,6 +99,7 @@ def posts(request):
     return render(request, 'posts/index.html', context)
 
 
+# user posts: index
 @login_required
 def user_post_index(request, user_id):
     user_posts = Post.objects.filter(id=user_id)
@@ -104,6 +113,7 @@ def user_post_index(request, user_id):
     return render(request, 'profile/profile_home.html', context)
 
 
+# post: show
 def post(request, post_id):
     post = Post.objects.get(id=post_id)
     login_modal = Login_Form()
@@ -115,13 +125,8 @@ def post(request, post_id):
     }
     return render(request, 'posts/post.html', context)
 
-# def edit(request, post_id):
-#     post = Post.objects.get(id=post_id)
-#     edit_form = Post_Form(request.POST, post)
-#     context = {'post': post, 'edit_form':edit_form}
-#     return render(request, 'posts/edit.html', context)
 
-
+# post edit
 @login_required
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)
@@ -149,14 +154,14 @@ def edit_post(request, post_id):
         return render(request, 'posts/edit.html', context)
 
 
+# post: delete
 @login_required
 def post_delete(request, post_id):
     Post.objects.get(id=post_id).delete()
     return redirect('profile', request.user.id)
 
 
-# post for specific city page
-
+# city posts: index
 @login_required
 def add_city_post(request, city_id):
     city = City.objects.get(id=city_id)
@@ -170,6 +175,7 @@ def add_city_post(request, city_id):
     return redirect('home')
 
 
+# city: create
 @login_required
 def city_post_form(request, city_id):
     city = City.objects.get(id=city_id)
@@ -187,6 +193,7 @@ def city_post_form(request, city_id):
     return render(request, 'cities/form.html', context)
 
 
+# user: create
 def register(request):
     error_message = 'this email is in use'
     if request.method == 'POST':
@@ -224,6 +231,8 @@ def register(request):
             return render(request, 'home.html', context)
 
 
+# posts/profile: update/delete
+# profile: show
 @login_required
 def settings(request):
     error_message = ''
@@ -259,6 +268,7 @@ def settings(request):
         return render(request, 'settings.html', context)
 
 
+# profile show
 @login_required
 def profile(request, user_id):
     target_user = User.objects.get(id=user_id)
@@ -276,11 +286,13 @@ def profile(request, user_id):
     return render(request, 'profile/profile.html', context)
 
 
+# redirects login from modal
 def login_redirect(request):
     user = request.user
     return redirect('profile', user.id)
 
 
+# city: create
 @login_required
 def add_city(request):
     if request.method == 'POST':
@@ -290,6 +302,7 @@ def add_city(request):
             return redirect('form')
 
 
+# privacy: static
 def privacy(request):
     login_modal = Login_Form()
     user_modal = Register_Form()

@@ -1,11 +1,19 @@
-from django.forms import ModelForm
+# ANCHOR External Modules
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, ValidationError
 from django.contrib.auth.models import User
+
+# ANCHOR Internal Modules
 from .models import Post, Profile, City
 
 
+# ANCHOR Form functions
 class Register_Form(UserCreationForm):
+    """
+    Register_Form:
+    Combines User and Profile fields into one form
+    """
     first_name = forms.CharField(max_length=100,)
     last_name = forms.CharField(max_length=100,)
     hometown = forms.CharField(max_length=50)

@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
 {% load humanize %}
+
 {% block content %}
+
+<!-- PAGE HEADING -->
 <h1 class="section-title">EXPLORE CITIES</h1>
+
+
+
+
+<!-- ALL CITIES INDEX -->
 <div class="ui four column doubling stackable grid container">
     {%for city in cities%}
     <div class="column">
@@ -30,4 +38,6 @@
     </div>
     {%endfor%}
 </div>
+
+
 {% endblock %}

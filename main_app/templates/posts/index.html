@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 
+<!-- PAGE HEADING -->
 <h1 class="section-title">ALL POSTS</h1>
+
+
+
+<!-- ALL POSTS INDEX -->
 <div class="ui large feed">
     {%for post in posts %}
     <div class="event">

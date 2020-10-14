@@ -2,46 +2,41 @@
 {% load static %}
 
 {% block content %}
-{% comment %} TODO replace this with a for loop and a new database model for coverphotos {% endcomment %}
+
+<!-- CAROUSEL -->
 <div class="carousel" data-flickety={}>
     <div class="carousel-cell">
         <img src="{% static 'images/hongkong.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>Hong Kong</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/prague.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>Prague, Czech Republic</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/regensburg.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>Regensburg, Germany</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/london.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/cape-town.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/machu-pichu.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/montreal.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/tokyo.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/vienna.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
 </div>
 
+
+
+<!-- PAGE HEADING -->
 <div class="section-heading">
     <p>Recent Posts
         <a href="{% url 'posts' %}" class="ui item" id="show-more">
@@ -50,6 +45,10 @@
     </p>
 </div>
 
+
+
+
+<!-- RECENT POSTS -->
 <div class="ui items">
     {% for post in all_posts %}
     <div class="item">

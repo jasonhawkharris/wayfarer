@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+
 {% block content %}
 
+<!-- CREATE POST FORM -->
 <div class="ui container">
 	<h2>Create A Post</h2>
 	<form class="ui form" action="{% url 'add_post'%}" method="POST">
@@ -20,7 +22,9 @@
 </div>
 
 
-<!-- New City Modal -->
+
+
+<!-- NEW CITY MODAL -->
 <div class=" ui tiny modal" id="new-city-modal">
 	<div class="header">Login</div>
 	<div class="content">

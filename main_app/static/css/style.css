@@ -199,8 +199,6 @@ body {
     margin-right: 75px;
 }
 
-
-
 .ui.vertical.fluid.tabular.menu {
     height: 100vh;
     background-color: #eee;
@@ -330,9 +328,4 @@ h2.section-title {
 .ui.relaxed.divided.list .item .content .profile-btn-group {
     margin-top: 5px;
     margin-bottom: 15px !important;
-}
-
-
-.ui.container .ui.card .ui.header #login-on-page {
-    border: 1px solid black !important;
 }

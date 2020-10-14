@@ -27,15 +27,17 @@ class Register_Form(UserCreationForm):
         email = self.cleaned_data.get('email')
         user_count = User.objects.filter(email=email).count()
         if user_count > 0:
-            raise ValidationError('This email is already registered for this site')
+            raise ValidationError(
+                'This email is already registered for this site')
         return email
 
     def save(self, commit=True):
-            user = super(Register_Form, self).save(commit=False)
-            user.email = self.cleaned_data['email']
-            if commit:
-                user.save()
-            return user
+        user = super(Register_Form, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
+
 
 class Profile_Form(ModelForm):
     class Meta:
@@ -60,6 +62,11 @@ class Login_Form(ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+    def __init__(self, *args, **kwargs):
+        super(Login_Form, self).__init__(*args, **kwargs)
+        self.fields['username'].help_text = ''
+        self.fields['password'].widget = forms.PasswordInput()
 
 
 class Post_Form(ModelForm):

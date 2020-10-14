@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block content %}
-{% comment %} TODO replace this with a for loop and a new database model for coverphotos {% endcomment %}
+
+<!-- CAROUSEL -->
 <div class="carousel" data-flickety={}>
     <div class="carousel-cell">
         <img src="{% static 'images/hongkong.jpg' %}" class="slide" alt="">
@@ -33,6 +34,9 @@
     </div>
 </div>
 
+
+
+<!-- PAGE HEADING -->
 <div class="section-heading">
     <p>Recent Posts
         <a href="{% url 'posts' %}" class="ui item" id="show-more">
@@ -40,6 +44,11 @@
         </a>
     </p>
 </div>
+
+
+
+
+<!-- RECENT POSTS -->
 <div class="ui items">
     {% for post in all_posts %}
     <div class="item">

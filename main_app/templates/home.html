@@ -6,39 +6,30 @@
 <div class="carousel" data-flickety={}>
     <div class="carousel-cell">
         <img src="{% static 'images/hongkong.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>Hong Kong</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/prague.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>Prague, Czech Republic</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/regensburg.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>Regensburg, Germany</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/london.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/cape-town.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/machu-pichu.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/montreal.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/tokyo.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
     <div class="carousel-cell">
         <img src="{% static 'images/vienna.jpg' %}" class="slide" alt="">
-        {% comment %} <h1>London, United Kingdom</h1> {% endcomment %}
     </div>
 </div>
 
@@ -49,9 +40,6 @@
         </a>
     </p>
 </div>
-{% if not all_posts %}
-    <div>No posts</div>
-{% else %}
 <div class="ui items">
     {% for post in all_posts %}
     <div class="item">
@@ -85,5 +73,4 @@
     <br>
     {% endfor %}
 </div>
-{% endif %}
 {% endblock %}

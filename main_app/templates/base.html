@@ -6,23 +6,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" type="text/css" href="{% static 'css/semantic/semantic.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/flickity@latest/dist/flickity.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/flickity@2.2.1/dist/flickity.pkgd.min.js"></script>
     <script src="{% static 'css/semantic/semantic.min.js' %}"></script>
-
     <title>The Wayfarer</title>
 </head>
 
 <body>
+    <!-- AREA ABOVE SIDEBAR NAV -->
     <div class=" ui secondary vertical fixed menu" id="sidebar">
-
         {% if user.is_authenticated and target_user != request.user %}
         <div class="profile-card">
             <a href="{% url 'profile' user.id %}">
@@ -40,6 +37,8 @@
             The Wayfarer
         </div>
         {% endif %}
+
+
 
 
         <!-- SIDE BAR NAVIGATION START -->
@@ -104,7 +103,7 @@
 
 
 
-    <!-- Nav Bar -->
+    <!-- TOP NAV BAR -->
     <div class="ui secondary fixed menu" id="topbar">
         {% if user.is_authenticated and target_user != request.user %}
         <div class="logo">
@@ -138,7 +137,7 @@
 
 
 
-    <!-- Main Content -->
+    <!-- MAIN CONTENT -->
     <div class="main-body">
         {% block content %}
 
@@ -162,6 +161,8 @@
     </div>
 
 
+
+
     <!--REGISTER MODAL-->
     <div class="ui tiny modal" id="register-modal">
         <div class="header">Register</div>
@@ -181,8 +182,8 @@
 
 
 
+
     <!-- FOOTER -->
-    {% if request.path != '/settings/' %}
     <div class="ui inverted vertical footer segment">
         <div class="ui center aligned container">
             <div class="ui stackable inverted divided grid">
@@ -228,18 +229,21 @@
             </div>
         </div>
     </div>
-    {% endif %}
-    
+
+
+
+
+    <!-- SCRIPTS -->
     {% if reroute %}
     <script>
-        $(window).on('load', function(){
+        $(window).on('load', function () {
             $('#register-modal').modal('show');
         });
 
         setTimeout(function () {
-                $('#email_error').fadeOut();
-            }, 7000);
-        
+            $('#email_error').fadeOut();
+        }, 7000);
+
         const openRegisterModal = () => {
             $('#register-modal').modal('show');
         }
@@ -247,7 +251,7 @@
         $('#login-link').on('click', function () {
             $('#login-modal').modal('show');
         });
-        function add_user(){
+        function add_user() {
             $('#register-modal').modal('show')
         }
 
@@ -279,13 +283,13 @@
     </script>
     {% else %}
     <script>
-        
+
         const openRegisterModal = () => {
             $('#register-modal').modal('show');
         }
 
         if ($('#register-modal').hasClass('active')) {
-            $(document).on('click', function() {
+            $(document).on('click', function () {
                 $('#register-modal').removeClass('active');
             });
         }

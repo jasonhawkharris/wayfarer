@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<!-- PAGE HEADING -->
 <h1 class="section-title">EDIT POST</h1>
+
+
+
+<!-- EDIT POST FORM -->
 <div class="ui container">
 	<form class="ui reply form" action="{% url 'edit_post' post.id %}" method="POST">
 		{%csrf_token%}
@@ -8,4 +14,5 @@
 		<input type="submit" class="btn" value="Edit Post">
 	</form>
 </div>
+
 {% endblock %}
